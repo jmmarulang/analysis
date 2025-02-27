@@ -84,21 +84,6 @@ Section extended_essential_supremum.
     by rewrite H1.
   Qed.
 
-
-(*
-Lemma aku (S : set (\bar R)) : S != set0 -> 
-- ereal_sup S = ereal_sup (-%E @` S).
-Proof.
-  move => H. rewrite /ereal_sup / supremum. rewrite (negPf H).
-  have H0 := negP H.
-  case: ifPn => H1.
-  - have H2 := (image_set0_set0 (eqP H1)).
-    move : H1; by rewrite H2 (image_set0 -%E) -{1}H2.
-    Check @xgetPex (\bar R) -oo (supremums S).
-  -
-Qed.  
-*)
-
 End extended_essential_supremum.
 
 Definition geo_mean {d} {T : measurableType d} {R : realType} 
@@ -107,6 +92,297 @@ expeR (\int[P]_x (lne (g x)))%E.
 
 Declare Scope Lnorme_scope.
 
+HB.lock Definition Lnorme {d} {T : measurableType d} {R : realType}
+    (mu : {measure set T -> \bar R}) (p : \bar R) (f : T -> \bar R) :=
+  match p with
+  | p%:E => (if p == 0%R then
+              mu (f @^-1` (setT `\ 0%R))
+            else
+              (\int[mu]_x (`|f x| `^ p)) `^ p^-1)%E
+  | +oo%E => (if mu [set: T] > 0 then ess_supe mu (abse \o f) else 0)%E
+  | -oo%E => (if mu [set: T] > 0 then ess_infe mu (abse \o f) else 0)%E
+  end.
+
+Definition Gmeane {d} {T : measurableType d} {R : realType}
+  (P : probability T R) (p : \bar R) (f : T -> \bar R) :=
+  if p == 0 then geo_mean P f else Lnorme P p f.
+
+Definition HGmeane {d} {T : measurableType d} {R : realType}
+  (P : probability T R) (p : \bar R) (f : T -> \bar R) :=
+  (Gmeane P p ((poweR ^~ -1) \o f)) `^ -1.
+
+Definition HGmeane' {d} {T : measurableType d} {R : realType}
+  (P : probability T R) (p : \bar R) (f : T -> \bar R) :=
+  match p with
+  | p%:E => if p == 0%R then (geo_mean P ((poweR ^~ -1) \o f)) `^ -1 else Gmeane P (-p%:E) f
+  | +oo%E => (if P [set: T] > 0 then ess_infe P (abse \o f) else 0)%E
+  | -oo%E => (if P [set: T] > 0 then ess_supe P (abse \o f) else 0)%E
+  end.
+
+  (*
+Lemma HGmeane_isHGmeane' d T R P p f : @HGmeane d T R P p f = HGmeane' P p f.
+Admitted. 
+*)
+
+Section Lnorme_properties.
+  Context d {T : measurableType d} {R : realType}.
+  Variable mu : {measure set T -> \bar R}.
+  Local Open Scope ereal_scope.
+  Implicit Types (p : \bar R) (f g : T -> \bar R) (r : R).
+  
+  Local Notation "'Ne_ p [ f ]" := (Lnorme mu p f).
+  
+  Lemma Lnorme1 f : 'Ne_1[f] = \int[mu]_x `|f x|.
+  Proof. 
+    rewrite unlock oner_eq0 invr1// poweRe1//.
+    - by apply : eq_integral => t _; rewrite poweRe1.
+    - by apply : integral_ge0 => t _; rewrite  poweRe1.
+  Qed.
+  
+  Lemma Lnorme_ge0 p f : 0 <= 'Ne_p[f].
+  Proof. 
+    rewrite unlock. move : p => [r/=|/=|//].
+    - case: ifPn => // _; 
+      rewrite ?/geo_mean ?expeR_ge0 ?poweR_ge0//.
+    - case: ifPn => H //; rewrite ess_supe_ge0 //;
+      move => t; rewrite compE //=.
+    - case: ifPn => H //; rewrite ess_infe_ge0 //.
+      move => t; rewrite compE //=.
+  Qed.
+  
+  Lemma eq_Lnorme p f g : f =1 g -> 'Ne_p[f] = 'Ne_p[g].
+  Proof.
+    move => H; congr Lnorme; exact /funext.
+  Qed.
+  
+  Lemma emeasurable_fun_fine D f : 
+    measurable_fun D (fine \o f) -> 
+    (forall E, E `<=` [set -oo; 0%R; +oo] ->  d.-measurable (f @^-1` E)) -> 
+    measurable_fun D f.
+  Proof.
+    move => H HE H0 //= Y H1.
+    rewrite 
+    (_ : (f @^-1` Y) =  
+      ((fine \o f) @^-1` (fine @` (Y `\` [set -oo; 0; +oo])))
+      `|` 
+      ((f @^-1`(Y `&` [set -oo; 0; +oo]%E)))
+    ); last first.
+    apply/seteqP; split => [t //= H2 | t //= H2].
+    -
+    case ((f t) == 0) eqn:H3; first by
+    right; split => //=; left; right; apply (eqP H3).
+    case (f t) as [s | | ].
+    -- 
+    left. exists s%:E => //=. split => //=. repeat rewrite not_orE.
+    repeat split => //=. apply negbT in H3. 
+    by rewrite contra.Internals.eqType_neqP.
+    -- by right; split => //=; right.
+    -- by right; split => //=; repeat left.
+    -
+    case H2 as [[x [H2 H3]] | [H2 H3]].
+    - 
+    repeat rewrite not_orE in H3.
+    case H3 as [[H3 H5] H6].
+    case x as [s | | ] => //=.
+    rewrite //= in H4.
+    case (f t) as [s' | | ].
+    -- by rewrite H4 in H2.
+    -- by rewrite H4 in H5. 
+    -- by rewrite H4 in H5.
+    -- by apply H2.
+    rewrite setIUr.
+    -
+    apply : measurableU.
+    -
+    apply : H => //=.
+    rewrite (_ : 
+    (fine @` (Y `\` [set -oo; 0; +oo])) = 
+    (fine @` (Y `\` [set -oo; +oo])) `\`(fine @` [set 0])
+    ); last first. 
+      apply/seteqP; split => 
+        [t //= [x [H2 H3] H4] | t //= [[x [H2 H3]] H4] H5].
+      -- split.
+      --- 
+      exists x => //=. split => //=. 
+      move : H3; repeat rewrite not_orE; move => [[H3 H5] H6].
+      split => //=.
+      ---
+      rewrite /not => H5.
+      case H5 as [x' H6].
+      rewrite -H in H4.
+      rewrite H6 //= in H4.
+      repeat rewrite not_orE in H3.
+      case H3 as [[H3 H7] H8].
+      case x as [s | | ];
+      rewrite //= in H4; move : H3 H7 H8 => //=;
+      rewrite H4; contradiction.
+      --
+      exists x => //=. split => //=.
+      move : H3. repeat rewrite not_orE.
+      move => [H3 H6].
+      rewrite /not in H5.
+      repeat split => //=.
+      case (x == 0) eqn:H7.
+      --- 
+      have H8 := (eqP H7).
+      exfalso. apply H5.
+      exists x => //=.
+      ---
+      rewrite contra.Internals.eqType_neqP.
+      by apply negbT.
+    apply measurableI.
+    apply : measurable_image_fine => //=.
+    apply measurableC.
+    rewrite image_set1 => //=. 
+    apply measurableI => //=.
+    apply : HE => //=.
+  Qed.
+  
+  Lemma measurable_poweR r :
+      measurable_fun [set: \bar R] (@poweR R ^~ r).
+  Proof.
+  move => _ /= B mB.
+  rewrite setIidr; last by apply subsetT.
+  rewrite [X in measurable X]
+  (_ : (poweR^~ r @^-1` B) = 
+    if (r == 0%R) then 
+      (if 1 \in B then [set : \bar R] else set0) 
+    else
+      EFin @` ( @powR R ^~ r @^-1` (fine @` (B `\` [set -oo; +oo])))  
+      `|` (if (0 < r)%R then (B `&` [set +oo]) 
+          else if 0 \in B then [set +oo] else set0)
+      `|` (if 1 \in B then [set -oo] else set0)
+    ); first last.
+  -
+  case : (ltgtP 0%R r) => r0; repeat case : ifPn; 
+    try move => /set_mem ?; try rewrite notin_setE => ?;
+    try move => /set_mem ?; try rewrite notin_setE => ?; 
+    apply /seteqP; split => [[s||] //= |x //=].
+    all: try (by left;left; exists s => //; exists (s `^ r)%:E => //; 
+         split => //; rewrite not_orE; split).
+    all: try by (rewrite ?(gt_eqF r0) ?r0 => //; left; right).
+    all: try by right.
+    all: try (move => [[[? [[?||] [Bz NzNyOzy //= nfzar <- //=]]]|]|] //=;
+        first by rewrite -nfzar).
+        all: try (by move => ->; rewrite poweRNyr).
+        all: try (by move : NzNyOzy; rewrite not_orE; move => [? ?]).
+    1,2: by move => [+ +] => /[swap] ->; rewrite eqy_poweR.
+    all: try (try move => ->; rewrite /poweR ?(lt_gtF r0) ?(lt_eqF r0) => //).
+    all: try (by (try move: x => [?||]; rewrite -?r0 ?powRr0 ?eq_refl)).
+  -
+  case : (ltgtP 0%R r) => r0; repeat case : ifPn; 
+    try move => /set_mem B1; try rewrite notin_setE => nB1;
+    try move => /set_mem B0; try rewrite notin_setE => nB0;
+    repeat apply : measurableU => //=; try apply: measurable_image_EFin;
+    try rewrite -[X in measurableR X] setTI; try apply: @measurable_powR => //;
+    by try exact: measurable_image_fine; try exact: measurableI => //=.
+  Qed.
+
+Lemma Lnorme_eq0_eq0 r f : 
+(0 < r)%R -> 
+measurable_fun setT f ->
+'Ne_r%:E[f] = 0 -> 
+ae_eq mu [set: T] (fun t => (`|f t| `^ r)) (cst 0).
+Proof.
+  move => rgt0 mf. rewrite unlock (gt_eqF rgt0) => /poweR_eq0_nNr_eq0 fp.
+  apply/ae_eq_integral_abs => //=.
+  apply: (@measurableT_comp _ _ _ _ _ _ (@poweR R ^~ r)) => //=.
+  apply /measurable_poweR.
+    exact : measurableT_comp. 
+  under eq_integral => x _ do rewrite (gee0_abs (poweR_ge0 _ _)).
+  apply fp; rewrite -powR_inv1. apply (@powR_ge0 _ r (-1)).
+  by move: rgt0; rewrite lt_def => /andP [_ +].
+Qed.
+
+(*weakened !!!*)
+Lemma powR_Lnorme f r : (0 < r)%R ->
+  'Ne_r%:E[f] `^ r = \int[mu]_x (`| f x | `^ r).
+Proof.
+move => r0; rewrite unlock ?(gt_eqF r0) ?(lt_eqF r0); move : r0.
+have : 0 <= \int[mu]_x (`| f x | `^ r); 
+    first by apply integral_ge0 => ? _; rewrite poweR_ge0.
+case intfx : (\int[mu]_x  `|f x| `^ r) => [x||] // x0 r0; last first. 
+- rewrite !poweRyPr ?invr_gt0 => //. 
+- rewrite /poweR; f_equal. rewrite -powRrM mulVf; 
+    last by rewrite negbT // eq_sym; apply (lt_eqF r0). 
+  apply powRr1; by move : x0; rewrite lee_fin.
+Qed.
+
+End Lnorme_properties.
+
+#[global] Hint Extern 0 (measurable_fun _ (@poweR _ ^~ _)) =>
+solve [apply: measurable_poweR] : core.
+
+#[global]
+Hint Extern 0 (0 <= Lnorme _ _ _) => solve [apply: Lnorme_ge0] : core.
+
+Notation "'Ne[ mu ]_ p [ f ]" := (Lnorme mu p f).
+
+Section hoelder.
+Context d {T : measurableType d} {R : realType}.
+Variable mu : {measure set T -> \bar R}.
+Local Open Scope ereal_scope.
+Implicit Types (r : R) (p q : \bar R) (f g : T -> \bar R).
+
+(*
+Lemma measurable_poweR' r :
+  measurable_fun [set: \bar R] (@poweR R ^~ r).
+Proof.
+    apply emeasurable_fun_fine.
+*)
+
+Let measurableT_comp_poweR f r :
+  measurable_fun [set: T] f -> measurable_fun setT (fun x => (f x) `^ r).
+Proof. apply (@measurableT_comp _ _ _ _ _ _ (@poweR R ^~ r)) => //=. Qed.
+
+Local Notation "'Ne_ p [ f ]" := (Lnorme mu p f).
+
+Let integrable_poweR f r : (0 < r)%R ->
+    measurable_fun [set: T] f -> 'Ne_r%:E[f] != +oo ->
+  mu.-integrable [set: T] (fun x => (`|f x| `^ r)).
+Proof.
+  move => H H0 H1; apply /integrableP; split.
+    apply: measurableT_comp_poweR.
+    exact: measurableT_comp.
+  rewrite ltey. apply : contra H1.
+  move => /eqP/(@eqy_poweR _ _ r^-1). rewrite invr_gt0 => /(_ H) <-.
+  rewrite unlock (gt_eqF H); apply/eqP; congr (_ `^ _). 
+  by apply/eq_integral => t _; rewrite [RHS]gee0_abs // poweR_ge0.
+Qed.
+
+Let hoelder0 f g p q : measurable_fun setT f -> measurable_fun setT g ->
+    (0 < p) -> (0 < q) -> ((p `^-1) + (q `^-1) = 1) ->
+  'Ne_p[f] = 0 -> 'Ne_1[(f \* g)]  <= 'Ne_p[f] * 'Ne_q[g].
+Proof. 
+  move => H H0 H1 H2 H3 H4;
+    case p as [p' | | ] => //=; case q as [q' | | ] => //=.
+  -
+  move : H1 H2; rewrite ?lte_fin => H1 H2. 
+  rewrite H4 mul0e Lnorme1 [leLHS](_ : _ = 0)//.
+  rewrite (ae_eq_integral (cst 0)) => [|//||//|]; 
+  first by rewrite integral0.
+  -- by apply : measurableT_comp => //; exact: emeasurable_funM.
+  --  apply: filterS (Lnorme_eq0_eq0 H1 H H4).
+      => t /(_ I) /poweR_eq0_eq0 + _ => //=.
+  rewrite abse_ge0 abseM => H5; rewrite H5 ?mul0e //=.
+  - all : rewrite //= (_ : -1 == 0%R = false) in H3 
+    => //=; apply : negbTE => //=.
+Qed.
+
+Let normalized p f x := (`|f x|) * (('Ne_p[f])`^-1)%E.
+
+Let normalized_ge0 p f x : (0 <= normalized p f x)%E.
+Proof. by rewrite /normalized mule_ge0 //= poweR_ge0. Qed.
+
+Let measurable_normalized p f : measurable_fun [set: T] f ->
+  measurable_fun [set: T] (normalized p f).
+Proof. by move=> mf; apply: emeasurable_funM => //; exact: measurableT_comp. Qed.
+
+Let integral_normalized f r : (0 < r)%R -> 0 < 'Ne_r%:E[f] ->
+    P.-integrable [set: T] (fun x => (`|f x| `^ r)) ->
+  \int[P]_x (normalized r%:E f x `^ r) = 1.
+Proof.
+(*
 (*Is it ok to work just with a probability*)
 HB.lock Definition Lnorme 
   {d} {T : measurableType d} {R : realType} (P : probability T R) 
@@ -620,7 +896,7 @@ End Lnorme_properties.
         by under eq_integral do rewrite gee0_abs// ?poweR_ge0//.
     *)
 *)
-
+*)
      
     
 

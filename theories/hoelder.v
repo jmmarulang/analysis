@@ -24,7 +24,7 @@ Unset Printing Implicit Defensive.
 Import Order.TTheory GRing.Theory Num.Def Num.Theory.
 Import numFieldTopology.Exports.
 
-(*
+
 Local Open Scope classical_set_scope.
 Local Open Scope ring_scope.
 
@@ -40,12 +40,12 @@ Declare Scope Lnorm_scope.
 HB.lock Definition Lnorm {d} {T : measurableType d} {R : realType}
     (mu : {measure set T -> \bar R}) (p : \bar R) (f : T -> R) :=
   match p with
-  | p%:E => (if p == 0%R then
+  | r%:E => (if r == 0%R then
               mu (f @^-1` (setT `\ 0%R))
             else
-              (\int[mu]_x (`|f x| `^ p)%:E) `^ p^-1)%E
+              (\int[mu]_x (`|f x| `^ r)%:E) `^ ((r^-1)%:E))%E
   | +oo%E => (if mu [set: T] > 0 then ess_sup mu (normr \o f) else 0)%E
-  | -oo%E => 0%E
+  | -oo%E => 0 (* (if mu [set: T] > 0 then ess_inf mu (normr \o f) else 0)%E *)
   end.
 Canonical locked_Lnorm := Unlockable Lnorm.unlock.
 Arguments Lnorm {d T R} mu p f.
@@ -76,16 +76,27 @@ Section Lnorm_properties.
   Lemma eq_Lnorm p f g : f =1 g -> 'N_p[f] = 'N_p[g].
   Proof. by move=> fg; congr Lnorm; exact/funext. Qed.
 
-  Lemma Lnorm_eq0_eq0 r f : (0 < r)%R -> measurable_fun setT f ->
-    'N_r%:E[f] = 0 -> ae_eq mu [set: T] (fun t => (`|f t| `^ r)%:E) (cst 0).
+  Lemma poweR_eq0_eq0 (x y : \bar R) : 0 <= x -> 0 < y < +oo -> x `^ y = 0 -> x = 0.
   Proof.
-  move=> r0 mf; rewrite unlock (gt_eqF r0) => /poweR_eq0_eq0 fp.
-  apply/ae_eq_integral_abs => //=.
-    apply: measurableT_comp => //.
-    apply: (@measurableT_comp _ _ _ _ _ _ (@powR R ^~ r)) => //.
-    exact: measurableT_comp.
-  under eq_integral => x _ do rewrite ger0_norm ?powR_ge0//.
-  by rewrite fp//; apply: integral_ge0 => t _; rewrite lee_fin powR_ge0.
+    rewrite /poweR.
+    case: ifPn => [/eqP ->//|].
+    case: x => //[r rneq0 rge0|_ _] /andP[]; case: y => //s [s0 soo].
+    - by move/eqP; rewrite expeR_eq0 lner// -EFinM.
+    - by move/eqP; rewrite expeR_eq0/= gt0_muley.
+  Qed.
+
+  Lemma Lnorm_eq0_eq0 p f : 0 < p -> measurable_fun setT f ->
+    'N_p[f] = 0 -> ae_eq mu [set: T] (fun t => `|(f t)%:E| `^ p) (cst 0).
+  Proof.
+  case: p => //[r|].
+  move=> r0 mf; rewrite unlock /Lnorm gt_eqF// => /poweR_eq0_eq0 fp.
+  apply/ae_eq_integral_abs => //=. admit.
+    (* apply: measurableT_comp => //. *)
+    (* apply: (@measurableT_comp _ _ _ _ _ _ (@powR R ^~ r)) => //. *)
+    (* exact: measurableT_comp. *)
+  under eq_integral => x _. do rewrite ger0_norm ?poweR_ge0//.
+  rewrite fp// ?lte_fin ?ltry ?invr_gt0 ?r0//.
+  by apply: integral_ge0 => t _; rewrite lee_fin powR_ge0.
   Qed.
 
   Lemma powR_Lnorm f r : r != 0%R ->
@@ -505,4 +516,3 @@ Qed.
   Qed.
 
 End minkowski.
-*)

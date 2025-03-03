@@ -5307,6 +5307,9 @@ Implicit Types f : T -> R.
 Definition ess_sup f :=
   ereal_inf (EFin @` [set r | mu (f @^-1` `]r, +oo[) = 0]).
 
+Definition ess_inf f :=
+  ereal_sup (EFin @` [set r | mu (f @^-1` `]-oo, r[) = 0]).
+
 Lemma ess_sup_ge0 f : 0 < mu [set: T] -> (forall t, 0 <= f t)%R ->
   0 <= ess_sup f.
 Proof.

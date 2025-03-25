@@ -3317,6 +3317,18 @@ move=> intf intg fg; rewrite integralE [leRHS]integralE leeB//.
   + by move=> x /mem_set; exact: funeneg_le.
 Qed.
 
+Lemma integral_pushforward (f : T -> \bar R)
+    phi (mphi : measurable_fun setT phi) : mu_int f ->
+  \int[pushforward mu mphi]_(y in D) f y =
+  \int[mu]_(x in phi @^-1` D) (f \o phi) x.
+Proof.
+move=> /integrableP[fy intf]; rewrite [RHS]integralE [LHS]integralE/=.
+rewrite ge0_integral_pushforward//; last exact/measurable_funepos.
+rewrite [X in _ - X = _]ge0_integral_pushforward//; last exact/measurable_funeneg.
+by congr (_ - _); apply: eq_integral => t ?;
+ [rewrite -funepos_comp|rewrite -funeneg_comp].
+Qed.
+
 End integrable_theory.
 Notation "mu .-integrable" := (integrable mu) : type_scope.
 Arguments eq_integrable {d T R mu D} mD f.

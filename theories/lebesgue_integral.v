@@ -3317,7 +3317,7 @@ move=> intf intg fg; rewrite integralE [leRHS]integralE leeB//.
   + by move=> x /mem_set; exact: funeneg_le.
 Qed.
 
-Lemma integral_pushforward (f : T -> \bar R)
+Lemma integral_pushforward2 (f : T -> \bar R)
     phi (mphi : measurable_fun setT phi) : mu_int f ->
   \int[pushforward mu mphi]_(y in D) f y =
   \int[mu]_(x in phi @^-1` D) (f \o phi) x.

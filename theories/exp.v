@@ -1381,18 +1381,15 @@ rewrite mulyy; move: rN0; case: (ltgtP r 0%R) => // rN0 _.
   by rewrite poweRyNe ?mule0.
 by rewrite poweRyPe ?mulyy.
 Qed.
-  
+
 Definition poweRrM_def x y z :=
   ((x <= 1) || (0 <= y) || (x*y*z < +oo)) && ((1 <= x) || (-oo < y*z)).
 
 Lemma poweRrM_defE x y z :
   ((x <= 1) || (0 <= y) || (x*y*z < +oo)) && ((1 <= x) || (-oo < y*z)) = 
-    if 1 < x then (0 <= y) || (x*y*z < +oo) else (-oo < y*z) || (x == 1).
-Proof.
-case: ifPn => h.
-- by rewrite (@ltW _ _ 1 x)//= andbT leNgt h.
-- by rewrite leNgt h/= eq_le (leNgt x 1) h/= orbC.
-Qed.
+    if 1 < x then (0 <= y) || (x*y*z < +oo)
+    else if x < 1 then (-oo < y*z) else true.
+Proof. by have [xgt1||]//= := ltgtP x 1; rewrite andbT. Qed.
 
 Lemma poweRrM (x y z : \bar R) : poweRrM_def x y z -> x `^ (y * z) = (x `^ y) `^ z. 
 Proof.

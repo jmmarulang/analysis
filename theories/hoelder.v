@@ -99,8 +99,7 @@ Proof.
 move=> r0; have ? : (r != 0)%R; first by apply /negbT /gt_eqF.
 rewrite unlock (gt_eqF r0) -poweRrM -?EFinM ?mulVf// ?poweRe1//;
   try by apply: integral_ge0 => x _; rewrite lee_fin// powR_ge0.
-rewrite /poweRrM_def -muleA -EFinM ltNye !orbT mulrC divff //= andbT.
-by rewrite lee_fin invr_ge0 -orbA orbC ltW.
+by rewrite /poweRrM_def lte_fin (ltNge r) (ltW r0). 
 Qed.
 
 End Lnorm_properties.
@@ -198,7 +197,7 @@ transitivity (\int[mu]_x (`|f x| `^ p / fine ('N_p%:E[f] `^ p%:E))%:E).
   by rewrite poweR_EFin ltey.
 rewrite unlock (gt_eqF p0); rewrite -poweRrM -?EFinM 
   ?mulVf ?(gt_eqF p0)// ?(poweRe1 (ltW fp0))//; last first.
-by rewrite /poweRrM_def -EFinM ltNyr lee_fin invr_ge0 (ltW p0) !orbT.
+by rewrite /poweRrM_def lte_fin (ltNge p) (ltW p0).
 under eq_integral do rewrite EFinM muleC.
 have foo : \int[mu]_x (`|f x| `^ p)%:E < +oo.
   move/integrableP: ifp => -[_].
@@ -538,3 +537,4 @@ by rewrite invr_eq1 gt_eqF.
 Qed.
 
 End minkowski.
+

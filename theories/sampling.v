@@ -11,7 +11,7 @@ From mathcomp Require Import reals ereal interval_inference topology normedtype.
 From mathcomp Require Import sequences realfun convex real_interval.
 From mathcomp Require Import derive esum measure exp numfun lebesgue_measure.
 From mathcomp Require Import lebesgue_integral kernel probability.
-From mathcomp Require Import hoelder independence.
+From mathcomp Require Import hoelder unstable.
 
 Set Implicit Arguments.
 Unset Strict Implicit.
@@ -549,6 +549,24 @@ exists A=> //.
 by rewrite setTI.
 Qed.
 
+Lemma measurable_prod d [T : measurableType d] [R : realType] [D : set T] [I : eqType]
+    (s : seq I) [h : I -> T -> R] :
+  (forall i, i \in s -> measurable_fun D (h i)) ->
+  measurable_fun D (fun x => (\prod_(i <- s) h i x)%R).
+(* PR 1592 in progress *)
+Proof.
+elim: s => [mh|x y ih mh].
+  under eq_fun do rewrite big_nil//=.
+  exact: measurable_cst.
+under eq_fun do rewrite big_cons//=.
+apply: measurable_funM => //.
+  apply: mh.
+  by rewrite mem_head.
+apply: ih => n ny.
+apply: mh.
+by rewrite inE orbC ny.
+Qed.
+
 Section tuple_sum.
 Context d (T : measurableType d) (R : realType) (P : probability T R).
 
@@ -581,7 +599,7 @@ Proof.
 rewrite [X in measurable_fun _ X](_ : _
     = (fun x => \prod_(i < n) Tnth s (f i) x)); last first.
   by apply/funext => x; rewrite fct_prodE.
-by apply: measurable_prod => /= i _; apply/measurableT_comp => //.
+by apply: measurable_prod => /= i _; apply/measurableT_comp.
 Qed.
 
 HB.instance Definition _ m n (s : m.-tuple {mfun T >-> R}) (f : 'I_n -> 'I_m) :=

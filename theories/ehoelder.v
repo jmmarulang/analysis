@@ -96,7 +96,7 @@ Qed.
 
 Lemma Lnorm1 f : 'N_1[f] = \int[mu]_x `|f x|.
 Proof.
-rewrite unlock invr1// poweRe1//; under eq_integral do [rewrite poweRe1//=] => //.
+rewrite unlock invr1//poweRe1//;under eq_integral do [rewrite poweRe1//=] => //.
 exact: integral_ge0.
 Qed.
 
@@ -134,12 +134,14 @@ rewrite unlock /Lnorm NfE; case: p => /= [r|//|//].
 by under eq_integral => x _ do rewrite abseN.
 Qed.
 
+(*NOTE: cannot be generalized to ereal exponent
+cos lack of support for negative basis*)
 Lemma Lnorm_cst1 r : ('N_r%:E[cst 1] = (mu setT)`^(r^-1%:E)).
 Proof.
 rewrite unlock /Lnorm. under eq_integral do rewrite /= normr1 poweR1e.
-
 by rewrite integral_cst// mul1e.
 Qed.
+
 
 End Lnorm_properties.
 
@@ -147,19 +149,19 @@ Section Lnorm_properties.
 Context d {T : measurableType d} {R : realType}.
 Variable mu : {measure set T -> \bar R}.
 Local Open Scope ereal_scope.
-Implicit Types (p : \bar R) (f g : T -> R) (r : R).
+Implicit Types (p : \bar R) (f g : T -> \bar R) (r : R).
 
-Local Notation "'N_ p [ f ]" := (Lnorm mu p (EFin \o f)).
+Local Notation "'N_ p [ f ]" := (Lnorm mu p f).
 
 Lemma Lnormr_ge0 p f : 0 <= 'N_p[f].
 Proof.
 rewrite unlock; move: p => [r/=|/=|//]; first exact: poweR_ge0.
-- by case: ifPn => // /ess_sup_ger; apply => t/=.
-- by case: ifPn => // muT0; apply/ess_infP/nearW => x /=.
+- by case: ifPn=>// /ess_sup_gee ->//;apply /aeW => ?/=.
+- by case: ifPn=>// muT0; apply/ess_infP/nearW => ?/=.
 Qed.
 
-Lemma Lnormr_eq0_eq0 (f : T -> R) p :
-  measurable_fun setT f -> (0 < p)%E -> 'N_p[f] = 0 -> f = 0%R %[ae mu].
+Lemma Lnormr_eq0_eq0 f p :
+  measurable_fun setT f -> (0 < p)%E -> 'N_p[f] = 0 -> f = \0 %[ae mu].
 Proof.
 rewrite unlock /Lnorm => mf.
 case: p => [r||//].
@@ -172,6 +174,7 @@ case: p => [r||//].
          /andP [/eqP Ieqy ilt0]] //=; 
          last by have := lt_trans ilt0 igt0; rewrite ltxx.
   have aku : forall x, (EFin \o  f) x = (f x)%:E; first by move=> x.
+move: Ieq0.
   move: Ieq0; under eq_integral do rewrite poweR_EFin. 
   under eq_integral => x _ do rewrite -[_%:E]gee0_abs ?lee_fin ?powR_ge0//.
   have mp : measurable_fun [set: T] (fun x : T => (`|f x| `^ r)%:E).
@@ -272,7 +275,7 @@ Implicit Types (p q : R) (f g : T -> R).
 
 Let measurableT_comp_powR f p :
   measurable_fun [set: T] f -> measurable_fun setT (fun x => f x `^ p)%R.
-Proof. exact: (@measurableT_comp _ _ _ _ _ _ (@powR R ^~ p)). Qed.
+Proof. exact: ( @measurableT_comp _ _ _ _ _ _ ( @powR R ^~ p)). Qed.
 
 Local Notation "'N_ p [ f ]" := (Lnorm mu p (EFin \o f)).
 
@@ -284,7 +287,7 @@ move=> p0 mf foo; apply/integrableP; split.
   apply: measurableT_comp => //; apply: measurableT_comp_powR.
   exact: measurableT_comp.
 rewrite ltey; apply: contra foo.
-move=> /eqP/(@eqy_poweR _ _ p^-1%:E); rewrite lte_fin invr_gt0 => /(_ p0) <-.
+move=> /eqP/( @eqy_poweR _ _ p^-1%:E); rewrite lte_fin invr_gt0 => /(_ p0) <-.
 rewrite unlock; apply/eqP; congr (_ `^ _).
 apply/eq_integral => t _; rewrite poweR_EFin [RHS]gee0_abs// lee_fin powR_ge0.
 Qed.

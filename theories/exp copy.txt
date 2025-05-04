@@ -1,11 +1,11 @@
-(* mathcomp analysis (c) 2017 Inria and AIST. License: CeCILL-C.              *)
+((* mathcomp analysis (c) 2017 Inria and AIST. License: CeCILL-C.             *)
 From HB Require Import structures.
 From mathcomp Require Import all_ssreflect ssralg ssrnum ssrint interval finmap.
-From mathcomp Require Import mathcomp_extra unstable boolp interval_inference.
-From mathcomp Require Import classical_sets functions cardinality fsbigop reals.
-From mathcomp Require Import ereal topology normedtype sequences real_interval.
-From mathcomp Require Import esum measure ess_sup_inf lebesgue_measure.
-From mathcomp Require Import lebesgue_integral numfun exp convex.
+From mathcomp Require Import mathcomp_extra boolp classical_sets functions.
+From mathcomp Require Import cardinality fsbigop reals interval_inference ereal.
+From mathcomp Require Import topology normedtype sequences real_interval esum.
+From mathcomp Require Import measure measurable_realfun lebesgue_measure.
+From mathcomp Require Import lebesgue_integral numfun exp convex ess_sup_inf.
 
 (**md**************************************************************************)
 (* # Hoelder's Inequality                                                     *)
@@ -62,6 +62,18 @@ Reserved Notation "mu .-Lspace p" (at level 4, format "mu .-Lspace  p").
 Declare Scope Lnorm_scope.
 
 Local Open Scope ereal_scope.
+
+(*
+HB.lock Definition Lnorm {d} {T : measurableType d} {R : realType}
+    (mu : {measure set T -> \bar R}) (p : \bar R) (f : T -> \bar R) :=
+  match p with
+  | p%:E => (\int[mu]_x `|f x| `^ p) `^ p^-1
+    (* (mu (f @^-1` (setT `\ 0%R))) when p = 0? *)
+  | +oo%E => if mu [set: T] > 0 then ess_sup mu (abse \o f) else 0
+  | -oo%E => if mu [set: T] > 0 then ess_inf mu (abse \o f) else 0
+  end.
+*)
+
 HB.lock Definition Lnorm {d} {T : measurableType d} {R : realType}
     (mu : {measure set T -> \bar R}) (p : \bar R) (f : T -> \bar R) :=
   match p with
@@ -70,6 +82,7 @@ HB.lock Definition Lnorm {d} {T : measurableType d} {R : realType}
   | +oo%E => if mu [set: T] > 0 then ess_sup mu (abse \o f) else 0
   | -oo%E => if mu [set: T] > 0 then ess_inf mu (abse \o f) else 0
   end.
+
 Canonical locked_Lnorm := Unlockable Lnorm.unlock.
 Arguments Lnorm {d T R} mu p f.
 Local Close Scope ereal_scope.
@@ -134,6 +147,22 @@ rewrite unlock /Lnorm NfE; case: p => /= [r|//|//].
 by under eq_integral => x _ do rewrite abseN.
 Qed.
 
+Lemma compre_mule (h : \bar R -> R) (f g : T -> \bar R) :
+  {morph h : x y / x * y >-> (x * y)%R} ->
+  h \o  (f \* g) = ((h \o  f) \* (h \o  g))%R.
+Proof. move => mh; apply/funext => t //=. Qed.
+
+Lemma fun_fineM f g :  fine \o  f \* g = ((fine \o f) \* (fine \o g))%R.
+Proof.
+  apply compre_mule => //=.
+  move => [a||] [b||] //=; try by rewrite ?fineM //.
+  all: rewrite ?mulr0 ?mul0r ?mulNyy ?mulyNy ?mulyy //=.
+  all: try case : (ltgtP 0 a%:E) => z0; try case : (ltgtP 0 b%:E) => z0;
+  try by rewrite -?z0 ?mul0e 
+    ?mule0 ?(gt0_muley z0) ?(gt0_mulye z0) ?(lt0_muley z0) ?(lt0_mulye z0)
+    ?(gt0_muleNy z0)?(gt0_mulNye z0) ?(lt0_muleNy z0) ?(lt0_mulNye z0).
+Qed.
+
 Lemma Lnorm_cst1 r : ('N_r%:E[cst 1] = (mu setT)`^(r^-1%:E)).
 Proof.
 rewrite unlock /Lnorm. under eq_integral do rewrite /= normr1 poweR1e.
@@ -189,6 +218,7 @@ case: p => [r||//].
   by apply/eqP; rewrite eq_le mu0/=.
 Qed.
 
+(*weakened !!!*)
 Lemma powR_Lnorm f r : (0 < r)%R ->
   'N_r%:E[f] `^ r%:E = \int[mu]_x (`| f x | `^ r)%:E.
 Proof. 
@@ -310,36 +340,37 @@ Let measurable_normalized p f : measurable_fun [set: T] f ->
   measurable_fun [set: T] (normalized p f).
 Proof. by move=> mf; apply: measurable_funM => //; exact: measurableT_comp. Qed.
 
-  Let integral_normalized f p : (0 < p)%R -> 0 < 'N_p%:E[f] ->
-  mu.-integrable [set: T] (fun x => (`|f x| `^ p)%:E) ->
-\int[mu]_x (normalized p f x `^ p)%:E = 1.
+
+Let integral_normalized f p : (0 < p)%R -> 0 < 'N_p%:E[f] ->
+    mu.-integrable [set: T] (fun x => (`|f x| `^ p)%:E) ->
+  \int[mu]_x (normalized p f x `^ p)%:E = 1.
 Proof.
 move=> p0 fpos ifp.
 transitivity (\int[mu]_x (`|f x| `^ p / fine ('N_p%:E[f] `^ p%:E))%:E).
-apply: eq_integral => t _.
-rewrite powRM//; last by rewrite invr_ge0 fine_ge0// Lnormr_ge0.
-rewrite -[in LHS]powR_inv1; last by rewrite fine_ge0 // Lnormr_ge0.
-rewrite powRAC fine_poweR; last first.
-  by rewrite unlock; apply /(lt_le_trans ltNy0) /poweR_ge0.
-by rewrite -powR_inv1 // powR_ge0.  
+  apply: eq_integral => t _.
+  rewrite powRM//; last by rewrite invr_ge0 fine_ge0// Lnormr_ge0.
+  rewrite -[in LHS]powR_inv1; last by rewrite fine_ge0 // Lnormr_ge0.
+  rewrite powRAC fine_poweR; last first.
+    by rewrite unlock; apply /(lt_le_trans ltNy0) /poweR_ge0.
+  by rewrite -powR_inv1 // powR_ge0.  
 have fp0 : 0 < \int[mu]_x (`|f x| `^ p)%:E.
-rewrite unlock in fpos.
-under eq_integral do rewrite -poweR_EFin.
-apply: gt0_poweR _ _ fpos; rewrite ?lte_fin ?invr_gt0//.
-apply integral_ge0 => x _; rewrite poweR_EFin lee_fin; exact: powR_ge0.
+  rewrite unlock in fpos.
+  under eq_integral do rewrite -poweR_EFin.
+  apply: gt0_poweR _ _ fpos; rewrite ?lte_fin ?invr_gt0//.
+  apply integral_ge0 => x _; rewrite poweR_EFin lee_fin; exact: powR_ge0.
 (*under eq_integral do rewrite (fine_poweR _ (lt_trans ltNy0 fpos)).*)
 rewrite unlock -poweRrM. rewrite -EFinM mulVf ?(gt_eqF p0)//.
 rewrite poweRe1; last first. under eq_integral do rewrite poweR_EFin.
 rewrite (ltW fp0)//.
 under eq_integral do rewrite EFinM muleC.
 have foo : \int[mu]_x (`|f x| `^ p)%:E < +oo.
-move/integrableP: ifp => -[_].
-by under eq_integral do rewrite gee0_abs// ?lee_fin ?powR_ge0//.
+  move/integrableP: ifp => -[_].
+  by under eq_integral do rewrite gee0_abs// ?lee_fin ?powR_ge0//.
 rewrite integralZl//; apply/eqP; rewrite eqe_pdivrMl ?mule1.
 - rewrite fineK//; first by under eq_integral do rewrite -poweR_EFin -abse_EFin.
-  by rewrite gt0_fin_numE //=; under eq_integral do rewrite poweR_EFin.
+    by rewrite gt0_fin_numE //=; under eq_integral do rewrite poweR_EFin.
 - rewrite gt_eqF// fine_gt0//;under eq_integral do rewrite abse_EFin poweR_EFin.
-by rewrite foo andbT.  
+  by rewrite foo andbT.  
 by rewrite /poweRrM_def lte_fin; apply /implyP; move: p0; case: (ltgtP 0%R p).
 Qed.
 
@@ -980,30 +1011,30 @@ Qed.
 End Lspace_norm.
 
 Section Lspace.
-  Context d (T : measurableType d) (R : realType).
-  Variable mu : {measure set T -> \bar R}.
-  
-  Definition Lspace p (p1 : (1 <= p)%E) := [set: LType mu p1].
-  Arguments Lspace : clear implicits.
-  
-  Definition LType1 := LType mu (@lexx _ _ 1%E).
-  
-  Definition LType2 := LType mu (lee1n 2).
-  
-  Lemma lfun_integrable (f : T -> R) r :
-    1 <= r -> f \in lfun mu r%:E ->
-    mu.-integrable setT (fun x => (`|f x| `^ r)%:E).
-  Proof.
-  rewrite inE => r0 /andP[/[!inE]/= mf] lpf.
-  apply/integrableP; split => //.
-    apply: measurableT_comp => //.
-    apply: (measurableT_comp (measurable_powR _)) => //.
-    exact: measurableT_comp.
-  move: lpf=> /(@poweR_lty _ _ r%:E).
-  rewrite powR_Lnorm// ?gt_eqF// ?(lt_le_trans ltr01)//.
-  under eq_integral=> x _ do 
-  rewrite -(@gee0_abs _ (`|f x| `^ r)%:E) ?powR_ge0//= -abse_EFin.
-  by move=> -> //=; rewrite ltNyr ltry.
+Context d (T : measurableType d) (R : realType).
+Variable mu : {measure set T -> \bar R}.
+
+Definition Lspace p (p1 : (1 <= p)%E) := [set: LType mu p1].
+Arguments Lspace : clear implicits.
+
+Definition LType1 := LType mu (@lexx _ _ 1%E).
+
+Definition LType2 := LType mu (lee1n 2).
+
+Lemma lfun_integrable (f : T -> R) r :
+  1 <= r -> f \in lfun mu r%:E ->
+  mu.-integrable setT (fun x => (`|f x| `^ r)%:E).
+Proof.
+rewrite inE => r0 /andP[/[!inE]/= mf] lpf.
+apply/integrableP; split => //.
+  apply: measurableT_comp => //.
+  apply: (measurableT_comp (measurable_powR _)) => //.
+  exact: measurableT_comp.
+move: lpf=> /(@poweR_lty _ _ r%:E).
+rewrite powR_Lnorm// ?gt_eqF// ?(lt_le_trans ltr01)//.
+under eq_integral=> x _ do 
+rewrite -(@gee0_abs _ (`|f x| `^ r)%:E) ?powR_ge0//= -abse_EFin.
+by move=> -> //=; rewrite ltNyr ltry.
 Qed.
 
 Lemma lfun1_integrable (f : T -> R) :

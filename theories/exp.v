@@ -1126,16 +1126,16 @@ move => lts0; rewrite /powR; case : ifP => /eqP eqs0.
   by rewrite (ln0 les0) mulr0 expR0.
 Qed.
 
-Lemma powR_eq1 x p : (x `^ p == 1) = (x == 1) || (x < 0) || (p == 0).
+Lemma powR_eq1 x p : [|| (x `^ p == 1) == (x == 1), x < 0 | p == 0 ].
 Proof.
-have [-> | x1] := eqVneq x 1 => //=; first by rewrite powR1 eq_refl.
-have [-> | p0] := eqVneq p 0; rewrite ?powRr0 ? eq_refl orbC //=.
-case : (ltgtP x 0) => [x0 | x0 | ->]; first by rewrite (lt0_powR x0) eq_refl.
-  + rewrite /powR [X in if X then _ else _]eq_sym (lt_eqF x0).
-    rewrite -expR0; apply /negP => /eqP /expR_inj /eqP.
-    rewrite mulf_eq0 (negbTE p0) -ln1 //= => /eqP /(ln_inj x0 ltr01) /eqP.
-    by rewrite (negbTE x1).
-  + by rewrite powR0 // eq_sym oner_eq0.
+have [-> | /eqP x1] := eqVneq x 1 => //=; first by rewrite powR1 eq_refl.
+have [-> | /eqP p0] := eqVneq p 0; rewrite ?powRr0 ?orbT//.
+case : (ltgtP x 0) => [x0 | x0 | ->].
+- by rewrite orbT.
+- rewrite /powR (gt_eqF x0) !orbF eqbF_neg -expR0.
+  apply/eqP => /expR_inj/eqP; rewrite mulf_eq0 => /orP[/eqP//|].
+  by rewrite -ln1 => /eqP /(ln_inj x0 ltr01).
+- by rewrite powR0// ?orbF; apply/eqP; rewrite //(@eq_sym _ 0) oner_eq0.
 Qed.
 
 End PowR.
@@ -1162,9 +1162,11 @@ Qed.
 Lemma lne_EFin r : (r != 0)%R -> lne (r%:E) = (ln r)%:E.
 Proof. by move => /negbTE //= ->. Qed.
 
+Lemma lne_fin_num x : x \is a fin_num -> x != 0 -> lne x = (ln (fine x))%:E.
+Proof. by case: x => //r _ ?; rewrite lne_EFin. Qed.
+
 Lemma expeRK : cancel expeR lne.
 Proof. by case=> //=[x|]; rewrite ?eqxx ?gt_eqF ?expR_gt0 ?expRK. Qed.
-
 
 Lemma lneK : {in `[0, +oo], cancel lne (@expeR R)}.
 Proof.

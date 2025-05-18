@@ -1578,6 +1578,37 @@ move: x => [x|_|//]; last by rewrite poweRyPe.
 by rewrite lee_fin => x0 /=; rewrite poweR_EFin powR12_sqrt.
 Qed.
 
+(*
+Lemma conjugate_poweR x y p q : 0 <= x -> 0 <= y ->
+  (0 < p)%E -> (0 < q)%E -> (p `^-1%:E) + (q `^-1%:E) = 1 ->
+  x * y <= (x `^ p) * (p `^-1%:E) + (y `^ q) * (q `^-1%:E).
+Proof.
+case: (eqVneq 0 x) => [<-|]; case: (eqVneq 0 y) => [<-|];
+[move=> _ _ |move=> neq0x le0x _ |move=> neq0x le0x _ |
+move=> neq0y neq0x le0x le0y ] => r0 s0 rs1;
+rewrite ?poweR0e ?mul0e ?mule0 ?add0e ?le_refl ?negbT ?gt_eqF ?adde_ge0 
+  ?mule_ge0 ?poweR_ge0 ?lee_fin ?invr_ge0 ?(ltW r0) ?(ltW s0)//.
+have lt0x : 0 < x; first by rewrite lt_def eq_sym neq0x le0x.
+have lt0y : 0 < y; first by rewrite lt_def eq_sym neq0y le0y.
+have ltN10 := (lte_tofin (@ltrN10 R)).
+move: p q r0 s0 rs1 => [r||] [s||] //=; 
+  rewrite ?lte_fin ?poweR_EFin //= => r0 s0 /eqP; 
+  rewrite ?(poweR_EFin (ltW r0)) ?(poweR_EFin (ltW s0)) 
+    ?(powR_inv1 (ltW r0)) ?(powR_inv1 (ltW s0)) -?EFinD ?(poweRyNe ltN10) 
+    ?mule0 ?adde0 ?add0e;
+    (try rewrite eqe => /eqP) => /eqP; rewrite ?invr_eq1=> /eqP;
+    [move=> rs1| move=> ->| move=> ->|move=> rs1]; last first.
+exfalso; rewrite -falseE -(@ltxx _ R 0%R); apply /(lt_trans ltr01).
+  by rewrite rs1 -[X in (X < _)%R]rs1 ltr01.
+3: move: x y neq0y neq0x le0x le0y lt0y lt0x=> 
+  [x||][y||]// neq0y neq0x le0x le0y lt0y lt0x;
+rewrite ?poweR_EFin -?EFinM -?EFinD ?lee_fin ?conjugate_powR
+?poweRyPe ?gt0_muley ?gt0_mulye ?lte_fin ?invr_gt0 
+?addye ?addey ?negbT ?gt_eqF ?poweR_EFin -?EFinM ?ltNyr //.
+1,2: rewrite poweRe1// invr1 mule1.
+Qed.
+*)
+
 Lemma conjugate_poweR x y r s : 0 <= x -> 0 <= y ->
   (0 < r)%R -> (0 < s)%R -> (r^-1 + s^-1 = 1)%R ->
   x * y <= (x `^ r%:E) * (r^-1%:E) + (y `^ s%:E) * (s^-1%:E).

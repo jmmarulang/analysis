@@ -1457,11 +1457,13 @@ Qed.
 
 (*Lemma poweR_gt0 x r : 0 < x -> 0 < x `^ r.*)
 
-Lemma gt0_poweR x r : (0 < r)%R -> 0 <= x -> 0 < x `^ r -> 0 < x.
+Lemma gt0_poweR x y : (0 < y) -> 0 <= x -> 0 < x `^ y -> 0 < x.
 Proof.
-move=> r0; move: x => [x|//|]; rewrite ?leeNe_eq// lee_fin !lte_fin.
-exact: gt0_powR.
+  case : x => // r; rewrite lee_fin. 
+  by case : (ltgtP r 0%R) => //; last by move=> -> // y0; rewrite poweR0e ?gt_eqF.
 Qed.
+
+(*Lemma gt0_poweR x r : (0 < r)%R -> 0 <= x -> 0 < x `^ r -> 0 < x.*)
 
 Lemma poweR_eq0 x r : 0 <= x -> (x `^ r == 0) = ((x == 0) && (r != 0%R)).
 Proof.

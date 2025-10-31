@@ -12,7 +12,7 @@
 
 - in `probability.v`:
   + definition `ccdf`
-  + lemmas `cdf_fin_num`, `lebesgue_stieltjes_cdf_id`, `cdf_ccdf_1`, `ccdf_fin_num`, `ccdf_nonincreasing`, `cvg_ccdfy0`, `cvg_ccdfNy1`, `ccdf_right_continuous`
+  + lemmas `lebesgue_stieltjes_cdf_id`, `cdf_ccdf_1`, `ccdf_nonincreasing`, `cvg_ccdfy0`, `cvg_ccdfNy1`, `ccdf_right_continuous`, `ge0_expectation_ccdf`
   + corollaries `ccdf_cdf_1`, `ccdf_1_cdf`, `cdf_1_ccdf`
 
 - in `num_normedtype.v`:
@@ -324,7 +324,26 @@
   + definition `poisson_pmf`, lemmas `poisson_pmf_ge0`, `measurable_poisson_pmf`,
   + definition `poisson_prob`
 
+- in `matrix_topology.v`:
+  + definition `mx_ball`
+
 ### Renamed
+
+- in `reals.v`:
+  + `sup_le_ub` -> `ge_sub`
+  + `le_inf` -> `inf_le`
+  + `le_sup` -> `sup_le`
+  + `sup_ubound` -> `ub_le_sup`
+  + `inf_lbound` -> `ge_inf`
+  + `ub_ereal_sup` -> `ge_ereal_sup`
+  + `ereal_inf_le` -> `ge_ereal_inf`
+  + `le_ereal_sup` -> `ereal_sup_le`
+  + `le_ereal_inf` -> `ereal_inf_le_tmp`
+  + `lb_ereal_inf` -> `le_ereal_inf_tmp`
+  + `ereal_sup_ge` -> `le_ereal_sup_tmp`
+
+- in `sequences.v`:
+  + `adjacent` -> `adjacent_seq`
 
 ### Generalized
 
@@ -347,6 +366,15 @@
 - in `probabilitity.v`:
   + lemma `exponential_pdf_ge0` (hypothesis generalized)
 
+- in `unstable.v`:
+  + generalized from `numDomainType` to `pzRingType`:
+    + definition `onem`, lemmas `onme0`, `onem1`, `add_onemK`, `onemD`, `onemMr`, `onemM`
+
+- in `matrix_normedtype.v`:
+  + lemmas `rV_compact`, `mx_norm_ball`, `bounded_closed_compact`,
+    `mx_normZ`
+  + example `matrix_triangle`
+
 ### Deprecated
 
 ### Removed
@@ -359,6 +387,15 @@
 - notations `[measure of _]`, `[measure of _]`
 - notations `[content of _]`, `[content of _]`
 - notations `[outer_measure of _]`, `[outer_measure of _]`
+
+- in `reals.v`:
+  + notation `sup_ub` (was deprecated since 1.3.0)
+  + notation `inf_lb` (was deprecated since 1.3.0)
+  + notation `ereal_sup_ub` (was deprecated since 1.3.0)
+  + notation `ereal_inf_lb` (was deprecated since 1.3.0)
+
+- in `ereal.v`:
+  + notation `ereal_sup_le` (was deprecated since 1.11.0)
 
 ### Infrastructure
 

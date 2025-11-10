@@ -1393,11 +1393,79 @@ Qed.
 
 Lemma poweRrM x r s : x `^ (r * s) = (x `^ r) `^ s.
 Proof.
-have [->|s0] := eqVneq s 0%R; first by rewrite mulr0 !poweRe0.
-have [->|r0] := eqVneq r 0%R; first by rewrite mul0r poweRe0 poweR1r.
-case: x => [x| |]//; first by rewrite /= powRrM.
-  by rewrite !poweRyr// mulf_neq0.
-by rewrite !poweRNyr ?poweR0r ?(negPf s0)// mulf_neq0.
+rewrite poweRE; repeat case: ifPn=>//; move=>/orP[]/eqP ->; rewrite ?ltxx//.
+by rewrite lte_fin ltr10.
+Qed. 
+
+Lemma lt0_gt0_poweR x y : x < 0%R -> 0%R < y -> x `^ y = 0.
+move=> x0; rewrite poweRE x0; repeat case : ifPn=>//; case: (ltgtP y 0)=> //.
+rewrite (_ : x == 1 = false)//=; apply/eqP. 
+by move: x0=>/[swap] ->; rewrite lte_fin ltr10.
+Qed.
+
+Definition poweRrM_def x y z := 
+      (z < 0) ==> (0 < x) ==> 
+      (((x < +oo) || (0 <= y)) && 
+      ((x <= 1) || (x == +oo) || (-oo < y)) && 
+      ((1 <= x) || (y < +oo))). 
+
+Lemma poweRrM (x y z : \bar R) : (0 <= x) -> poweRrM_def x y z -> 
+  x `^ (y * z) = (x `^ y) `^ z. 
+Proof.
+rewrite /poweRrM_def.
+case: (ltgtP z 0); case: (ltgtP y 0); case: (ltgtP x 0)=> //=; last first.
+1-6: by move=> + + -> //=; rewrite mule0 !poweRe0.
+1-2,7-8: by move=> + -> //=; rewrite mul0e !poweRe0 poweR1.
+1,3,5,7: move=> -> y0 z0; rewrite !poweR0e ?mule_neq0//.
+1-16: by rewrite ?(gt_eqF y0) ?(gt_eqF z0) ?(lt_eqF y0) ?(lt_eqF z0)//.
+all: case: (ltgtP x 1)=> [||->]; last by rewrite !poweR1.
+all: case: x=> [r||]// + + y0 z0.
+3: by rewrite (gt0_poweRye y0) (gt0_poweRye z0) gt0_poweRye ?(mule_gt0 y0 z0).
+5: {rewrite (lt0_poweRye y0) poweR0e; last by rewrite (gt_eqF z0). 
+    by rewrite lt0_poweRye ?(mule_lt0_gt0 y0 z0). } 
+7: {rewrite (gt0_poweRye y0) (lt0_poweRye z0) lt0_poweRye//. 
+    by rewrite (mule_gt0_lt0 y0 z0). }
+all: move: y z y0 z0=> [s||] [t||]//= s0 t0 r1 r0; rewrite ?ltxx ?andbF//.
+all: try by rewrite -EFinM !poweR_EFin ?ltW ?powRrM ?powR_gt0.
+- rewrite (gt0_muley s0) poweR_EFin ?poweRey_lt1 ?ltW ?lte_fin ?powR_gt0//.
+  rewrite (_ : 1 = 1 `^ s)%R; last by rewrite powR1.
+  by rewrite gt0_ltr_powR ?nnegrE ?ltW.
+- by rewrite (gt0_mulye t0) poweRey_lt1 ?ltW ?poweR0e ?gt_eqF.
+- by rewrite gt0_mulye ?poweRey_lt1 ?lexx ?ltW ?lte01.
+- rewrite (gt0_muley s0) poweR_EFin ?ltW ?poweRey_gt1 ?lte_fin//.
+  rewrite (_ : 1 = 1 `^ s)%R; last by rewrite powR1.
+  by rewrite gt0_ltr_powR ?nnegrE ?ltW.
+- by rewrite (gt0_mulye t0) ?poweRey_gt1 ?gt0_poweRye.
+- by rewrite gt0_muley ?poweRey_gt1 ?ltey.
+- rewrite (lt0_muley s0) poweR_EFin ?poweRey_gt1 ?ltW ?poweReNy_lt1 ?r0//.
+  rewrite (_ : 1 = 1 `^ s)%R; last by rewrite powR1.
+  by rewrite !lte_fin gt0_gtr_powR ?posrE ?ltW.
+- by rewrite (gt0_mulNye t0) ?poweReNy_lt1 ?gt0_poweRye ?r0.
+- by rewrite lt0_muley ?poweReNy_lt1 ?r0.
+- rewrite (lt0_muley s0) ?poweReNy_gt1 ?poweRey_lt1 ?poweR_ge0//.
+  rewrite poweR_EFin ?ltW// (_ : 1 = 1 `^ s)%R; last by rewrite powR1.
+  by rewrite !lte_fin gt0_gtr_powR ?posrE ?ltW.
+- by rewrite (gt0_mulNye t0) ?poweReNy_gt1 ?poweR0e ?gt_eqF.
+- by rewrite lt0_muley ?poweReNy_gt1 ?poweR0e.
+- rewrite (gt0_muleNy s0) poweR_EFin ?ltW ?poweReNy_lt1 ?r0 ?r1 //.
+  rewrite !lte_fin powR_gt0// (_ : 1 = 1 `^ s)%R; last by rewrite powR1.
+  by rewrite gt0_ltr_powR ?nnegrE ?ltW.
+- rewrite (gt0_muleNy s0) poweR_EFin ?ltW ?poweReNy_gt1 //.
+  rewrite lte_fin (_ : 1 = 1 `^ s)%R; last by rewrite powR1.
+  by rewrite ?gt0_ltr_powR ?nnegrE ?ltW.
+- by rewrite (lt0_mulye t0) ?poweReNy_gt1 ?poweRey_gt1 ?lt0_poweRye.
+- by rewrite gt0_muleNy ?poweReNy_gt1 ?poweRey_gt1 ?ltey_eq.
+- rewrite (lt0_muleNy s0) poweR_EFin ?ltW// poweReNy_gt1; last first.
+    rewrite lte_fin (_ : 1 = 1 `^ s)%R; last by rewrite powR1.  
+    by rewrite ?gt0_gtr_powR ?posrE ?ltW.
+  by rewrite poweRey_lt1  ?ltW ?r0 ?r1.
+- rewrite (lt0_mulNye t0) ?poweReNy_lt1 ?poweRey_lt1 ?ltW ?r0 ?r1 //.
+  by rewrite lt0_poweRye.
+- rewrite lt0_mulNye ?poweRey_lt1 ?ltW ?r0 ?r1//. 
+  by rewrite [X in _ = X `^ _]poweReNy_lt1 ?r0 ?r1.
+- rewrite (lt0_muleNy s0) poweR_EFin ?ltW// ?poweRey_gt1 ?r0 ?r1 //.
+  rewrite ?poweReNy_lt1// !lte_fin (_ : 1 = 1 `^ s)%R; last by rewrite powR1.
+  by rewrite ?gt0_gtr_powR ?posrE ?ltW ?powR_gt0.
 Qed.
 
 Lemma poweRAC x r s : (x `^ r) `^ s = (x `^ s) `^ r.

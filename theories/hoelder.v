@@ -108,7 +108,7 @@ Proof. by move=> fg; congr Lnorm; apply/eq_fun => ?; rewrite /= fg. Qed.
 Lemma poweR_Lnorm f r : (0 < r)%R ->
   'N_r%:E[f] `^ r%:E = \int[mu]_x (`| f x | `^ r%:E).
 Proof.
-move=> r0; rewrite unlock -poweRrM; last first.
+move=> r0; rewrite unlock -poweReM; last first.
   by case: (\int[mu]_x  `|f x| `^ r%:E)=>//; rewrite /poweRrM_def lee_fin ltW.
 rewrite -EFinM mulVf ?gt_eqF// poweRe1//.
 by apply: integral_ge0 => x _; exact: poweR_ge0.
@@ -423,7 +423,7 @@ have fp0 : 0 < \int[mu]_x (`|f x| `^ p)%:E.
   rewrite unlock in fpos.
   apply: gt0_poweR fpos; rewrite ?lte_fin ?invr_gt0//.
   by apply integral_ge0 => x _; rewrite lee_fin; exact: powR_ge0.
-rewrite unlock -poweRrM; last first.
+rewrite unlock -poweReM; last first.
   rewrite /poweRrM_def; case: (\int[mu]_x  `|(EFin \o  f) x| `^ p%:E)=>//.
   by rewrite lee_fin ltW.
 rewrite -EFinM mulVf; last by rewrite gt_eqF.
@@ -681,11 +681,11 @@ suff : 'N_p%:E[(f \+ g)%R] `^ p%:E <= ('N_p%:E[f] + 'N_p%:E[g]) *
     by rewrite fin_num_poweR// ge0_fin_numE// Lnorm_ge0.
   rewrite -(invrK (fine _)) lee_pdivrMl; last first.
     rewrite invr_gt0 fine_gt0// poweR_ltr//=.
-    rewrite andbT -poweR_gt0//=; move: (Nfg0); repeat case: ifPn=>//.
+    rewrite andbT poweR_gt0//=; move: (Nfg0); repeat case: ifPn=>//.
     by rewrite lee_fin=> _ _ _ /[!@ltW]//; apply /(lt_trans _ p1).
   rewrite fineK ?ge0_fin_numE ?Lnorm_ge0// => /le_trans; apply.
   rewrite lee_pdivrMl; last first.
-    rewrite fine_gt0// poweR_ltr// andbT -poweR_gt0//=; move: (Nfg0).
+    rewrite fine_gt0// poweR_ltr// andbT poweR_gt0//=; move: (Nfg0).
     by repeat case: ifPn=>//=; move=> _ _ _; rewrite lee_fin ltW.
   by rewrite fineK// 1?muleC// fin_num_poweR// ge0_fin_numE ?Lnorm_ge0.
 rewrite powR_Lnorm ?gt_eqF//.
@@ -712,7 +712,7 @@ rewrite ge0_integralD//; last 2 first.
       exact: measurableT_comp.
     exact/measurableT_comp_powR/measurableT_comp/measurable_funD.
 rewrite [leRHS](_ : _ = ('N_p%:E[f] + 'N_p%:E[g]) *
-    (\int[mu]_x (`|f x + g x| `^ p)%:E) `^ p^-1.~).
+    (\int[mu]_x (`|f x + g x| `^ p)%:E) `^ (p^-1.~)%:E).
   rewrite muleDl; last 2 first.
     - rewrite fin_num_poweR//.
       under eq_integral do rewrite -poweR_EFin -abse_EFin.
@@ -1162,7 +1162,7 @@ rewrite (@lty_poweRy _ _ 2^-1) ?inve_gt0//.
 rewrite (le_lt_trans _ l2f)//.
 rewrite unlock.
 rewrite inver//= (_ : 2%R == 0%R = false); last by rewrite gt_eqF.
-rewrite gt0_lee_poweR//.
+rewrite ge0_lee_poweR//.
 - by rewrite in_itv/= leey integral_ge0.
 - rewrite in_itv/= leey integral_ge0//.
   by move=> x _ ; rewrite poweR_ge0.

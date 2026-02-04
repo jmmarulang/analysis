@@ -1,9 +1,11 @@
-(* mathcomp analysis (c) 2025 Inria and AIST. License: CeCILL-C.              *)
+(* mathcomp analysis (c) 2026 Inria and AIST. License: CeCILL-C.              *)
 From HB Require Import structures.
 From mathcomp Require Import all_ssreflect ssralg ssrnum matrix interval poly.
 From mathcomp Require Import sesquilinear.
-From mathcomp Require Import mathcomp_extra unstable boolp classical_sets.
-From mathcomp Require Import functions reals interval_inference topology.
+#[warning="-warn-library-file-internal-analysis"]
+From mathcomp Require Import unstable.
+From mathcomp Require Import mathcomp_extra boolp classical_sets functions.
+From mathcomp Require Import reals interval_inference topology.
 From mathcomp Require Import prodnormedzmodule tvs normedtype landau.
 
 (**md**************************************************************************)
@@ -760,6 +762,14 @@ move=> dfx dgfx; apply: DiffDef; first exact: differentiable_comp.
 by rewrite diff_comp // !diff_val.
 Qed.
 
+Lemma differentiable_rsubmx m {n1 n2} v :
+  differentiable (rsubmx : 'M[R]_(m, n1 + n2) -> 'M[R]_(m, n2)) v.
+Proof. exact/linear_differentiable/continuous_rsubmx. Qed.
+
+Lemma differentiable_lsubmx m {n1 n2} v :
+  differentiable (lsubmx : 'M[R]_(m, n1 + n2) -> 'M[R]_(m, n1)) v.
+Proof. exact/linear_differentiable/continuous_lsubmx. Qed.
+
 Lemma bilinear_schwarz (U V' W' : normedModType R)
   (f : {bilinear U -> V' -> W'}) : continuous (fun p => f p.1 p.2) ->
   exists2 k, k > 0 & forall u v, `|f u v| <= k * `|u| * `|v|.
@@ -1253,7 +1263,7 @@ Proof. by have /derivableP := @derivable_id x v; rewrite derive_val. Qed.
 End derive_id.
 
 Lemma derive1_onem {R : numFieldType} :
-  (fun x => `1-x : R^o)^`()%classic = cst (-1).
+  (fun x => x.~ : R^o)^`()%classic = cst (-1).
 Proof.
 by apply/funext => x; rewrite derive1E deriveB// derive_id derive_cst sub0r.
 Qed.

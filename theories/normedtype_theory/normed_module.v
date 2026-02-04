@@ -3,6 +3,8 @@ From HB Require Import structures.
 From mathcomp Require Import all_ssreflect finmap ssralg ssrnum ssrint.
 From mathcomp Require Import archimedean rat interval zmodp vector.
 From mathcomp Require Import fieldext falgebra.
+#[warning="-warn-library-file-internal-analysis"]
+From mathcomp Require Import unstable.
 From mathcomp Require Import boolp classical_sets filter functions cardinality.
 From mathcomp Require Import set_interval interval_inference ereal reals.
 From mathcomp Require Import topology function_spaces real_interval.
@@ -2300,7 +2302,7 @@ suff [p_idx [pUq Up]] : exists p_idx,
     by move/set_mem : pUq; exact: bigcup_ointsub_sub.
   exists (g p_idx).
   - rewrite /= => q' Uq' q'p.
-    apply/notP => /eqP/set0P[s [ps ts]].
+    apply/not_notP => /eqP/set0P[s [ps ts]].
     suff : ratr q' \in bigcup_ointsub U q by move/Up; rewrite leqNgt q'p.
     rewrite (@nondisjoint_bigcup_ointsub _ _ _ (g p_idx))//.
     rewrite (@nondisjoint_bigcup_ointsub _ _ _ q') ?bigcup_ointsubxx//.

@@ -1,10 +1,11 @@
-(* mathcomp analysis (c) 2025 Inria and AIST. License: CeCILL-C.              *)
+(* mathcomp analysis (c) 2026 Inria and AIST. License: CeCILL-C.              *)
 From mathcomp Require Import all_ssreflect ssralg ssrint ssrnum matrix.
-From mathcomp Require Import interval rat.
+From mathcomp Require Import interval rat interval_inference.
+#[warning="-warn-library-file-internal-analysis"]
+From mathcomp Require Import unstable.
 From mathcomp Require Import boolp classical_sets functions mathcomp_extra.
-From mathcomp Require Import unstable reals ereal interval_inference.
-From mathcomp Require Import topology tvs normedtype landau sequences derive.
-From mathcomp Require Import realfun interval_inference convex.
+From mathcomp Require Import reals topology ereal tvs normedtype landau.
+From mathcomp Require Import sequences derive realfun convex.
 
 (**md**************************************************************************)
 (* # Theory of exponential/logarithm functions                                *)

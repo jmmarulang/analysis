@@ -2568,6 +2568,11 @@ move: x => [x| |]/=; first by rewrite mul1e.
 - by rewrite inveNy mul1e.
 Qed.
 
+Lemma inve_fin (r : R) : (r != 0%R) -> r%:E^-1 = r^-1%:E.
+Proof.
+by rewrite inver; case: (eqVneq r 0%R).
+Qed.
+
 Lemma gee_pMl y x : y \is a fin_num -> 0 <= x -> y <= 1 -> y * x <= x.
 Proof.
 move=> yfin; rewrite le_eqVlt => /predU1P[<-|]; first by rewrite mule0.

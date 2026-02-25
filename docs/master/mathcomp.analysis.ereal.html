@@ -2100,7 +2100,7 @@ Declared in library mathcomp.analysis.ereal, line 753, characters 6-19
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ext_num_spec_ereal_sup" class="id"><a name="ext_num_spec_ereal_sup" class="" title="ext_num_spec_ereal_sup :
 forall {R : realFieldType} [i : Itv.t] (S : Itv.def ext_num_sem i -> Prop),
-let r := Itv.real1 keep_nonpos i in
+let r := Itv.real1 IntItv.keep_nonpos i in
 Itv.spec ext_num_sem r (ereal_sup (R:=R) [set x%:num%R | x in S])
 
 ext_num_spec_ereal_sup is not universe polymorphic
@@ -2129,7 +2129,7 @@ Qed.</div></details>
 <span class="vernacular">Canonical</span><span class="id"> </span><span id="ereal_sup_inum" class="id"><a name="ereal_sup_inum" class="" title="ereal_sup_inum :
 forall {R : realFieldType} [i : Itv.t],
 (Itv.def ext_num_sem i -> Prop) ->
-Itv.def ext_num_sem (Itv.real1 keep_nonpos i)
+Itv.def ext_num_sem (Itv.real1 IntItv.keep_nonpos i)
 
 ereal_sup_inum is not universe polymorphic
 Arguments ereal_sup_inum {R} [i] S%function_scope
@@ -2141,7 +2141,7 @@ Declared in library mathcomp.analysis.ereal, line 776, characters 10-24
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ext_num_spec_ereal_inf" class="id"><a name="ext_num_spec_ereal_inf" class="" title="ext_num_spec_ereal_inf :
 forall {R : realFieldType} [i : Itv.t] (S : Itv.def ext_num_sem i -> Prop),
-let r := Itv.real1 keep_nonneg i in
+let r := Itv.real1 IntItv.keep_nonneg i in
 Itv.spec ext_num_sem r (ereal_inf (R:=R) [set x%:num%R | x in S])
 
 ext_num_spec_ereal_inf is not universe polymorphic
@@ -2168,7 +2168,7 @@ Qed.</div></details>
 <span class="vernacular">Canonical</span><span class="id"> </span><span id="ereal_inf_inum" class="id"><a name="ereal_inf_inum" class="" title="ereal_inf_inum :
 forall {R : realFieldType} [i : Itv.t],
 (Itv.def ext_num_sem i -> Prop) ->
-Itv.def ext_num_sem (Itv.real1 keep_nonneg i)
+Itv.def ext_num_sem (Itv.real1 IntItv.keep_nonneg i)
 
 ereal_inf_inum is not universe polymorphic
 Arguments ereal_inf_inum {R} [i] S%function_scope
@@ -2185,7 +2185,7 @@ Declared in library mathcomp.analysis.ereal, line 793, characters 10-24
 <span class="vernacular">Local</span><span class="vernacular"> Open</span><span class="vernacular"> Scope</span><span class="id"> ereal_scope</span>.<br/>
 <span class="vernacular">Local</span><span class="vernacular"> Open</span><span class="vernacular"> Scope</span><span class="id"> classical_set_scope</span>.<br/>
 <br/>
-<span class="vernacular">Definition</span><span class="id"> </span><span id="ereal_dnbhs" class="id"><a name="ereal_dnbhs" class="" title="ereal_dnbhs : forall {R : numFieldType}, \bar R -> filter.set_system \bar R
+<span class="vernacular">Definition</span><span class="id"> </span><span id="ereal_dnbhs" class="id"><a name="ereal_dnbhs" class="" title="ereal_dnbhs : forall {R : numFieldType}, \bar R -> set_system \bar R
 
 ereal_dnbhs is not universe polymorphic
 Arguments ereal_dnbhs {R} x%ereal_scope _
@@ -2198,7 +2198,7 @@ Declared in library mathcomp.analysis.ereal, line 803, characters 11-22
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">|</span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#d5becfdd26043e7de5a21e6270f35a00">+oo</a></span><span class="id"> =&gt;</span><span class="gallina-kwd"> exists</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54"> </a></span><span id="M:404" class="id"><a name="M:404" class="">M</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54">,</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54"> </a></span><span class="id"><a href="mathcomp.analysis.ereal.html#M:404">M</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#c94c2df86ca03f22f8f8b739cd7e1e88"> \is</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#c94c2df86ca03f22f8f8b739cd7e1e88"> </a></span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.orderedzmod.html#Num.real">Num</a></span>.<span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.orderedzmod.html#Num.real">real</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#ba2b0e492d2b4675a0acf3ea92aabadd"> /\</a></span><span class="gallina-kwd"> forall</span><span class="id"> </span><span id="y:405" class="id"><a name="y:405" class="">y</a></span><span class="id">,</span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.ereal.html#M:404">M</a></span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#bc34d0712444fb7fddc80987d6cdcb61">%:E</a></span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#::ereal_scope:x_'&lt;'_x"> &lt;</a></span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#::ereal_scope:x_'&lt;'_x"> </a></span><span class="id"><a href="mathcomp.analysis.ereal.html#y:405">y</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"> -&gt;</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"> </a></span><span class="id"><a href="mathcomp.analysis.ereal.html#P:401">P</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.ereal.html#y:405">y</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">|</span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#::ereal_scope:'-oo'">-oo</a></span><span class="id"> =&gt;</span><span class="gallina-kwd"> exists</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54"> </a></span><span id="M:406" class="id"><a name="M:406" class="">M</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54">,</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54"> </a></span><span class="id"><a href="mathcomp.analysis.ereal.html#M:406">M</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#c94c2df86ca03f22f8f8b739cd7e1e88"> \is</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#c94c2df86ca03f22f8f8b739cd7e1e88"> </a></span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.orderedzmod.html#Num.real">Num</a></span>.<span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.orderedzmod.html#Num.real">real</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#ba2b0e492d2b4675a0acf3ea92aabadd"> /\</a></span><span class="gallina-kwd"> forall</span><span class="id"> </span><span id="y:407" class="id"><a name="y:407" class="">y</a></span><span class="id">,</span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.ereal.html#y:407">y</a></span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#::ereal_scope:x_'&lt;'_x"> &lt;</a></span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#::ereal_scope:x_'&lt;'_x"> </a></span><span class="id"><a href="mathcomp.analysis.ereal.html#M:406">M</a></span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#bc34d0712444fb7fddc80987d6cdcb61">%:E</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"> -&gt;</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"> </a></span><span class="id"><a href="mathcomp.analysis.ereal.html#P:401">P</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.ereal.html#y:407">y</a></span><br/>
 &nbsp;&nbsp;<span class="id">end</span><span class="id"><a href="mathcomp.classical.classical_sets.html#075f2dd209aa707f1415a58a026b96d9">]</a></span>.<br/>
-<span class="vernacular">Definition</span><span class="id"> </span><span id="ereal_nbhs" class="id"><a name="ereal_nbhs" class="" title="ereal_nbhs : forall {R : numFieldType}, \bar R -> filter.set_system \bar R
+<span class="vernacular">Definition</span><span class="id"> </span><span id="ereal_nbhs" class="id"><a name="ereal_nbhs" class="" title="ereal_nbhs : forall {R : numFieldType}, \bar R -> set_system \bar R
 
 ereal_nbhs is not universe polymorphic
 Arguments ereal_nbhs {R} x%ereal_scope _
@@ -2212,7 +2212,7 @@ Declared in library mathcomp.analysis.ereal, line 809, characters 11-21
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id">|</span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#::ereal_scope:'-oo'">-oo</a></span><span class="id"> =&gt;</span><span class="gallina-kwd"> exists</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54"> </a></span><span id="M:414" class="id"><a name="M:414" class="">M</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54">,</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54"> </a></span><span class="id"><a href="mathcomp.analysis.ereal.html#M:414">M</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#c94c2df86ca03f22f8f8b739cd7e1e88"> \is</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#c94c2df86ca03f22f8f8b739cd7e1e88"> </a></span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.orderedzmod.html#Num.real">Num</a></span>.<span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.orderedzmod.html#Num.real">real</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#ba2b0e492d2b4675a0acf3ea92aabadd"> /\</a></span><span class="gallina-kwd"> forall</span><span class="id"> </span><span id="y:415" class="id"><a name="y:415" class="">y</a></span><span class="id">,</span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.ereal.html#y:415">y</a></span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#::ereal_scope:x_'&lt;'_x"> &lt;</a></span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#::ereal_scope:x_'&lt;'_x"> </a></span><span class="id"><a href="mathcomp.analysis.ereal.html#M:414">M</a></span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#bc34d0712444fb7fddc80987d6cdcb61">%:E</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"> -&gt;</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"> </a></span><span class="id"><a href="mathcomp.analysis.ereal.html#P:409">P</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.ereal.html#y:415">y</a></span><br/>
 &nbsp;&nbsp;<span class="id">end</span><span class="id"><a href="mathcomp.classical.classical_sets.html#075f2dd209aa707f1415a58a026b96d9">]</a></span>.<br/>
 <span id="constructive_ereal_extended__canonical__filter_PointedNbhs" class="id"><span id="constructive_ereal_extended__canonical__filter_Nbhs" class="id"><span id="HB_unnamed_mixin_8" class="id"><span id="constructive_ereal_extended__canonical__filter_PointedFiltered" class="id"><span id="constructive_ereal_extended__canonical__filter_Filtered" class="id"><span id="HB_unnamed_mixin_7" class="id"><span id="filter_hasNbhs__to__filter_isFiltered" class="id"><span id="filter_hasNbhs__to__filter_selfFiltered" class="id"><span id="HB_unnamed_factory_4" class="id"><a name="constructive_ereal_extended__canonical__filter_PointedNbhs" class="" title="constructive_ereal_extended__canonical__filter_PointedNbhs :
-numFieldType -> filter.PointedNbhs.type
+numFieldType -> pnbhsType
 
 constructive_ereal_extended__canonical__filter_PointedNbhs is not universe polymorphic
 Arguments constructive_ereal_extended__canonical__filter_PointedNbhs {R}
@@ -2221,7 +2221,7 @@ Expands to: Constant
             mathcomp.analysis.ereal.constructive_ereal_extended__canonical__filter_PointedNbhs
 Declared in library mathcomp.analysis.ereal, line 815, characters 0-62
 ">HB</a></span></span></span></span></span></span></span></span></span>.<span id="constructive_ereal_extended__canonical__filter_PointedNbhs" class="id"><span id="constructive_ereal_extended__canonical__filter_Nbhs" class="id"><span id="HB_unnamed_mixin_8" class="id"><span id="constructive_ereal_extended__canonical__filter_PointedFiltered" class="id"><span id="constructive_ereal_extended__canonical__filter_Filtered" class="id"><span id="HB_unnamed_mixin_7" class="id"><span id="filter_hasNbhs__to__filter_isFiltered" class="id"><span id="filter_hasNbhs__to__filter_selfFiltered" class="id"><span id="HB_unnamed_factory_4" class="id"><a name="constructive_ereal_extended__canonical__filter_PointedNbhs" class="" title="constructive_ereal_extended__canonical__filter_PointedNbhs :
-numFieldType -> filter.PointedNbhs.type
+numFieldType -> pnbhsType
 
 constructive_ereal_extended__canonical__filter_PointedNbhs is not universe polymorphic
 Arguments constructive_ereal_extended__canonical__filter_PointedNbhs {R}
@@ -2230,7 +2230,7 @@ Expands to: Constant
             mathcomp.analysis.ereal.constructive_ereal_extended__canonical__filter_PointedNbhs
 Declared in library mathcomp.analysis.ereal, line 815, characters 0-62
 ">instance</a></span></span></span></span></span></span></span></span></span><span class="vernacular"> Definition</span><span id="constructive_ereal_extended__canonical__filter_PointedNbhs" class="id"><span id="constructive_ereal_extended__canonical__filter_Nbhs" class="id"><span id="HB_unnamed_mixin_8" class="id"><span id="constructive_ereal_extended__canonical__filter_PointedFiltered" class="id"><span id="constructive_ereal_extended__canonical__filter_Filtered" class="id"><span id="HB_unnamed_mixin_7" class="id"><span id="filter_hasNbhs__to__filter_isFiltered" class="id"><span id="filter_hasNbhs__to__filter_selfFiltered" class="id"><span id="HB_unnamed_factory_4" class="id"><a name="constructive_ereal_extended__canonical__filter_PointedNbhs" class="" title="constructive_ereal_extended__canonical__filter_PointedNbhs :
-numFieldType -> filter.PointedNbhs.type
+numFieldType -> pnbhsType
 
 constructive_ereal_extended__canonical__filter_PointedNbhs is not universe polymorphic
 Arguments constructive_ereal_extended__canonical__filter_PointedNbhs {R}
@@ -2239,7 +2239,7 @@ Expands to: Constant
             mathcomp.analysis.ereal.constructive_ereal_extended__canonical__filter_PointedNbhs
 Declared in library mathcomp.analysis.ereal, line 815, characters 0-62
 "> _</a></span></span></span></span></span></span></span></span></span><span id="constructive_ereal_extended__canonical__filter_PointedNbhs" class="id"><span id="constructive_ereal_extended__canonical__filter_Nbhs" class="id"><span id="HB_unnamed_mixin_8" class="id"><span id="constructive_ereal_extended__canonical__filter_PointedFiltered" class="id"><span id="constructive_ereal_extended__canonical__filter_Filtered" class="id"><span id="HB_unnamed_mixin_7" class="id"><span id="filter_hasNbhs__to__filter_isFiltered" class="id"><span id="filter_hasNbhs__to__filter_selfFiltered" class="id"><span id="HB_unnamed_factory_4" class="id"><a name="constructive_ereal_extended__canonical__filter_PointedNbhs" class="" title="constructive_ereal_extended__canonical__filter_PointedNbhs :
-numFieldType -> filter.PointedNbhs.type
+numFieldType -> pnbhsType
 
 constructive_ereal_extended__canonical__filter_PointedNbhs is not universe polymorphic
 Arguments constructive_ereal_extended__canonical__filter_PointedNbhs {R}
@@ -2248,7 +2248,7 @@ Expands to: Constant
             mathcomp.analysis.ereal.constructive_ereal_extended__canonical__filter_PointedNbhs
 Declared in library mathcomp.analysis.ereal, line 815, characters 0-62
 "> :=</a></span></span></span></span></span></span></span></span></span><span id="constructive_ereal_extended__canonical__filter_PointedNbhs" class="id"><span id="constructive_ereal_extended__canonical__filter_Nbhs" class="id"><span id="HB_unnamed_mixin_8" class="id"><span id="constructive_ereal_extended__canonical__filter_PointedFiltered" class="id"><span id="constructive_ereal_extended__canonical__filter_Filtered" class="id"><span id="HB_unnamed_mixin_7" class="id"><span id="filter_hasNbhs__to__filter_isFiltered" class="id"><span id="filter_hasNbhs__to__filter_selfFiltered" class="id"><span id="HB_unnamed_factory_4" class="id"><a name="constructive_ereal_extended__canonical__filter_PointedNbhs" class="" title="constructive_ereal_extended__canonical__filter_PointedNbhs :
-numFieldType -> filter.PointedNbhs.type
+numFieldType -> pnbhsType
 
 constructive_ereal_extended__canonical__filter_PointedNbhs is not universe polymorphic
 Arguments constructive_ereal_extended__canonical__filter_PointedNbhs {R}
@@ -2355,9 +2355,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ereal_nbhs_pinfty_gt" class="id"><a name="ereal_nbhs_pinfty_gt" class="" title="ereal_nbhs_pinfty_gt :
 forall [R : numFieldType] [r : R],
-r \is Num.real ->
-filter.prop_near1 +oo%E (P:=fun x : \bar R => ((r%:E : \bar R) < x)%E)
-  (inPhantom (forall x : \bar R, (r%:E < x)%E))
+r \is Num.real -> \forall x \near +oo%E, (r%:E < x)%E
 
 ereal_nbhs_pinfty_gt is not universe polymorphic
 Arguments ereal_nbhs_pinfty_gt [R] [r]%ring_scope _
@@ -2372,9 +2370,7 @@ Declared in library mathcomp.analysis.ereal, line 908, characters 6-26
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ereal_nbhs_pinfty_ge" class="id"><a name="ereal_nbhs_pinfty_ge" class="" title="ereal_nbhs_pinfty_ge :
 forall [R : numFieldType] [r : R],
-r \is Num.real ->
-filter.prop_near1 +oo%E (P:=fun x : \bar R => ((r%:E : \bar R) <= x)%E)
-  (inPhantom (forall x : \bar R, (r%:E <= x)%E))
+r \is Num.real -> \forall x \near +oo%E, (r%:E <= x)%E
 
 ereal_nbhs_pinfty_ge is not universe polymorphic
 Arguments ereal_nbhs_pinfty_ge [R] [r]%ring_scope _
@@ -2389,9 +2385,7 @@ Declared in library mathcomp.analysis.ereal, line 911, characters 6-26
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ereal_nbhs_ninfty_lt" class="id"><a name="ereal_nbhs_ninfty_lt" class="" title="ereal_nbhs_ninfty_lt :
 forall [R : numFieldType] [r : R],
-r \is Num.real ->
-filter.prop_near1 -oo%E (P:=fun x : \bar R => (x < (r%:E : \bar R))%E)
-  (inPhantom (forall x : \bar R, (x < r%:E)%E))
+r \is Num.real -> \forall x \near -oo%E, (x < r%:E)%E
 
 ereal_nbhs_ninfty_lt is not universe polymorphic
 Arguments ereal_nbhs_ninfty_lt [R] [r]%ring_scope _
@@ -2406,9 +2400,7 @@ Declared in library mathcomp.analysis.ereal, line 914, characters 6-26
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ereal_nbhs_ninfty_le" class="id"><a name="ereal_nbhs_ninfty_le" class="" title="ereal_nbhs_ninfty_le :
 forall [R : numFieldType] [r : R],
-r \is Num.real ->
-filter.prop_near1 -oo%E (P:=fun x : \bar R => (x <= (r%:E : \bar R))%E)
-  (inPhantom (forall x : \bar R, (x <= r%:E)%E))
+r \is Num.real -> \forall x \near -oo%E, (x <= r%:E)%E
 
 ereal_nbhs_ninfty_le is not universe polymorphic
 Arguments ereal_nbhs_ninfty_le [R] [r]%ring_scope _
@@ -2422,9 +2414,7 @@ Declared in library mathcomp.analysis.ereal, line 917, characters 6-26
 <span class="gallina-kwd"> by</span><span class="gallina-kwd"> exists</span><span class="id"> r;</span><span class="id"> split</span><span class="id"> =&gt;</span><span class="id"> //</span><span class="id"> ?;</span><span class="id"> apply:</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.ltW">ltW</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ereal_nbhs_pinfty_real" class="id"><a name="ereal_nbhs_pinfty_real" class="" title="ereal_nbhs_pinfty_real :
-forall R : numFieldType,
-filter.prop_near1 +oo%E (P:=fun x : \bar R => fine x \is Num.real)
-  (inPhantom (forall x : \bar R, fine x \is Num.real))
+forall R : numFieldType, \forall x \near +oo%E, fine x \is Num.real
 
 ereal_nbhs_pinfty_real is not universe polymorphic
 Arguments ereal_nbhs_pinfty_real R
@@ -2440,9 +2430,7 @@ Declared in library mathcomp.analysis.ereal, line 920, characters 6-28
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ereal_nbhs_ninfty_real" class="id"><a name="ereal_nbhs_ninfty_real" class="" title="ereal_nbhs_ninfty_real :
-forall R : numFieldType,
-filter.prop_near1 -oo%E (P:=fun x : \bar R => fine x \is Num.real)
-  (inPhantom (forall x : \bar R, fine x \is Num.real))
+forall R : numFieldType, \forall x \near -oo%E, fine x \is Num.real
 
 ereal_nbhs_ninfty_real is not universe polymorphic
 Arguments ereal_nbhs_ninfty_real R
@@ -2533,8 +2521,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="nbhsNe" class="id"><a name="nbhsNe" class="" title="nbhsNe :
 forall [R : realFieldType] (x : \bar R),
-filter.nbhs (- x)%E =
-[set [set (- x)%E | x in A] | A in filter.nbhs x]%classic
+nbhs (- x)%E = [set [set (- x)%E | x in A] | A in nbhs x]%classic
 
 nbhsNe is not universe polymorphic
 Arguments nbhsNe [R] x%ereal_scope
@@ -2577,7 +2564,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="nbhsNKe" class="id"><a name="nbhsNKe" class="" title="nbhsNKe :
 forall [R : realFieldType] [z : \bar R] [A : set \bar R],
-filter.nbhs (- z)%E [set (- x)%E | x in A]%classic -> filter.nbhs z A
+nbhs (- z)%E [set (- x)%E | x in A]%classic -> nbhs z A
 
 nbhsNKe is not universe polymorphic
 Arguments nbhsNKe [R] [z]%ereal_scope [A]%classical_set_scope _
@@ -2604,25 +2591,18 @@ Declared in library mathcomp.analysis.ereal, line 1016, characters 6-13
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="oppe_continuous" class="id"><a name="oppe_continuous" class="" title="oppe_continuous :
-forall [R : realFieldType]
-  [x : filter.Nbhs.sort constructive_ereal_extended__canonical__filter_Nbhs],
-filter.continuous_at (T:=constructive_ereal_extended__canonical__filter_Nbhs)
-  (U:=constructive_ereal_extended__canonical__filter_Nbhs) x
-  (-%E : \bar R -> \bar R)
+forall [R : realFieldType], continuous (-%E : \bar R -> \bar R)
 
 oppe_continuous is not universe polymorphic
 Expanded type for implicit arguments
 oppe_continuous :
 forall [R : realFieldType]
-  [x : filter.Nbhs.sort constructive_ereal_extended__canonical__filter_Nbhs]
-  [t : set
-         (filter.Nbhs.sort
-            constructive_ereal_extended__canonical__filter_Nbhs)],
-filter.nbhs ((-%E : \bar R -> \bar R) x) t ->
+  [x : constructive_ereal_extended__canonical__filter_Nbhs]
+  [t : set constructive_ereal_extended__canonical__filter_Nbhs],
+nbhs ((-%E : \bar R -> \bar R) x) t ->
 match x with
 | x0%:E =>
-    filter.nbhs x0
-      (fun r : R => ((-%E : \bar R -> \bar R) @^-1` t)%classic r%:E)
+    nbhs x0 (fun r : R => ((-%E : \bar R -> \bar R) @^-1` t)%classic r%:E)
 | +oo%E =>
     exists M : R,
       M \is Num.real /\
@@ -3093,8 +3073,7 @@ Qed.</div></details>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="nbhs_oo_up_e1" class="id"><a name="nbhs_oo_up_e1" class="" title="nbhs_oo_up_e1 :
 forall [R : realFieldType] [A : set \bar R] [e : {posnum R}%R],
 (e%:num <= 1)%R ->
-((fun y : \bar R => ereal_ball +oo e%:num y) `<=` A)%classic ->
-filter.nbhs +oo%E A
+((fun y : \bar R => ereal_ball +oo e%:num y) `<=` A)%classic -> nbhs +oo%E A
 
 nbhs_oo_up_e1 is not universe polymorphic
 Arguments nbhs_oo_up_e1 [R] [A]%classical_set_scope [e] _ _
@@ -3118,8 +3097,7 @@ Qed.</div></details>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="nbhs_oo_down_e1" class="id"><a name="nbhs_oo_down_e1" class="" title="nbhs_oo_down_e1 :
 forall [R : realFieldType] [A : set \bar R] [e : {posnum R}%R],
 (e%:num <= 1)%R ->
-((fun y : \bar R => ereal_ball -oo e%:num y) `<=` A)%classic ->
-filter.nbhs -oo%E A
+((fun y : \bar R => ereal_ball -oo e%:num y) `<=` A)%classic -> nbhs -oo%E A
 
 nbhs_oo_down_e1 is not universe polymorphic
 Arguments nbhs_oo_down_e1 [R] [A]%classical_set_scope [e] _ _
@@ -3142,8 +3120,7 @@ Qed.</div></details>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="nbhs_oo_up_1e" class="id"><a name="nbhs_oo_up_1e" class="" title="nbhs_oo_up_1e :
 forall [R : realFieldType] [A : set \bar R] [e : {posnum R}%R],
 (1 < e%:num)%R ->
-((fun y : \bar R => ereal_ball +oo e%:num y) `<=` A)%classic ->
-filter.nbhs +oo%E A
+((fun y : \bar R => ereal_ball +oo e%:num y) `<=` A)%classic -> nbhs +oo%E A
 
 nbhs_oo_up_1e is not universe polymorphic
 Arguments nbhs_oo_up_1e [R] [A]%classical_set_scope [e] _ _
@@ -3172,8 +3149,7 @@ Qed.</div></details>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="nbhs_oo_down_1e" class="id"><a name="nbhs_oo_down_1e" class="" title="nbhs_oo_down_1e :
 forall [R : realFieldType] [A : set \bar R] [e : {posnum R}%R],
 (1 < e%:num)%R ->
-((fun y : \bar R => ereal_ball -oo e%:num y) `<=` A)%classic ->
-filter.nbhs -oo%E A
+((fun y : \bar R => ereal_ball -oo e%:num y) `<=` A)%classic -> nbhs -oo%E A
 
 nbhs_oo_down_1e is not universe polymorphic
 Arguments nbhs_oo_down_1e [R] [A]%classical_set_scope [e] _ _
@@ -3202,7 +3178,7 @@ Qed.</div></details>
 forall [R : realFieldType] [r : R] [e : {posnum R}%R] [A : set \bar R],
 ((fun y : \bar R => ereal_ball r%:E e%:num y) `<=` A)%classic ->
 (-1 < contract (R:=R) r%:E - e%:num)%R ->
-(1 <= (contract (R:=R) r%:E + e%:num)%E)%R -> filter.nbhs r%:E A
+(1 <= (contract (R:=R) r%:E + e%:num)%E)%R -> nbhs r%:E A
 
 nbhs_fin_out_above is not universe polymorphic
 Arguments nbhs_fin_out_above [R] [r]%ring_scope [e] 
@@ -3236,7 +3212,7 @@ Qed.</div></details>
 forall [R : realFieldType] [r : R] [e : {posnum R}%R] [A : set \bar R],
 ((fun y : \bar R => ereal_ball r%:E e%:num y) `<=` A)%classic ->
 (contract (R:=R) r%:E - e%:num <= -1)%R ->
-((contract (R:=R) r%:E + e%:num)%E < 1)%R -> filter.nbhs r%:E A
+((contract (R:=R) r%:E + e%:num)%E < 1)%R -> nbhs r%:E A
 
 nbhs_fin_out_below is not universe polymorphic
 Arguments nbhs_fin_out_below [R] [r]%ring_scope [e] 
@@ -3269,7 +3245,7 @@ Qed.</div></details>
 forall [R : realFieldType] [r : R] [e : {posnum R}%R] [A : set \bar R],
 ((fun y : \bar R => ereal_ball r%:E e%:num y) `<=` A)%classic ->
 (contract (R:=R) r%:E - e%:num < -1)%R ->
-(1 < (contract (R:=R) r%:E + e%:num)%E)%R -> filter.nbhs r%:E A
+(1 < (contract (R:=R) r%:E + e%:num)%E)%R -> nbhs r%:E A
 
 nbhs_fin_out_above_below is not universe polymorphic
 Arguments nbhs_fin_out_above_below [R] [r]%ring_scope 
@@ -3298,8 +3274,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="nbhs_fin_inbound" class="id"><a name="nbhs_fin_inbound" class="" title="nbhs_fin_inbound :
 forall [R : realFieldType] [r : R] [e : {posnum R}%R] [A : set \bar R],
-((fun y : \bar R => ereal_ball r%:E e%:num y) `<=` A)%classic ->
-filter.nbhs r%:E A
+((fun y : \bar R => ereal_ball r%:E e%:num y) `<=` A)%classic -> nbhs r%:E A
 
 nbhs_fin_inbound is not universe polymorphic
 Arguments nbhs_fin_inbound [R] [r]%ring_scope [e] [A]%classical_set_scope _
@@ -3401,7 +3376,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ereal_nbhsE" class="id"><a name="ereal_nbhsE" class="" title="ereal_nbhsE :
 forall R : realFieldType,
-filter.nbhs =
+nbhs =
 nbhs_
   (entourage_ (fun (x : \bar R) (r : R) (y : \bar R) => ereal_ball x r y))
 
@@ -3566,7 +3541,7 @@ Declared in library mathcomp.analysis.ereal, line 1501, characters 0-138
 forall [R : realFieldType] [P : R -> Prop] [r : R] [a b : \bar R],
 (a < r%:E)%E ->
 (r%:E < b)%E ->
-(forall y : R, (a < y%:E)%E -> (y%:E < b)%E -> P y) -> filter.nbhs r P
+(forall y : R, (a < y%:E)%E -> (y%:E < b)%E -> P y) -> nbhs r P
 
 nbhs_interval is not universe polymorphic
 Arguments nbhs_interval [R] [P]%function_scope [r]%ring_scope
@@ -3588,20 +3563,19 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ereal_dnbhs_le" class="id"><a name="ereal_dnbhs_le" class="" title="ereal_dnbhs_le :
 forall [R : numFieldType] [x : \bar R],
-filter.cvg_to (filter.nbhs (ereal_dnbhs x)) (filter.nbhs (ereal_nbhs x))
+(ereal_dnbhs x --> ereal_nbhs x)%classic
 
 ereal_dnbhs_le is not universe polymorphic
 Expanded type for implicit arguments
 ereal_dnbhs_le :
 forall [R : numFieldType] [x : \bar R] [t : set \bar R],
-filter.nbhs (ereal_nbhs x) t ->
+nbhs (ereal_nbhs x) t ->
 match x with
 | r%:E =>
-    topology_structure.dnbhs r
+    r^'%classic
       (fun
-         r0 : topology_structure.Topological.Exports.topology_structure_Topological__to__eqtype_Equality
-                (numFieldTopology.NumField_sort__canonical__topology_structure_Topological
-                   R) =>
+         r0 : numFieldTopology.NumField_sort__canonical__topology_structure_Topological
+                R =>
        t r0%:E)
 | +oo%E =>
     exists M : R, M \is Num.real /\ (forall y : \bar R, (M%:E < y)%E -> t y)
@@ -3623,31 +3597,26 @@ Declared in library mathcomp.analysis.ereal, line 1517, characters 6-20
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ereal_dnbhs_le_finite" class="id"><a name="ereal_dnbhs_le_finite" class="" title="ereal_dnbhs_le_finite :
-forall [R : numFieldType] [r : R],
-filter.cvg_to (filter.nbhs (ereal_dnbhs r%:E))
-  (filter.nbhs (filter.nbhs r%:E))
+forall [R : numFieldType] [r : R], (ereal_dnbhs r%:E --> nbhs r%:E)%classic
 
 ereal_dnbhs_le_finite is not universe polymorphic
 Expanded type for implicit arguments
 ereal_dnbhs_le_finite :
 forall [R : numFieldType] [r : R] [t : set \bar R],
-filter.nbhs (filter.nbhs r%:E) t ->
+nbhs (nbhs r%:E) t ->
 exists2 i : R,
   [set e | (0 < e)%R]%classic i &
   (ball_ [eta normr] r i
    `<=` (fun
-           t0 : topology_structure.Topological.Exports.topology_structure_Topological__to__eqtype_Equality
-                  (numFieldTopology.NumField_sort__canonical__topology_structure_Topological
-                     R) =>
+           t0 : numFieldTopology.NumField_sort__canonical__topology_structure_Topological
+                  R =>
          (fun
-            y : topology_structure.Topological.Exports.topology_structure_Topological__to__eqtype_Equality
-                  (numFieldTopology.NumField_sort__canonical__topology_structure_Topological
-                     R) =>
+            y : numFieldTopology.NumField_sort__canonical__topology_structure_Topological
+                  R =>
           is_true (y != r)) t0 ->
          (fun
-            r0 : topology_structure.Topological.Exports.topology_structure_Topological__to__eqtype_Equality
-                   (numFieldTopology.NumField_sort__canonical__topology_structure_Topological
-                      R) =>
+            r0 : numFieldTopology.NumField_sort__canonical__topology_structure_Topological
+                   R =>
           t r0%:E) t0))%classic
 
 Arguments ereal_dnbhs_le_finite [R] [r]%ring_scope [t] _
@@ -3678,16 +3647,13 @@ Declared in library mathcomp.analysis.ereal, line 1530, characters 11-24
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="cvg_ereal_loc_seq" class="id"><a name="cvg_ereal_loc_seq" class="" title="cvg_ereal_loc_seq :
 forall [R : realType] [x : \bar R],
-filter.cvg_to
-  (filter.nbhs
-     (filter.fmap (ereal_loc_seq (R:=R) x) (filter.nbhs filter.eventually)))
-  (filter.nbhs (ereal_dnbhs x))
+(ereal_loc_seq (R:=R) x x0 @[x0 --> \oo] --> ereal_dnbhs x)%classic
 
 cvg_ereal_loc_seq is not universe polymorphic
 Expanded type for implicit arguments
 cvg_ereal_loc_seq :
 forall [R : realType] [x : \bar R] [t : set \bar R],
-filter.nbhs (ereal_dnbhs x) t ->
+nbhs (ereal_dnbhs x) t ->
 exists2 i : nat,
   [set: nat]%classic i &
   ((fun N : nat => [set n | N <= n]) i `<=` ereal_loc_seq (R:=R) x @^-1` t)%classic

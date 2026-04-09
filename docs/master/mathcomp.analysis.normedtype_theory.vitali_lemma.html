@@ -257,12 +257,7 @@ This file also provides the infinite version of Vitali's covering lemma.
 <span class="vernacular">Context</span><span class="id"> {</span><span id="center_radius.R" class="id"><a name="center_radius.R" class="">R</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.numdomain.html#Num.NumDomain.Exports.numDomainType">numDomainType</a></span><span class="id">}</span><span class="id"> {</span><span id="center_radius.M" class="id"><a name="center_radius.M" class="">M</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.topology_theory.pseudometric_structure.html#PseudoPointedMetric.Exports.pseudoPMetricType">pseudoPMetricType</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#R:1">R</a></span><span class="id">}</span>.<br/>
 <span class="vernacular">Implicit</span><span class="id"> Types</span><span class="id"> A</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#set">set</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#center_radius.M">M</a></span>.<br/>
 <br/>
-<span class="vernacular">Definition</span><span class="id"> </span><span id="cpoint" class="id"><a name="cpoint" class="" title="cpoint :
-forall {R : numDomainType}
-  {M : pseudometric_structure.PseudoPointedMetric.type R},
-set (pseudometric_structure.PseudoPointedMetric.sort M) ->
-pseudometric_structure.PseudoPointedMetric.Exports.pseudometric_structure_PseudoPointedMetric__to__classical_sets_Pointed
-  M
+<span class="vernacular">Definition</span><span class="id"> </span><span id="cpoint" class="id"><a name="cpoint" class="" title="cpoint : forall {R : numDomainType} {M : pseudoPMetricType R}, set M -> M
 
 cpoint is not universe polymorphic
 Arguments cpoint {R M} A%classical_set_scope
@@ -273,9 +268,7 @@ library mathcomp.analysis.normedtype_theory.vitali_lemma, line 50, characters 11
 ">cpoint</a></span><span class="id"> </span><span id="A:3" class="id"><a name="A:3" class="">A</a></span><span class="id"> :=</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#get">get</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#075f2dd209aa707f1415a58a026b96d9">[set</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#075f2dd209aa707f1415a58a026b96d9"> </a></span><span id="c:4" class="id"><a name="c:4" class="">c</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#075f2dd209aa707f1415a58a026b96d9"> |</a></span><span class="gallina-kwd"> exists</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54"> </a></span><span id="r:5" class="id"><a name="r:5" class="">r</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54">,</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54"> </a></span><span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#A:3">A</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"> =</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"> </a></span><span class="id"><a href="mathcomp.analysis.topology_theory.pseudometric_structure.html#ball">ball</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#c:4">c</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#r:5">r</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#075f2dd209aa707f1415a58a026b96d9">]</a></span>.<br/>
 <br/>
 <span class="vernacular">Definition</span><span class="id"> </span><span id="radius" class="id"><a name="radius" class="" title="radius :
-forall {R : numDomainType}
-  {M : pseudometric_structure.PseudoPointedMetric.type R},
-set (pseudometric_structure.PseudoPointedMetric.sort M) -> {nonneg R}%R
+forall {R : numDomainType} {M : pseudoPMetricType R}, set M -> {nonneg R}%R
 
 radius is not universe polymorphic
 Arguments radius {R M} A%classical_set_scope
@@ -286,10 +279,7 @@ library mathcomp.analysis.normedtype_theory.vitali_lemma, line 52, characters 11
 ">radius</a></span><span class="id"> </span><span id="A:6" class="id"><a name="A:6" class="">A</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval_inference.html#6b57a954db0efd6b7fe2f37c706d0c82">{nonneg</a></span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval_inference.html#6b57a954db0efd6b7fe2f37c706d0c82"> </a></span><span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#center_radius.R">R</a></span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval_inference.html#6b57a954db0efd6b7fe2f37c706d0c82">}</a></span><span class="id"> :=</span><br/>
 &nbsp;&nbsp;<span class="id"><a href="mathcomp.classical.classical_sets.html#xget">xget</a></span><span class="id"> 0</span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval_inference.html#47ac4d6dece4689d4a3505486f61da27">%:nng</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#075f2dd209aa707f1415a58a026b96d9">[set</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#075f2dd209aa707f1415a58a026b96d9"> </a></span><span id="r:7" class="id"><a name="r:7" class="">r</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#075f2dd209aa707f1415a58a026b96d9"> |</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#075f2dd209aa707f1415a58a026b96d9"> </a></span><span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#A:6">A</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"> =</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"> </a></span><span class="id"><a href="mathcomp.analysis.topology_theory.pseudometric_structure.html#ball">ball</a></span> (<span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#cpoint">cpoint</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#A:6">A</a></span>)<span class="id"> </span><span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#r:7">r</a></span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval_inference.html#1c0324eabc1cbd2d8f3ac221154b0692">%:num</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#075f2dd209aa707f1415a58a026b96d9">]</a></span>.<br/>
 <br/>
-<span class="vernacular">Definition</span><span class="id"> </span><span id="is_ball" class="id"><a name="is_ball" class="" title="is_ball :
-forall {R : numDomainType}
-  {M : pseudometric_structure.PseudoPointedMetric.type R},
-set (pseudometric_structure.PseudoPointedMetric.sort M) -> bool
+<span class="vernacular">Definition</span><span class="id"> </span><span id="is_ball" class="id"><a name="is_ball" class="" title="is_ball : forall {R : numDomainType} {M : pseudoPMetricType R}, set M -> bool
 
 is_ball is not universe polymorphic
 Arguments is_ball {R M} A%classical_set_scope
@@ -300,13 +290,11 @@ library mathcomp.analysis.normedtype_theory.vitali_lemma, line 55, characters 11
 ">is_ball</a></span><span class="id"> </span><span id="A:8" class="id"><a name="A:8" class="">A</a></span><span class="id"> :=</span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#A:8">A</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.eqtype#df45e8c2e8370fd4f0f7c4fdaf208180"> ==</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.eqtype#df45e8c2e8370fd4f0f7c4fdaf208180"> </a></span><span class="id"><a href="mathcomp.analysis.topology_theory.pseudometric_structure.html#ball">ball</a></span> (<span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#cpoint">cpoint</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#A:8">A</a></span>) (<span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#radius">radius</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#A:8">A</a></span>)<span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval_inference.html#1c0324eabc1cbd2d8f3ac221154b0692">%:num</a></span>.<br/>
 <br/>
 <span class="vernacular">Definition</span><span class="id"> </span><span id="scale_ball" class="id"><a name="scale_ball" class="" title="scale_ball :
-forall {R : numDomainType}
-  {M : pseudometric_structure.PseudoPointedMetric.type R},
+forall {R : numDomainType} {M : pseudoPMetricType R},
 R ->
-set (pseudometric_structure.PseudoPointedMetric.sort M) ->
-pseudometric_structure.PseudoMetric.sort
-  (pseudometric_structure.PseudoPointedMetric.Exports.join_pseudometric_structure_PseudoPointedMetric_between_classical_sets_Pointed_and_pseudometric_structure_PseudoMetric
-     M) ->
+set M ->
+join_pseudometric_structure_PseudoPointedMetric_between_classical_sets_Pointed_and_pseudometric_structure_PseudoMetric
+  M ->
 Prop
 
 scale_ball is not universe polymorphic
@@ -322,33 +310,23 @@ library mathcomp.analysis.normedtype_theory.vitali_lemma, line 57, characters 11
 <span class="vernacular">Local</span><span class="vernacular"> Notation</span> <span id="177f7946ea43649ac9d8c0445c54fd7c" class="id"><a name="177f7946ea43649ac9d8c0445c54fd7c" class="">&quot;k *` B&quot;</a></span><span class="id"> :=</span> (<span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#scale_ball">scale_ball</a></span><span class="id"> k</span><span class="id"> B</span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="sub_scale_ball" class="id"><a name="sub_scale_ball" class="" title="sub_scale_ball :
-forall {R : numDomainType}
-  {M : pseudometric_structure.PseudoPointedMetric.type R}
-  [A : set (pseudometric_structure.PseudoPointedMetric.sort M)] 
-  [k l : R],
+forall {R : numDomainType} {M : pseudoPMetricType R} [A : set M] [k l : R],
 (k <= l)%R -> (k *` A `<=` l *` A)%classic
 
 sub_scale_ball is not universe polymorphic
 Expanded type for implicit arguments
 sub_scale_ball :
-forall {R : numDomainType}
-  {M : pseudometric_structure.PseudoPointedMetric.type R}
-  [A : set (pseudometric_structure.PseudoPointedMetric.sort M)] 
-  [k l : R],
+forall {R : numDomainType} {M : pseudoPMetricType R} [A : set M] [k l : R],
 (k <= l)%R ->
 forall
-  [t : pseudometric_structure.PseudoMetric.sort
-         (pseudometric_structure.PseudoPointedMetric.Exports.join_pseudometric_structure_PseudoPointedMetric_between_classical_sets_Pointed_and_pseudometric_structure_PseudoMetric
-            M)],
+  [t : join_pseudometric_structure_PseudoPointedMetric_between_classical_sets_Pointed_and_pseudometric_structure_PseudoMetric
+         M],
 (k *` A)%classic t ->
 (if
-  if
-   if pselect (A = pseudometric_structure.ball (cpoint A) (radius A)%:num)
-   then true
-   else false
+  if if pselect (A = ball (cpoint A) (radius A)%:num) then true else false
   then true
   else false
- then pseudometric_structure.ball (cpoint A) (l * (radius A)%:num)
+ then ball (cpoint A) (l * (radius A)%:num)
  else set0) t
 
 Arguments sub_scale_ball {R M} [A]%classical_set_scope [k l] _ [t] _
@@ -366,9 +344,7 @@ library mathcomp.analysis.normedtype_theory.vitali_lemma, line 62, characters 6-
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="scale_ball1" class="id"><a name="scale_ball1" class="" title="scale_ball1 :
-forall {R : numDomainType}
-  {M : pseudometric_structure.PseudoPointedMetric.type R}
-  [A : set (pseudometric_structure.PseudoPointedMetric.sort M)],
+forall {R : numDomainType} {M : pseudoPMetricType R} [A : set M],
 is_ball A -> (1 *` A)%classic = A
 
 scale_ball1 is not universe polymorphic
@@ -385,30 +361,21 @@ library mathcomp.analysis.normedtype_theory.vitali_lemma, line 68, characters 6-
 <span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> Aball;</span><span class="id"> rewrite</span><span class="id"> /</span><span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#scale_ball">scale_ball</a></span><span class="id"> Aball</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.ssralg.html#GRing.Theory.mul1r">mul1r</a></span><span class="id">;</span><span class="id"> move/</span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.eqtype#eqP">eqP</a></span><span class="gallina-kwd"> in</span><span class="id"> Aball</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="sub1_scale_ball" class="id"><a name="sub1_scale_ball" class="" title="sub1_scale_ball :
-forall {R : numDomainType}
-  {M : pseudometric_structure.PseudoPointedMetric.type R}
-  [A : set (pseudometric_structure.PseudoPointedMetric.sort M)] 
-  (l : nat),
+forall {R : numDomainType} {M : pseudoPMetricType R} [A : set M] (l : nat),
 is_ball A -> (A `<=` l.+1%:R *` A)%classic
 
 sub1_scale_ball is not universe polymorphic
 Expanded type for implicit arguments
 sub1_scale_ball :
-forall {R : numDomainType}
-  {M : pseudometric_structure.PseudoPointedMetric.type R}
-  [A : set (pseudometric_structure.PseudoPointedMetric.sort M)] 
-  (l : nat),
+forall {R : numDomainType} {M : pseudoPMetricType R} [A : set M] (l : nat),
 is_ball A ->
-forall [t : pseudometric_structure.PseudoPointedMetric.sort M],
+forall [t : M],
 A t ->
 (if
-  if
-   if pselect (A = pseudometric_structure.ball (cpoint A) (radius A)%:num)
-   then true
-   else false
+  if if pselect (A = ball (cpoint A) (radius A)%:num) then true else false
   then true
   else false
- then pseudometric_structure.ball (cpoint A) (l.+1%:R * (radius A)%:num)
+ then ball (cpoint A) (l.+1%:R * (radius A)%:num)
  else set0) t
 
 Arguments sub1_scale_ball {R M} [A]%classical_set_scope l%nat_scope _ [t] _
@@ -506,9 +473,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ball_inj" class="id"><a name="ball_inj" class="" title="ball_inj :
 forall {R : realFieldType} [x y r s : R],
-(0 < r)%R ->
-pseudometric_structure.ball x r = pseudometric_structure.ball y s ->
-x = y /\ r = s
+(0 < r)%R -> ball x r = ball y s -> x = y /\ r = s
 
 ball_inj is not universe polymorphic
 Arguments ball_inj {R} [x y r s]%ring_scope _ _
@@ -562,7 +527,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="cpoint_ball" class="id"><a name="cpoint_ball" class="" title="cpoint_ball :
 forall {R : realFieldType} (x : R) [r : R],
-(0 < r)%R -> cpoint (pseudometric_structure.ball x r) = x
+(0 < r)%R -> cpoint (ball x r) = x
 
 cpoint_ball is not universe polymorphic
 Arguments cpoint_ball {R} x%ring_scope [r]%ring_scope _
@@ -581,7 +546,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="radius_ball_num" class="id"><a name="radius_ball_num" class="" title="radius_ball_num :
 forall {R : realFieldType} (x : R) [r : R],
-(0 <= r)%R -> (radius (pseudometric_structure.ball x r))%:num%R = r
+(0 <= r)%R -> (radius (ball x r))%:num%R = r
 
 radius_ball_num is not universe polymorphic
 Arguments radius_ball_num {R} x%ring_scope [r]%ring_scope _
@@ -601,7 +566,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="radius_ball" class="id"><a name="radius_ball" class="" title="radius_ball :
 forall {R : realFieldType} (x : R) [r : R] (r0 : (0 <= r)%R),
-radius (pseudometric_structure.ball x r) = NngNum (R:=R) (x:=r) r0
+radius (ball x r) = NngNum (R:=R) (x:=r) r0
 
 radius_ball is not universe polymorphic
 Arguments radius_ball {R} x%ring_scope [r]%ring_scope r0
@@ -634,9 +599,7 @@ library mathcomp.analysis.normedtype_theory.vitali_lemma, line 169, characters 6
 <div class="proofscript">
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> /</span><span class="id"><a href="mathcomp.analysis.normedtype_theory.vitali_lemma.html#is_ball">is_ball</a></span><span class="id"> =&gt;</span><span class="id"> /</span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.eqtype#eqP">eqP</a></span><span class="id"> {1}-&gt;</span><span class="id"> /</span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.lt_le_trans">lt_le_trans</a></span><span class="id">;</span><span class="id"> exact</span>. Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="is_ball_ball" class="id"><a name="is_ball_ball" class="" title="is_ball_ball :
-forall {R : realFieldType} (x r : R),
-is_ball (pseudometric_structure.ball x r)
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="is_ball_ball" class="id"><a name="is_ball_ball" class="" title="is_ball_ball : forall {R : realFieldType} (x r : R), is_ball (ball x r)
 
 is_ball_ball is not universe polymorphic
 Arguments is_ball_ball {R} (x r)%ring_scope
@@ -671,7 +634,7 @@ library mathcomp.analysis.normedtype_theory.vitali_lemma, line 179, characters 6
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ballE" class="id"><a name="ballE" class="" title="ballE :
 forall {R : realFieldType} [A : set R],
-is_ball A -> A = pseudometric_structure.ball (cpoint A) (radius A)%:num
+is_ball A -> A = ball (cpoint A) (radius A)%:num
 
 ballE is not universe polymorphic
 Arguments ballE {R} [A]%classical_set_scope _
@@ -689,8 +652,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="is_ball_closureP" class="id"><a name="is_ball_closureP" class="" title="is_ball_closureP :
 forall {R : realFieldType} [A : set R] [x : R],
-is_ball A ->
-topology_structure.closure A x -> (`|cpoint A - x| <= (radius A)%:num)%R
+is_ball A -> closure A x -> (`|cpoint A - x| <= (radius A)%:num)%R
 
 is_ball_closureP is not universe polymorphic
 Arguments is_ball_closureP {R} [A]%classical_set_scope [x]%ring_scope _ _
@@ -713,10 +675,10 @@ Qed.</div></details>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="is_ball_closure" class="id"><a name="is_ball_closure" class="" title="is_ball_closure :
 forall {R : realFieldType} [A : set R],
 is_ball A ->
-topology_structure.closure A =
+closure A =
 closed_ball
-  (V:=pseudometric_structure.PseudoPointedMetric.Exports.join_pseudometric_structure_PseudoPointedMetric_between_classical_sets_Pointed_and_pseudometric_structure_PseudoMetric
-        (num_topology.numFieldTopology.RealField_sort__canonical__pseudometric_structure_PseudoPointedMetric
+  (V:=join_pseudometric_structure_PseudoPointedMetric_between_classical_sets_Pointed_and_pseudometric_structure_PseudoMetric
+        (numFieldTopology.RealField_sort__canonical__pseudometric_structure_PseudoPointedMetric
            R))
   (cpoint A) (radius A)%:num
 
@@ -739,9 +701,7 @@ forall {R : realFieldType}
   [k : join_Num_POrderedZmodule_between_Algebra_BaseAddUMagma_and_Order_Preorder
          R]
   (x r : R),
-(0 <= k)%R ->
-(k *` pseudometric_structure.ball x r)%classic =
-pseudometric_structure.ball x (k * r)
+(0 <= k)%R -> (k *` ball x r)%classic = ball x (k * r)
 
 scale_ballE is not universe polymorphic
 Arguments scale_ballE {R} [k] (x r)%ring_scope _
@@ -766,9 +726,8 @@ Qed.</div></details>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="cpoint_scale_ball" class="id"><a name="cpoint_scale_ball" class="" title="cpoint_scale_ball :
 forall {R : realFieldType}
   [A : set
-         (pseudometric_structure.PseudoPointedMetric.sort
-            (num_topology.numFieldTopology.RealField_sort__canonical__pseudometric_structure_PseudoPointedMetric
-               R))]
+         (numFieldTopology.RealField_sort__canonical__pseudometric_structure_PseudoPointedMetric
+            R)]
   [k : R],
 (0 < k)%R ->
 is_ball A -> (0 < (radius A)%:num)%R -> cpoint (k *` A) = cpoint A
@@ -1108,16 +1067,14 @@ Qed.</div></details>
 forall {R : realType} [I : Type] [B : I -> set R] [D : set I],
 (forall i : I, (0 < (radius (B i))%:num)%R) ->
 trivIset
-  (T:=topology_structure.Topological.sort
-        (pseudometric_structure.PseudoMetric.Exports.pseudometric_structure_PseudoMetric__to__topology_structure_Topological
-           (pseudometric_structure.PseudoPointedMetric.Exports.join_pseudometric_structure_PseudoPointedMetric_between_classical_sets_Pointed_and_pseudometric_structure_PseudoMetric
-              (num_topology.numFieldTopology.Real_sort__canonical__pseudometric_structure_PseudoPointedMetric
-                 R))))
+  (T:=join_pseudometric_structure_PseudoPointedMetric_between_classical_sets_Pointed_and_pseudometric_structure_PseudoMetric
+        (numFieldTopology.Real_sort__canonical__pseudometric_structure_PseudoPointedMetric
+           R))
   D
   (fun i : I =>
    closed_ball
-     (V:=pseudometric_structure.PseudoPointedMetric.Exports.join_pseudometric_structure_PseudoPointedMetric_between_classical_sets_Pointed_and_pseudometric_structure_PseudoMetric
-           (num_topology.numFieldTopology.Real_sort__canonical__pseudometric_structure_PseudoPointedMetric
+     (V:=join_pseudometric_structure_PseudoPointedMetric_between_classical_sets_Pointed_and_pseudometric_structure_PseudoMetric
+           (numFieldTopology.Real_sort__canonical__pseudometric_structure_PseudoPointedMetric
               R))
      (cpoint (B i)) (radius (B i))%:num) ->
 countable (T:=I) D
@@ -1175,19 +1132,15 @@ forall {R : realType} {I : eqType} [B : I -> set R] [V : set I] [r : R],
 {D : set I
 | [/\ countable (T:=I) D, (D `<=` V)%classic,
       trivIset
-        (T:=topology_structure.Topological.sort
-              (num_topology.numFieldTopology.Real_sort__canonical__topology_structure_Topological
-                 R))
-        D (topology_structure.closure \o B)
+        (T:=numFieldTopology.Real_sort__canonical__topology_structure_Topological
+              R)
+        D (closure \o B)
     & forall i : I,
       V i ->
       exists j : I,
-        [/\ D j,
-            (topology_structure.closure (B i)
-             `&` topology_structure.closure (B j) !=set0)%classic,
+        [/\ D j, (closure (B i) `&` closure (B j) !=set0)%classic,
             ((radius (B i))%:num / 2 <= (radius (B j))%:num)%R
-          & (topology_structure.closure (B i)
-             `<=` topology_structure.closure (5 *` B j))%classic]]}
+          & (closure (B i) `<=` closure (5 *` B j))%classic]]}
 
 vitali_lemma_infinite is not universe polymorphic
 Arguments vitali_lemma_infinite {R I} [B]%function_scope
@@ -1339,12 +1292,10 @@ forall {R : realType} {I : eqType} [B : I -> set R] [V : set I] [r : R],
 {D : set I
 | [/\ countable (T:=I) D, (D `<=` V)%classic,
       trivIset
-        (T:=topology_structure.Topological.sort
-              (num_topology.numFieldTopology.Real_sort__canonical__topology_structure_Topological
-                 R))
-        D (topology_structure.closure \o B)
-    & (cover V (topology_structure.closure \o B)
-       `<=` cover D ((topology_structure.closure \o scale_ball 5) \o B))%classic]}
+        (T:=numFieldTopology.Real_sort__canonical__topology_structure_Topological
+              R)
+        D (closure \o B)
+    & (cover V (closure \o B) `<=` cover D ((closure \o scale_ball 5) \o B))%classic]}
 
 vitali_lemma_infinite_cover is not universe polymorphic
 Arguments vitali_lemma_infinite_cover {R I} [B]%function_scope

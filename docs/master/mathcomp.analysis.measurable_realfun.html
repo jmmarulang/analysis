@@ -438,27 +438,30 @@ Qed.</div></details>
 forall [R : realType],
 set (set R) ->
 isMeasurable.phant_axioms default_measure_display
-  (m:=ereal.HB_unnamed_factory_2 R) (m0:=HB_unnamed_mixin_6 R)
+  (m:=ereal.HB_unnamed_factory_2 R)
+  (m0:=constructive_ereal.HB_unnamed_mixin_6 R)
   (m1:=constructive_ereal.HB_unnamed_factory_1 R) id_phant
   (s:=constructive_ereal_extended__canonical__classical_sets_Pointed R)
   id_phant
   (c:={|
         Pointed.classical_sets_isPointed_mixin :=
           ereal.HB_unnamed_factory_2 R;
-        Pointed.choice_hasChoice_mixin := HB_unnamed_mixin_6 R;
+        Pointed.choice_hasChoice_mixin :=
+          constructive_ereal.HB_unnamed_mixin_6 R;
         Pointed.eqtype_hasDecEq_mixin :=
           constructive_ereal.HB_unnamed_factory_1 R
       |})
   id_phant (m2:=ereal.HB_unnamed_factory_2 R) id_phant
-  (m3:=HB_unnamed_mixin_6 R) id_phant
+  (m3:=constructive_ereal.HB_unnamed_mixin_6 R) id_phant
   (m4:=constructive_ereal.HB_unnamed_factory_1 R) id_phant id_phant id_phant
   (s0:=constructive_ereal_extended__canonical__choice_Choice R) id_phant
   (c0:={|
-         Choice.choice_hasChoice_mixin := HB_unnamed_mixin_6 R;
+         Choice.choice_hasChoice_mixin :=
+           constructive_ereal.HB_unnamed_mixin_6 R;
          Choice.eqtype_hasDecEq_mixin :=
            constructive_ereal.HB_unnamed_factory_1 R
        |})
-  id_phant (m5:=HB_unnamed_mixin_6 R) id_phant
+  id_phant (m5:=constructive_ereal.HB_unnamed_mixin_6 R) id_phant
   (m6:=constructive_ereal.HB_unnamed_factory_1 R) id_phant id_phant id_phant
   (s1:=constructive_ereal_extended__canonical__eqtype_Equality R) id_phant
   (c1:={|
@@ -981,8 +984,7 @@ library mathcomp.analysis.measurable_realfun, line 311, characters 6-27
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="measurable_ball" class="id"><a name="measurable_ball" class="" title="measurable_ball :
-forall [R : realType] (x e : R),
-'measurable%classic (pseudometric_structure.ball x e)
+forall [R : realType] (x e : R), 'measurable%classic (ball x e)
 
 measurable_ball is not universe polymorphic
 Expanded type for implicit arguments
@@ -998,7 +1000,7 @@ forall [R : realType] (x e : R)
            M /\
          (R.-ocitv).-measurable `<=` M]%classic
   i ->
-i (pseudometric_structure.ball x e)
+i (ball x e)
 
 Arguments measurable_ball [R] (x e)%ring_scope [i] _
 measurable_ball is opaque
@@ -1015,7 +1017,7 @@ library mathcomp.analysis.measurable_realfun, line 332, characters 6-21
 forall [R : realType] (x r : R),
 'measurable%classic
   (closed_ball
-     (V:=num_topology.numFieldTopology.Real_sort__canonical__pseudometric_structure_PseudoMetric
+     (V:=numFieldTopology.Real_sort__canonical__pseudometric_structure_PseudoMetric
            R)
      x r)
 
@@ -1035,7 +1037,7 @@ forall [R : realType] (x r : R)
   i ->
 i
   (closed_ball
-     (V:=num_topology.numFieldTopology.Real_sort__canonical__pseudometric_structure_PseudoMetric
+     (V:=numFieldTopology.Real_sort__canonical__pseudometric_structure_PseudoMetric
            R)
      x r)
 
@@ -1307,10 +1309,9 @@ RGenOInfty.measurable_itv_bnd_infty :
 forall [R : realType] (b : bool) (x : R)
   [i : set
          (set
-            (num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
-               R))],
+            (numFieldTopology.Real_sort__canonical__classical_sets_Pointed R))],
 [set M | sigma_algebra
-           [set: num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
+           [set: numFieldTopology.Real_sort__canonical__classical_sets_Pointed
                    R]
            M /\
          RGenOInfty.G (R:=R) `<=` M]%classic
@@ -1352,10 +1353,9 @@ a != +oo%O ->
 forall
   [i : set
          (set
-            (num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
-               R))],
+            (numFieldTopology.Real_sort__canonical__classical_sets_Pointed R))],
 [set M | sigma_algebra
-           [set: num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
+           [set: numFieldTopology.Real_sort__canonical__classical_sets_Pointed
                    R]
            M /\
          RGenOInfty.G (R:=R) `<=` M]%classic
@@ -1431,10 +1431,9 @@ RGenInftyO.measurable_itv_bnd_infty :
 forall [R : realType] (b : bool) (x : R)
   [i : set
          (set
-            (num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
-               R))],
+            (numFieldTopology.Real_sort__canonical__classical_sets_Pointed R))],
 [set M | sigma_algebra
-           [set: num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
+           [set: numFieldTopology.Real_sort__canonical__classical_sets_Pointed
                    R]
            M /\
          RGenInftyO.G (R:=R) `<=` M]%classic
@@ -1477,10 +1476,9 @@ a != -oo%O ->
 forall
   [i : set
          (set
-            (num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
-               R))],
+            (numFieldTopology.Real_sort__canonical__classical_sets_Pointed R))],
 [set M | sigma_algebra
-           [set: num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
+           [set: numFieldTopology.Real_sort__canonical__classical_sets_Pointed
                    R]
            M /\
          RGenInftyO.G (R:=R) `<=` M]%classic
@@ -1556,10 +1554,9 @@ RGenCInfty.measurable_itv_bnd_infty :
 forall [R : realType] (b : bool) (x : R)
   [i : set
          (set
-            (num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
-               R))],
+            (numFieldTopology.Real_sort__canonical__classical_sets_Pointed R))],
 [set M | sigma_algebra
-           [set: num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
+           [set: numFieldTopology.Real_sort__canonical__classical_sets_Pointed
                    R]
            M /\
          RGenCInfty.G (R:=R) `<=` M]%classic
@@ -1601,10 +1598,9 @@ a != +oo%O ->
 forall
   [i : set
          (set
-            (num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
-               R))],
+            (numFieldTopology.Real_sort__canonical__classical_sets_Pointed R))],
 [set M | sigma_algebra
-           [set: num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
+           [set: numFieldTopology.Real_sort__canonical__classical_sets_Pointed
                    R]
            M /\
          RGenCInfty.G (R:=R) `<=` M]%classic
@@ -1696,10 +1692,9 @@ RGenOpens.measurable_itv_bnd_infty :
 forall [R : realType] (b : bool) (x : R)
   [i : set
          (set
-            (num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
-               R))],
+            (numFieldTopology.Real_sort__canonical__classical_sets_Pointed R))],
 [set M | sigma_algebra
-           [set: num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
+           [set: numFieldTopology.Real_sort__canonical__classical_sets_Pointed
                    R]
            M /\
          RGenOpens.G (R:=R) `<=` M]%classic
@@ -1734,10 +1729,9 @@ RGenOpens.measurable_itv_infty_bnd :
 forall [R : realType] (b : bool) (x : R)
   [i : set
          (set
-            (num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
-               R))],
+            (numFieldTopology.Real_sort__canonical__classical_sets_Pointed R))],
 [set M | sigma_algebra
-           [set: num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
+           [set: numFieldTopology.Real_sort__canonical__classical_sets_Pointed
                    R]
            M /\
          RGenOpens.G (R:=R) `<=` M]%classic
@@ -1771,10 +1765,9 @@ forall [R : realType] (a : bool) (x : R) (b : bool)
   (y : R)
   [i : set
          (set
-            (num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
-               R))],
+            (numFieldTopology.Real_sort__canonical__classical_sets_Pointed R))],
 [set M | sigma_algebra
-           [set: num_topology.numFieldTopology.Real_sort__canonical__classical_sets_Pointed
+           [set: numFieldTopology.Real_sort__canonical__classical_sets_Pointed
                    R]
            M /\
          RGenOpens.G (R:=R) `<=` M]%classic
@@ -2335,14 +2328,13 @@ library mathcomp.analysis.measurable_realfun, line 782, characters 6-28
 <span class="vernacular">Variable</span><span class="id"> </span><span id="coutinuous_measurable.R" class="id"><a name="coutinuous_measurable.R" class="">R</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.reals.reals.html#Real.Exports.realType">realType</a></span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="open_measurable" class="id"><a name="open_measurable" class="" title="open_measurable :
-forall [R : realType] [A : set R],
-topology_structure.open A -> 'measurable%classic A
+forall [R : realType] [A : set R], open A -> 'measurable%classic A
 
 open_measurable is not universe polymorphic
 Expanded type for implicit arguments
 open_measurable :
 forall [R : realType] [A : set R],
-topology_structure.open A ->
+open A ->
 forall
   [i : set
          (set
@@ -2371,16 +2363,15 @@ library mathcomp.analysis.measurable_realfun, line 789, characters 6-21
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="open_measurable_subspace" class="id"><a name="open_measurable_subspace" class="" title="open_measurable_subspace :
-forall [R : realType] [D : set R] [U : set (subspace_topology.subspace D)],
-'measurable%classic D ->
-topology_structure.open U -> 'measurable%classic (D `&` U)
+forall [R : realType] [D : set R] [U : set (subspace D)],
+'measurable%classic D -> open U -> 'measurable%classic (D `&` U)
 
 open_measurable_subspace is not universe polymorphic
 Expanded type for implicit arguments
 open_measurable_subspace :
-forall [R : realType] [D : set R] [U : set (subspace_topology.subspace D)],
+forall [R : realType] [D : set R] [U : set (subspace D)],
 'measurable%classic D ->
-topology_structure.open U ->
+open U ->
 forall
   [i : set
          (set
@@ -2410,14 +2401,13 @@ library mathcomp.analysis.measurable_realfun, line 796, characters 6-30
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="closed_measurable" class="id"><a name="closed_measurable" class="" title="closed_measurable :
-forall [R : realType] [A : set R],
-topology_structure.closed A -> 'measurable%classic A
+forall [R : realType] [A : set R], closed A -> 'measurable%classic A
 
 closed_measurable is not universe polymorphic
 Expanded type for implicit arguments
 closed_measurable :
 forall [R : realType] [A : set R],
-topology_structure.closed A ->
+closed A ->
 forall
   [i : set
          (set
@@ -2443,13 +2433,13 @@ library mathcomp.analysis.measurable_realfun, line 803, characters 6-23
 <span class="gallina-kwd"> by</span><span class="id"> move/</span><span class="id"><a href="mathcomp.analysis.topology_theory.topology_structure.html#closed_openC">closed_openC</a></span><span class="id">/</span><span class="id"><a href="mathcomp.analysis.measurable_realfun.html#open_measurable">open_measurable</a></span><span class="id">/</span><span class="id"><a href="mathcomp.analysis.measure_theory.measurable_structure.html#measurableC">measurableC</a></span><span class="id">;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#setCK">setCK</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="compact_measurable" class="id"><a name="compact_measurable" class="" title="compact_measurable :
-forall [R : realType] [A : set R], compact.compact A -> 'measurable%classic A
+forall [R : realType] [A : set R], compact A -> 'measurable%classic A
 
 compact_measurable is not universe polymorphic
 Expanded type for implicit arguments
 compact_measurable :
 forall [R : realType] [A : set R],
-compact.compact A ->
+compact A ->
 forall
   [i : set
          (set
@@ -2476,30 +2466,18 @@ library mathcomp.analysis.measurable_realfun, line 806, characters 6-24
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="subspace_continuous_measurable_fun" class="id"><a name="subspace_continuous_measurable_fun" class="" title="subspace_continuous_measurable_fun :
-forall [R : realType] [D : set R] [f : subspace_topology.subspace D -> R],
+forall [R : realType] [D : set R] [f : subspace D -> R],
 'measurable%classic D ->
-(forall
-   x : filter.Nbhs.sort
-         (subspace_topology.subspace_topology_subspace__canonical__filter_Nbhs
-            D),
- filter.continuous_at
-   (T:=subspace_topology.subspace_topology_subspace__canonical__filter_Nbhs D)
-   (U:=num_topology.numFieldTopology.Real_sort__canonical__filter_Nbhs R) x f) ->
+continuous f ->
 measurable_fun (T:=Real_sort__canonical__measurable_structure_SigmaRing R)
   (U:=Real_sort__canonical__measurable_structure_SigmaRing R) D f
 
 subspace_continuous_measurable_fun is not universe polymorphic
 Expanded type for implicit arguments
 subspace_continuous_measurable_fun :
-forall [R : realType] [D : set R] [f : subspace_topology.subspace D -> R],
+forall [R : realType] [D : set R] [f : subspace D -> R],
 'measurable%classic D ->
-(forall
-   x : filter.Nbhs.sort
-         (subspace_topology.subspace_topology_subspace__canonical__filter_Nbhs
-            D),
- filter.continuous_at
-   (T:=subspace_topology.subspace_topology_subspace__canonical__filter_Nbhs D)
-   (U:=num_topology.numFieldTopology.Real_sort__canonical__filter_Nbhs R) x f) ->
+continuous f ->
 'measurable%classic D ->
 forall [Y : set (Real_sort__canonical__measurable_structure_SigmaRing R)],
 'measurable%classic Y ->
@@ -2536,15 +2514,8 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Corollary</span><span class="id"> </span><span id="open_continuous_measurable_fun" class="id"><a name="open_continuous_measurable_fun" class="" title="open_continuous_measurable_fun :
 forall [R : realType] [D : set R] [f : R -> R],
-topology_structure.open D ->
-{in D,
-  forall
-    x : filter.Nbhs.sort
-          (num_topology.numFieldTopology.Real_sort__canonical__filter_Nbhs R),
-  filter.continuous_at
-    (T:=num_topology.numFieldTopology.Real_sort__canonical__filter_Nbhs R)
-    (U:=num_topology.numFieldTopology.Real_sort__canonical__filter_Nbhs R) x
-    f} ->
+open D ->
+{in D, continuous f} ->
 measurable_fun (T:=Real_sort__canonical__measurable_structure_SigmaRing R)
   (U:=Real_sort__canonical__measurable_structure_SigmaRing R) D f
 
@@ -2552,15 +2523,8 @@ open_continuous_measurable_fun is not universe polymorphic
 Expanded type for implicit arguments
 open_continuous_measurable_fun :
 forall [R : realType] [D : set R] [f : R -> R],
-topology_structure.open D ->
-{in D,
-  forall
-    x : filter.Nbhs.sort
-          (num_topology.numFieldTopology.Real_sort__canonical__filter_Nbhs R),
-  filter.continuous_at
-    (T:=num_topology.numFieldTopology.Real_sort__canonical__filter_Nbhs R)
-    (U:=num_topology.numFieldTopology.Real_sort__canonical__filter_Nbhs R) x
-    f} ->
+open D ->
+{in D, continuous f} ->
 'measurable%classic D ->
 forall [Y : set (Real_sort__canonical__measurable_structure_SigmaRing R)],
 'measurable%classic Y ->
@@ -2595,12 +2559,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="continuous_measurable_fun" class="id"><a name="continuous_measurable_fun" class="" title="continuous_measurable_fun :
 forall [R : realType] [f : R -> R],
-(forall
-   x : filter.Nbhs.sort
-         (num_topology.numFieldTopology.Real_sort__canonical__filter_Nbhs R),
- filter.continuous_at
-   (T:=num_topology.numFieldTopology.Real_sort__canonical__filter_Nbhs R)
-   (U:=num_topology.numFieldTopology.Real_sort__canonical__filter_Nbhs R) x f) ->
+continuous f ->
 measurable_fun (T:=Real_sort__canonical__measurable_structure_SigmaRing R)
   (U:=Real_sort__canonical__measurable_structure_SigmaRing R)
   [set: Real_sort__canonical__measurable_structure_SigmaRing R] f
@@ -2609,12 +2568,7 @@ continuous_measurable_fun is not universe polymorphic
 Expanded type for implicit arguments
 continuous_measurable_fun :
 forall [R : realType] [f : R -> R],
-(forall
-   x : filter.Nbhs.sort
-         (num_topology.numFieldTopology.Real_sort__canonical__filter_Nbhs R),
- filter.continuous_at
-   (T:=num_topology.numFieldTopology.Real_sort__canonical__filter_Nbhs R)
-   (U:=num_topology.numFieldTopology.Real_sort__canonical__filter_Nbhs R) x f) ->
+continuous f ->
 'measurable%classic
   [set: Real_sort__canonical__measurable_structure_SigmaRing R] ->
 forall [Y : set (Real_sort__canonical__measurable_structure_SigmaRing R)],
@@ -3585,11 +3539,7 @@ forall [d : measure_display] [T : measurableType d]
  measurable_fun (T:=T)
    (U:=Real_sort__canonical__measurable_structure_SigmaRing R) D 
    (h m)) ->
-(forall x : T,
- D x ->
- filter.cvg_to
-   (filter.nbhs (filter.fmap (h^~ x) (filter.nbhs filter.eventually)))
-   (filter.nbhs (f x))) ->
+(forall x : T, D x -> (h x0 x @[x0 --> \oo] --> f x)%classic) ->
 measurable_fun (T:=T)
   (U:=Real_sort__canonical__measurable_structure_SigmaRing R) D f
 
@@ -3602,11 +3552,7 @@ forall [d : measure_display] [T : measurableType d]
  measurable_fun (T:=T)
    (U:=Real_sort__canonical__measurable_structure_SigmaRing R) D 
    (h m)) ->
-(forall x : T,
- D x ->
- filter.cvg_to
-   (filter.nbhs (filter.fmap (h^~ x) (filter.nbhs filter.eventually)))
-   (filter.nbhs (f x))) ->
+(forall x : T, D x -> (h x0 x @[x0 --> \oo] --> f x)%classic) ->
 d.-measurable%classic D ->
 forall [Y : set (Real_sort__canonical__measurable_structure_SigmaRing R)],
 'measurable%classic Y ->
@@ -3645,7 +3591,7 @@ forall [d : measure_display] [T : measurableType d]
 d.-measurable%classic U ->
 measurable_fun (T:=T)
   (U:=Real_sort__canonical__measurable_structure_SigmaRing R) D
-  (numfun.indic U : T -> R)
+  ((\1_U)%R : T -> R)
 
 measurable_indic is not universe polymorphic
 Expanded type for implicit arguments
@@ -3661,7 +3607,7 @@ forall [Y : set (Real_sort__canonical__measurable_structure_SigmaRing R)],
      (let (sort, class) as record return (Measurable.axioms_ d record) :=
         T in
       class) in
- measurable) (D `&` (numfun.indic U : T -> R) @^-1` Y)%classic
+ measurable) (D `&` ((\1_U)%R : T -> R) @^-1` Y)%classic
 
 Arguments measurable_indic [d]%measure_display_scope 
   [T R] [D U]%classical_set_scope _ _ [Y] _
@@ -3697,7 +3643,7 @@ forall [d : measure_display] [T : measurableType d]
 d.-measurable%classic D <->
 measurable_fun (T:=T)
   (U:=Real_sort__canonical__measurable_structure_SigmaRing R) [set: T]
-  (numfun.indic D : T -> R)
+  ((\1_D)%R : T -> R)
 
 measurable_indicP is not universe polymorphic
 Arguments measurable_indicP [d]%measure_display_scope 
@@ -6246,7 +6192,7 @@ measurable_fun (T:=T)
 measurable_fun (T:=T)
   (U:=constructive_ereal_extended__canonical__measurable_structure_SigmaRing
         R)
-  D (numfun.funepos.body (R:=R) f)
+  D f^\+%E
 
 measurable_funepos is not universe polymorphic
 Expanded type for implicit arguments
@@ -6268,7 +6214,7 @@ forall
      (let (sort, class) as record return (Measurable.axioms_ d record) :=
         T in
       class) in
- measurable) (D `&` numfun.funepos.body (R:=R) f @^-1` Y)%classic
+ measurable) (D `&` f^\+%E @^-1` Y)%classic
 
 Arguments measurable_funepos [d]%measure_display_scope 
   [T R] [D]%classical_set_scope [f]%function_scope 
@@ -6294,7 +6240,7 @@ measurable_fun (T:=T)
 measurable_fun (T:=T)
   (U:=constructive_ereal_extended__canonical__measurable_structure_SigmaRing
         R)
-  D (numfun.funeneg.body (R:=R) f)
+  D f^\-%E
 
 measurable_funeneg is not universe polymorphic
 Expanded type for implicit arguments
@@ -6316,7 +6262,7 @@ forall
      (let (sort, class) as record return (Measurable.axioms_ d record) :=
         T in
       class) in
- measurable) (D `&` numfun.funeneg.body (R:=R) f @^-1` Y)%classic
+ measurable) (D `&` f^\-%E @^-1` Y)%classic
 
 Arguments measurable_funeneg [d]%measure_display_scope 
   [T R] [D]%classical_set_scope [f]%function_scope 
@@ -6463,11 +6409,7 @@ forall {d : measure_display} {T : measurableType d}
    (U:=constructive_ereal_extended__canonical__measurable_structure_SigmaRing
          R)
    D (f_ m)) ->
-(forall x : T,
- D x ->
- filter.cvg_to
-   (filter.nbhs (filter.fmap (f_^~ x) (filter.nbhs filter.eventually)))
-   (filter.nbhs (f x))) ->
+(forall x : T, D x -> (f_ x0 x @[x0 --> \oo] --> f x)%classic) ->
 measurable_fun (T:=T)
   (U:=constructive_ereal_extended__canonical__measurable_structure_SigmaRing
         R)
@@ -6597,15 +6539,11 @@ forall [d : measure_display] {R : realType} {T : measurableType d}
    (f n)) ->
 d.-measurable%classic A ->
 (mu A < +oo)%E ->
-(forall x : T,
- A x ->
- filter.cvg_to
-   (filter.nbhs (filter.fmap (f^~ x) (filter.nbhs filter.eventually)))
-   (filter.nbhs (g x))) ->
+(forall x : T, A x -> (f x0 x @[x0 --> \oo] --> g x)%classic) ->
 (0 < eps)%R ->
 exists B : set T,
   [/\ d.-measurable%classic B, (mu B < eps%:E)%E
-    & {uniform A `\` B, filter.fmap f (filter.nbhs filter.eventually) --> g}%classic]
+    & {uniform A `\` B, f x @[x --> \oo] --> g}%classic]
 
 pointwise_almost_uniform is not universe polymorphic
 Arguments pointwise_almost_uniform [d]%measure_display_scope 
@@ -6695,15 +6633,11 @@ measurable_fun (T:=T)
   (U:=Real_sort__canonical__measurable_structure_SigmaRing R) A g ->
 d.-measurable%classic A ->
 (mu A < +oo)%E ->
-(\forall x \ae mu, A x ->
-                   filter.cvg_to
-                     (filter.nbhs
-                        (filter.fmap (f^~ x) (filter.nbhs filter.eventually)))
-                     (filter.nbhs (g x))) ->
+(\forall x \ae mu, A x -> (f x0 x @[x0 --> \oo] --> g x)%classic) ->
 (0 < eps)%R ->
 exists B : set T,
   [/\ d.-measurable%classic B, (mu B < eps%:E)%E
-    & {uniform A `\` B, filter.fmap f (filter.nbhs filter.eventually) --> g}%classic]
+    & {uniform A `\` B, f x @[x --> \oo] --> g}%classic]
 
 ae_pointwise_almost_uniform is not universe polymorphic
 Arguments ae_pointwise_almost_uniform [d]%measure_display_scope 

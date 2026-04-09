@@ -857,7 +857,7 @@ Declared in library mathcomp.reals.signed, line 358, characters 10-24
 ">real_field_typ</a></span> (<span id="R:98" class="id"><a name="R:98" class="">R</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.numfield.html#Num.RealField.Exports.realFieldType">realFieldType</a></span>)<span class="id"> :=</span><br/>
 &nbsp;&nbsp;<span class="id"><a href="mathcomp.reals.signed.html#Typ">Signed</a></span>.<span class="id"><a href="mathcomp.reals.signed.html#Typ">Typ</a></span> (<span class="id">@</span><span class="id"><a href="mathcomp.reals.signed.html#real_field_typ_subproof">real_field_typ_subproof</a></span><span class="id"> </span><span class="id"><a href="mathcomp.reals.signed.html#R:98">R</a></span>).<br/>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="nat_typ_subproof" class="id"><a name="nat_typ_subproof" class="" title="nat_typ_subproof : forall x : nat, Signed.spec 0%N ?=0 >=0 x
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="nat_typ_subproof" class="id"><a name="nat_typ_subproof" class="" title="nat_typ_subproof : forall x : nat, Signed.spec 0 ?=0 >=0 x
 
 nat_typ_subproof is not universe polymorphic
 Arguments nat_typ_subproof x%nat_scope
@@ -1951,7 +1951,7 @@ Declared in library mathcomp.reals.signed, line 793, characters 10-18
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="natmul_snum_subproof" class="id"><a name="natmul_snum_subproof" class="" title="natmul_snum_subproof :
 forall {R : numDomainType} [xnz nnz : KnownSign.nullity]
   [xr nr : KnownSign.reality] (x : {num R & xnz & xr}%R)
-  (n : {compare 0%N & nnz & nr}),
+  (n : {compare 0 & nnz & nr}),
 let rnz := mul_nonzero_subdef xnz nnz xr nr in
 let rrl := mul_reality_subdef xnz nnz xr nr in
 (KnownSign.nullity_bool rnz ==> ((x%:num *+ n%:num)%R != 0%R)) &&
@@ -1987,7 +1987,7 @@ Qed.</div></details>
 forall {R : numDomainType} [xnz nnz : KnownSign.nullity]
   [xr nr : KnownSign.reality],
 {num R & xnz & xr}%R ->
-{compare 0%N & nnz & nr} ->
+{compare 0 & nnz & nr} ->
 {compare 0%R & mul_nonzero_subdef xnz nnz xr nr & 
 mul_reality_subdef xnz nnz xr nr}
 
@@ -2133,7 +2133,7 @@ Declared in library mathcomp.reals.signed, line 852, characters 11-31
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="exprn_snum_subproof" class="id"><a name="exprn_snum_subproof" class="" title="exprn_snum_subproof :
 forall {R : numDomainType} [xnz nnz : KnownSign.nullity]
   [xr nr : KnownSign.reality] (x : {num R & xnz & xr}%R)
-  (n : {compare 0%N & nnz & nr}),
+  (n : {compare 0 & nnz & nr}),
 let rnz := exprn_nonzero_subdef xnz nnz xr nr in
 let rrl := exprn_reality_subdef xnz nnz xr nr in
 (KnownSign.nullity_bool rnz ==> ((x%:num ^+ n%:num)%R != 0%R)) &&
@@ -2169,7 +2169,7 @@ Qed.</div></details>
 forall {R : numDomainType} [xnz nnz : KnownSign.nullity]
   [xr nr : KnownSign.reality],
 {num R & xnz & xr}%R ->
-{compare 0%N & nnz & nr} ->
+{compare 0 & nnz & nr} ->
 {compare 0%R & exprn_nonzero_subdef xnz nnz xr nr & 
 exprn_reality_subdef xnz nnz xr nr}
 
@@ -2329,7 +2329,7 @@ Declared in library mathcomp.reals.signed, line 931, characters 10-20
 <span class="vernacular">Local</span><span class="vernacular"> Open</span><span class="vernacular"> Scope</span><span class="id"> nat_scope</span>.<br/>
 <span class="vernacular">Implicit</span><span class="gallina-kwd"> Type</span> (<span class="id">n</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#nat">nat</a></span>).<br/>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="zeron_snum_subproof" class="id"><a name="zeron_snum_subproof" class="" title="zeron_snum_subproof : Signed.spec 0%N ?=0 =0 0%N
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="zeron_snum_subproof" class="id"><a name="zeron_snum_subproof" class="" title="zeron_snum_subproof : Signed.spec 0 ?=0 =0 0
 
 zeron_snum_subproof is not universe polymorphic
 zeron_snum_subproof is opaque
@@ -2341,7 +2341,7 @@ Declared in library mathcomp.reals.signed, line 940, characters 6-25
 <div class="proofscript">
 <span class="gallina-kwd"> by</span><span class="id"> []</span>. Qed.</div></details>
 <br/>
-<span class="vernacular">Canonical</span><span class="id"> </span><span id="zeron_snum" class="id"><a name="zeron_snum" class="" title="zeron_snum : {compare 0%N & ?=0 & =0}
+<span class="vernacular">Canonical</span><span class="id"> </span><span id="zeron_snum" class="id"><a name="zeron_snum" class="" title="zeron_snum : {compare 0 & ?=0 & =0}
 
 zeron_snum is not universe polymorphic
 zeron_snum is transparent
@@ -2349,7 +2349,7 @@ Expands to: Constant mathcomp.reals.signed.zeron_snum
 Declared in library mathcomp.reals.signed, line 943, characters 10-20
 ">zeron_snum</a></span><span class="id"> :=</span><span class="id"> </span><span class="id"><a href="mathcomp.reals.signed.html#mk">Signed</a></span>.<span class="id"><a href="mathcomp.reals.signed.html#mk">mk</a></span><span class="id"> </span><span class="id"><a href="mathcomp.reals.signed.html#zeron_snum_subproof">zeron_snum_subproof</a></span>.<br/>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="succn_snum_subproof" class="id"><a name="succn_snum_subproof" class="" title="succn_snum_subproof : forall n : nat, Signed.spec 0%N !=0 >=0 n.+1
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="succn_snum_subproof" class="id"><a name="succn_snum_subproof" class="" title="succn_snum_subproof : forall n : nat, Signed.spec 0 !=0 >=0 n.+1
 
 succn_snum_subproof is not universe polymorphic
 Arguments succn_snum_subproof n%nat_scope
@@ -2362,7 +2362,7 @@ Declared in library mathcomp.reals.signed, line 945, characters 6-25
 <div class="proofscript">
 <span class="gallina-kwd"> by</span><span class="id"> []</span>. Qed.</div></details>
 <br/>
-<span class="vernacular">Canonical</span><span class="id"> </span><span id="succn_snum" class="id"><a name="succn_snum" class="" title="succn_snum : nat -> {compare 0%N & !=0 & >=0}
+<span class="vernacular">Canonical</span><span class="id"> </span><span id="succn_snum" class="id"><a name="succn_snum" class="" title="succn_snum : nat -> {compare 0 & !=0 & >=0}
 
 succn_snum is not universe polymorphic
 Arguments succn_snum n%nat_scope
@@ -2373,8 +2373,8 @@ Declared in library mathcomp.reals.signed, line 948, characters 10-20
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="double_snum_subproof" class="id"><a name="double_snum_subproof" class="" title="double_snum_subproof :
 forall [nz : KnownSign.nullity] [r : KnownSign.reality]
-  (x : {compare 0%N & nz & r}),
-Signed.spec 0%N nz r x%:num%R.*2
+  (x : {compare 0 & nz & r}),
+Signed.spec 0 nz r x%:num%R.*2
 
 double_snum_subproof is not universe polymorphic
 Arguments double_snum_subproof [nz]%snum_nullity_scope [r]%snum_sign_scope x
@@ -2390,7 +2390,7 @@ Declared in library mathcomp.reals.signed, line 950, characters 6-26
 <br/>
 <span class="vernacular">Canonical</span><span class="id"> </span><span id="double_snum" class="id"><a name="double_snum" class="" title="double_snum :
 forall [nz : KnownSign.nullity] [r : KnownSign.reality],
-{compare 0%N & nz & r} -> {compare 0%N & nz & r}
+{compare 0 & nz & r} -> {compare 0 & nz & r}
 
 double_snum is not universe polymorphic
 Arguments double_snum [nz]%snum_nullity_scope [r]%snum_sign_scope x
@@ -2402,10 +2402,10 @@ Declared in library mathcomp.reals.signed, line 954, characters 10-21
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="addn_snum_subproof" class="id"><a name="addn_snum_subproof" class="" title="addn_snum_subproof :
 forall [xnz ynz : KnownSign.nullity] [xr yr : KnownSign.reality]
-  (x : {compare 0%N & xnz & xr}) (y : {compare 0%N & ynz & yr}),
+  (x : {compare 0 & xnz & xr}) (y : {compare 0 & ynz & yr}),
 let rnz := add_nonzero_subdef xnz ynz xr yr in
 let rrl := add_reality_subdef xnz ynz xr yr in
-Signed.spec 0%N rnz rrl (x%:num%R + y%:num%R)%N
+Signed.spec 0 rnz rrl (x%:num%R + y%:num%R)
 
 addn_snum_subproof is not universe polymorphic
 Arguments addn_snum_subproof [xnz ynz]%snum_nullity_scope
@@ -2427,10 +2427,10 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Canonical</span><span class="id"> </span><span id="addn_snum" class="id"><a name="addn_snum" class="" title="addn_snum :
 forall [xnz ynz : KnownSign.nullity] [xr yr : KnownSign.reality],
-{compare 0%N & xnz & xr} ->
-{compare 0%N & ynz & yr} ->
-{compare 0%N & add_nonzero_subdef xnz ynz xr yr & 
-add_reality_subdef xnz ynz xr yr}
+{compare 0 & xnz & xr} ->
+{compare 0 & ynz & yr} ->
+{compare 0 & add_nonzero_subdef xnz ynz xr yr & add_reality_subdef xnz ynz xr
+                                                 yr}
 
 addn_snum is not universe polymorphic
 Arguments addn_snum [xnz ynz]%snum_nullity_scope [xr yr]%snum_sign_scope x y
@@ -2443,10 +2443,10 @@ Declared in library mathcomp.reals.signed, line 967, characters 10-19
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="muln_snum_subproof" class="id"><a name="muln_snum_subproof" class="" title="muln_snum_subproof :
 forall [xnz ynz : KnownSign.nullity] [xr yr : KnownSign.reality]
-  (x : {compare 0%N & xnz & xr}) (y : {compare 0%N & ynz & yr}),
+  (x : {compare 0 & xnz & xr}) (y : {compare 0 & ynz & yr}),
 let rnz := mul_nonzero_subdef xnz ynz xr yr in
 let rrl := mul_reality_subdef xnz ynz xr yr in
-Signed.spec 0%N rnz rrl (x%:num%R * y%:num%R)%N
+Signed.spec 0 rnz rrl (x%:num%R * y%:num%R)
 
 muln_snum_subproof is not universe polymorphic
 Arguments muln_snum_subproof [xnz ynz]%snum_nullity_scope
@@ -2469,10 +2469,10 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Canonical</span><span class="id"> </span><span id="muln_snum" class="id"><a name="muln_snum" class="" title="muln_snum :
 forall [xnz ynz : KnownSign.nullity] [xr yr : KnownSign.reality],
-{compare 0%N & xnz & xr} ->
-{compare 0%N & ynz & yr} ->
-{compare 0%N & mul_nonzero_subdef xnz ynz xr yr & 
-mul_reality_subdef xnz ynz xr yr}
+{compare 0 & xnz & xr} ->
+{compare 0 & ynz & yr} ->
+{compare 0 & mul_nonzero_subdef xnz ynz xr yr & mul_reality_subdef xnz ynz xr
+                                                 yr}
 
 muln_snum is not universe polymorphic
 Arguments muln_snum [xnz ynz]%snum_nullity_scope [xr yr]%snum_sign_scope x y
@@ -2485,10 +2485,10 @@ Declared in library mathcomp.reals.signed, line 982, characters 10-19
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="expn_snum_subproof" class="id"><a name="expn_snum_subproof" class="" title="expn_snum_subproof :
 forall [xnz nnz : KnownSign.nullity] [xr nr : KnownSign.reality]
-  (x : {compare 0%N & xnz & xr}) (n : {compare 0%N & nnz & nr}),
+  (x : {compare 0 & xnz & xr}) (n : {compare 0 & nnz & nr}),
 let rnz := exprn_nonzero_subdef xnz nnz xr nr in
 let rrl := exprn_reality_subdef xnz nnz xr nr in
-Signed.spec 0%N rnz rrl (x%:num%R ^ n%:num%R)%N
+Signed.spec 0 rnz rrl (x%:num%R ^ n%:num%R)
 
 expn_snum_subproof is not universe polymorphic
 Arguments expn_snum_subproof [xnz nnz]%snum_nullity_scope
@@ -2514,9 +2514,9 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Canonical</span><span class="id"> </span><span id="expn_snum" class="id"><a name="expn_snum" class="" title="expn_snum :
 forall [xnz nnz : KnownSign.nullity] [xr nr : KnownSign.reality],
-{compare 0%N & xnz & xr} ->
-{compare 0%N & nnz & nr} ->
-{compare 0%N & exprn_nonzero_subdef xnz nnz xr nr & 
+{compare 0 & xnz & xr} ->
+{compare 0 & nnz & nr} ->
+{compare 0 & exprn_nonzero_subdef xnz nnz xr nr & 
 exprn_reality_subdef xnz nnz xr nr}
 
 expn_snum is not universe polymorphic
@@ -2530,10 +2530,10 @@ Declared in library mathcomp.reals.signed, line 1000, characters 10-19
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="minn_snum_subproof" class="id"><a name="minn_snum_subproof" class="" title="minn_snum_subproof :
 forall [xnz ynz : KnownSign.nullity] [xr yr : KnownSign.reality]
-  (x : {compare 0%N & xnz & xr}) (y : {compare 0%N & ynz & yr}),
+  (x : {compare 0 & xnz & xr}) (y : {compare 0 & ynz & yr}),
 let rnz := min_nonzero_subdef xnz ynz xr yr in
 let rrl := min_reality_subdef xnz ynz xr yr in
-Signed.spec 0%N rnz rrl (Init.Nat.min x%:num%R y%:num%R)
+Signed.spec 0 rnz rrl (Init.Nat.min x%:num%R y%:num%R)
 
 minn_snum_subproof is not universe polymorphic
 Arguments minn_snum_subproof [xnz ynz]%snum_nullity_scope
@@ -2555,10 +2555,10 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Canonical</span><span class="id"> </span><span id="minn_snum" class="id"><a name="minn_snum" class="" title="minn_snum :
 forall [xnz ynz : KnownSign.nullity] [xr yr : KnownSign.reality],
-{compare 0%N & xnz & xr} ->
-{compare 0%N & ynz & yr} ->
-{compare 0%N & min_nonzero_subdef xnz ynz xr yr & 
-min_reality_subdef xnz ynz xr yr}
+{compare 0 & xnz & xr} ->
+{compare 0 & ynz & yr} ->
+{compare 0 & min_nonzero_subdef xnz ynz xr yr & min_reality_subdef xnz ynz xr
+                                                 yr}
 
 minn_snum is not universe polymorphic
 Arguments minn_snum [xnz ynz]%snum_nullity_scope [xr yr]%snum_sign_scope x y
@@ -2571,10 +2571,10 @@ Declared in library mathcomp.reals.signed, line 1014, characters 10-19
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="maxn_snum_subproof" class="id"><a name="maxn_snum_subproof" class="" title="maxn_snum_subproof :
 forall [xnz ynz : KnownSign.nullity] [xr yr : KnownSign.reality]
-  (x : {compare 0%N & xnz & xr}) (y : {compare 0%N & ynz & yr}),
+  (x : {compare 0 & xnz & xr}) (y : {compare 0 & ynz & yr}),
 let rnz := max_nonzero_subdef xnz ynz xr yr in
 let rrl := max_reality_subdef xnz ynz xr yr in
-Signed.spec 0%N rnz rrl (maxn x%:num%R y%:num%R)
+Signed.spec 0 rnz rrl (maxn x%:num%R y%:num%R)
 
 maxn_snum_subproof is not universe polymorphic
 Arguments maxn_snum_subproof [xnz ynz]%snum_nullity_scope
@@ -2597,10 +2597,10 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Canonical</span><span class="id"> </span><span id="maxn_snum" class="id"><a name="maxn_snum" class="" title="maxn_snum :
 forall [xnz ynz : KnownSign.nullity] [xr yr : KnownSign.reality],
-{compare 0%N & xnz & xr} ->
-{compare 0%N & ynz & yr} ->
-{compare 0%N & max_nonzero_subdef xnz ynz xr yr & 
-max_reality_subdef xnz ynz xr yr}
+{compare 0 & xnz & xr} ->
+{compare 0 & ynz & yr} ->
+{compare 0 & max_nonzero_subdef xnz ynz xr yr & max_reality_subdef xnz ynz xr
+                                                 yr}
 
 maxn_snum is not universe polymorphic
 Arguments maxn_snum [xnz ynz]%snum_nullity_scope [xr yr]%snum_sign_scope x y
@@ -2617,7 +2617,7 @@ Declared in library mathcomp.reals.signed, line 1029, characters 10-19
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="Posz_snum_subproof" class="id"><a name="Posz_snum_subproof" class="" title="Posz_snum_subproof :
 forall [xnz : KnownSign.nullity] [xr : KnownSign.reality]
-  (x : {compare 0%N & xnz & xr}),
+  (x : {compare 0 & xnz & xr}),
 Signed.spec 0%Z xnz xr x%:num%R
 
 Posz_snum_subproof is not universe polymorphic
@@ -2636,7 +2636,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Canonical</span><span class="id"> </span><span id="Posz_snum" class="id"><a name="Posz_snum" class="" title="Posz_snum :
 forall [xnz : KnownSign.nullity] [xr : KnownSign.reality],
-{compare 0%N & xnz & xr} -> {compare 0%Z & xnz & xr}
+{compare 0 & xnz & xr} -> {compare 0%Z & xnz & xr}
 
 Posz_snum is not universe polymorphic
 Arguments Posz_snum [xnz]%snum_nullity_scope [xr]%snum_sign_scope x

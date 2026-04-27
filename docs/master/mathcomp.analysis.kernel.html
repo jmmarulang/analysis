@@ -445,7 +445,7 @@ Qed.</div></details>
 <span class="vernacular">Definition</span><span class="id"> </span><span id="kseries" class="id"><a name="kseries" class="" title="kseries :
 forall [d d' : measure_display] [X : measurableType d]
   [Y : measurableType d'] [R : realType],
-(R.-ker X ~> Y) ^nat -> X -> measure Y R
+sequences.sequence (R.-ker X ~> Y) -> X -> measure Y R
 
 kseries is not universe polymorphic
 Arguments kseries [d d']%measure_display_scope [X Y R] k x
@@ -456,8 +456,8 @@ Declared in library mathcomp.analysis.kernel, line 164, characters 11-18
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="measurable_fun_kseries" class="id"><a name="measurable_fun_kseries" class="" title="measurable_fun_kseries :
 forall [d d' : measure_display] [X : measurableType d]
-  [Y : measurableType d'] [R : realType] (k : (R.-ker X ~> Y) ^nat)
-  [U : set Y],
+  [Y : measurableType d'] [R : realType]
+  (k : sequences.sequence (R.-ker X ~> Y)) [U : set Y],
 d'.-measurable%classic U ->
 measurable_fun (T:=X)
   (U:=constructive_ereal_extended__canonical__measurable_structure_SigmaRing
@@ -468,8 +468,8 @@ measurable_fun_kseries is not universe polymorphic
 Expanded type for implicit arguments
 measurable_fun_kseries :
 forall [d d' : measure_display] [X : measurableType d]
-  [Y : measurableType d'] [R : realType] (k : (R.-ker X ~> Y) ^nat)
-  [U : set Y],
+  [Y : measurableType d'] [R : realType]
+  (k : sequences.sequence (R.-ker X ~> Y)) [U : set Y],
 d'.-measurable%classic U ->
 d.-measurable%classic [set: X] ->
 forall
@@ -501,7 +501,7 @@ Qed.</div></details>
 <span id="kernel_kseries__canonical__kernel_Kernel" class="id"><span id="HB_unnamed_factory_1" class="id"><a name="kernel_kseries__canonical__kernel_Kernel" class="" title="kernel_kseries__canonical__kernel_Kernel :
 forall [d d' : measure_display] [X : measurableType d]
   [Y : measurableType d'] [R : realType],
-(R.-ker X ~> Y) ^nat -> R.-ker X ~> Y
+sequences.sequence (R.-ker X ~> Y) -> R.-ker X ~> Y
 
 kernel_kseries__canonical__kernel_Kernel is not universe polymorphic
 Arguments kernel_kseries__canonical__kernel_Kernel
@@ -513,7 +513,7 @@ Declared in library mathcomp.analysis.kernel, line 172, characters 0-86
 ">HB</a></span></span>.<span id="kernel_kseries__canonical__kernel_Kernel" class="id"><span id="HB_unnamed_factory_1" class="id"><a name="kernel_kseries__canonical__kernel_Kernel" class="" title="kernel_kseries__canonical__kernel_Kernel :
 forall [d d' : measure_display] [X : measurableType d]
   [Y : measurableType d'] [R : realType],
-(R.-ker X ~> Y) ^nat -> R.-ker X ~> Y
+sequences.sequence (R.-ker X ~> Y) -> R.-ker X ~> Y
 
 kernel_kseries__canonical__kernel_Kernel is not universe polymorphic
 Arguments kernel_kseries__canonical__kernel_Kernel
@@ -525,7 +525,7 @@ Declared in library mathcomp.analysis.kernel, line 172, characters 0-86
 ">instance</a></span></span><span class="vernacular"> Definition</span><span id="kernel_kseries__canonical__kernel_Kernel" class="id"><span id="HB_unnamed_factory_1" class="id"><a name="kernel_kseries__canonical__kernel_Kernel" class="" title="kernel_kseries__canonical__kernel_Kernel :
 forall [d d' : measure_display] [X : measurableType d]
   [Y : measurableType d'] [R : realType],
-(R.-ker X ~> Y) ^nat -> R.-ker X ~> Y
+sequences.sequence (R.-ker X ~> Y) -> R.-ker X ~> Y
 
 kernel_kseries__canonical__kernel_Kernel is not universe polymorphic
 Arguments kernel_kseries__canonical__kernel_Kernel
@@ -537,7 +537,7 @@ Declared in library mathcomp.analysis.kernel, line 172, characters 0-86
 "> _</a></span></span><span id="kernel_kseries__canonical__kernel_Kernel" class="id"><span id="HB_unnamed_factory_1" class="id"><a name="kernel_kseries__canonical__kernel_Kernel" class="" title="kernel_kseries__canonical__kernel_Kernel :
 forall [d d' : measure_display] [X : measurableType d]
   [Y : measurableType d'] [R : realType],
-(R.-ker X ~> Y) ^nat -> R.-ker X ~> Y
+sequences.sequence (R.-ker X ~> Y) -> R.-ker X ~> Y
 
 kernel_kseries__canonical__kernel_Kernel is not universe polymorphic
 Arguments kernel_kseries__canonical__kernel_Kernel
@@ -553,15 +553,18 @@ Declared in library mathcomp.analysis.kernel, line 172, characters 0-86
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="integral_kseries" class="id"><a name="integral_kseries" class="" title="integral_kseries :
 forall [d d' : measure_display] [X : measurableType d]
-  [Y : measurableType d'] [R : realType] (k : (R.-ker X ~> Y) ^nat)
-  [f : Y -> \bar R] (x : X),
+  [Y : measurableType d'] [R : realType]
+  (k : sequences.sequence (R.-ker X ~> Y)) [f : Y -> \bar R] 
+  (x : X),
 (forall y : Y, (0%R <= f y)%E) ->
 measurable_fun (T:=Y)
   (U:=constructive_ereal_extended__canonical__measurable_structure_SigmaRing
         R)
   [set: Y] f ->
 (\int[kseries (X:=X) (Y:=Y) (R:=R) k x]_y f y)%E =
-\big[+%R/0%R]_(0 <= i <oo) (\int[k i x]_y f y)%E
+filter.lim
+  (filter.fmap (fun n : nat => (\sum_(0 <= i < n) (\int[k i x]_y f y)%E)%R)
+     (filter.nbhs filter.eventually))
 
 integral_kseries is not universe polymorphic
 Arguments integral_kseries [d d']%measure_display_scope 
@@ -1471,7 +1474,7 @@ Declared in library mathcomp.analysis.kernel, line 388, characters 0-80
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="sfinite_kernel" class="id"><a name="sfinite_kernel" class="" title="sfinite_kernel :
 forall [d d' : measure_display] [X : measurableType d]
   [Y : measurableType d'] [R : realType] (k : R.-sfker X ~> Y),
-exists s : (R.-fker X ~> Y) ^nat,
+exists s : sequences.sequence (R.-fker X ~> Y),
   forall (x : X) (U : set Y),
   d'.-measurable%classic U ->
   k x U = kseries (X:=X) (Y:=Y) (R:=R) (fun x0 : nat => s x0) x U
@@ -1788,7 +1791,7 @@ Qed.</div></details>
 <span id="kernel_kseries__canonical__kernel_SFiniteKernel" class="id"><span id="HB_unnamed_factory_48" class="id"><a name="kernel_kseries__canonical__kernel_SFiniteKernel" class="" title="kernel_kseries__canonical__kernel_SFiniteKernel :
 forall [d d' : measure_display] [X : measurableType d]
   [Y : measurableType d'] [R : realType],
-(R.-sfker X ~> Y) ^nat -> R.-sfker X ~> Y
+sequences.sequence (R.-sfker X ~> Y) -> R.-sfker X ~> Y
 
 kernel_kseries__canonical__kernel_SFiniteKernel is not universe polymorphic
 Arguments kernel_kseries__canonical__kernel_SFiniteKernel
@@ -1800,7 +1803,7 @@ Declared in library mathcomp.analysis.kernel, line 459, characters 0-97
 ">HB</a></span></span>.<span id="kernel_kseries__canonical__kernel_SFiniteKernel" class="id"><span id="HB_unnamed_factory_48" class="id"><a name="kernel_kseries__canonical__kernel_SFiniteKernel" class="" title="kernel_kseries__canonical__kernel_SFiniteKernel :
 forall [d d' : measure_display] [X : measurableType d]
   [Y : measurableType d'] [R : realType],
-(R.-sfker X ~> Y) ^nat -> R.-sfker X ~> Y
+sequences.sequence (R.-sfker X ~> Y) -> R.-sfker X ~> Y
 
 kernel_kseries__canonical__kernel_SFiniteKernel is not universe polymorphic
 Arguments kernel_kseries__canonical__kernel_SFiniteKernel
@@ -1812,7 +1815,7 @@ Declared in library mathcomp.analysis.kernel, line 459, characters 0-97
 ">instance</a></span></span><span class="vernacular"> Definition</span><span id="kernel_kseries__canonical__kernel_SFiniteKernel" class="id"><span id="HB_unnamed_factory_48" class="id"><a name="kernel_kseries__canonical__kernel_SFiniteKernel" class="" title="kernel_kseries__canonical__kernel_SFiniteKernel :
 forall [d d' : measure_display] [X : measurableType d]
   [Y : measurableType d'] [R : realType],
-(R.-sfker X ~> Y) ^nat -> R.-sfker X ~> Y
+sequences.sequence (R.-sfker X ~> Y) -> R.-sfker X ~> Y
 
 kernel_kseries__canonical__kernel_SFiniteKernel is not universe polymorphic
 Arguments kernel_kseries__canonical__kernel_SFiniteKernel
@@ -1824,7 +1827,7 @@ Declared in library mathcomp.analysis.kernel, line 459, characters 0-97
 "> _</a></span></span><span id="kernel_kseries__canonical__kernel_SFiniteKernel" class="id"><span id="HB_unnamed_factory_48" class="id"><a name="kernel_kseries__canonical__kernel_SFiniteKernel" class="" title="kernel_kseries__canonical__kernel_SFiniteKernel :
 forall [d d' : measure_display] [X : measurableType d]
   [Y : measurableType d'] [R : realType],
-(R.-sfker X ~> Y) ^nat -> R.-sfker X ~> Y
+sequences.sequence (R.-sfker X ~> Y) -> R.-sfker X ~> Y
 
 kernel_kseries__canonical__kernel_SFiniteKernel is not universe polymorphic
 Arguments kernel_kseries__canonical__kernel_SFiniteKernel
@@ -2676,10 +2679,15 @@ Qed.</div></details>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="measurable_fun_xsection_integral" class="id"><a name="measurable_fun_xsection_integral" class="" title="measurable_fun_xsection_integral :
 forall {d d' : measure_display} {X : measurableType d}
   {Y : measurableType d'} {R : realType} (k : X * Y -> \bar R)
-  (l : X -> measure Y R) (k_ : {nnsfun X * Y >-> R} ^nat),
-{homo ((fun x : nat => k_ x) : (X * Y -> R) ^nat) : n m / 
+  (l : X -> measure Y R) (k_ : sequences.sequence {nnsfun X * Y >-> R}),
+{homo ((fun x : nat => k_ x) : sequences.sequence (X * Y -> R)) : n m / 
 n <= m >-> (n <= m)%O} ->
-(forall z : X * Y, ((k_ n z)%:E @[n --> \oo] --> k z)%classic) ->
+(forall z : X * Y,
+ filter.cvg_to
+   (filter.nbhs
+      (filter.fmap (fun n : nat => (k_ n z)%:E)
+         (filter.nbhs filter.eventually)))
+   (filter.nbhs (k z))) ->
 (forall (n : nat) (r : R),
  measurable_fun (T:=X)
    (U:=constructive_ereal_extended__canonical__measurable_structure_SigmaRing
@@ -4077,7 +4085,7 @@ Declared in library mathcomp.analysis.kernel, line 1039, characters 0-85
 forall [d d' d3 : measure_display] [X : measurableType d]
   [Y : measurableType d'] [Z : measurableType d3] 
   [R : realType] (l : R.-sfker X ~> Y) (k : R.-sfker X * Y ~> Z),
-exists k_ : (R.-fker X ~> Z) ^nat,
+exists k_ : sequences.sequence (R.-fker X ~> Z),
   forall (x : X) (U : set Z),
   d3.-measurable%classic U ->
   (l \; k)%E x U = kseries (X:=X) (Y:=Z) (R:=R) (fun x0 : nat => k_ x0) x U
@@ -4317,7 +4325,7 @@ Declared in library mathcomp.analysis.kernel, line 1098, characters 0-103
 <span id="kernel_k_2__canonical__numfun_NonNegFun" class="id"><span id="HB_unnamed_factory_177" class="id"><span id="measurable_fun_preimage_integral.hb_instance_176.n" class="id"><a name="kernel_k_2__canonical__numfun_NonNegFun" class="" title="kernel_k_2__canonical__numfun_NonNegFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat -> nat -> {nnfun X * Y >-> R}
+sequences.sequence {nnsfun Y >-> R} -> nat -> {nnfun X * Y >-> R}
 
 kernel_k_2__canonical__numfun_NonNegFun is not universe polymorphic
 Arguments kernel_k_2__canonical__numfun_NonNegFun
@@ -4329,7 +4337,7 @@ Declared in library mathcomp.analysis.kernel, line 1118, characters 0-67
 ">HB</a></span></span></span>.<span id="kernel_k_2__canonical__numfun_NonNegFun" class="id"><span id="HB_unnamed_factory_177" class="id"><span id="measurable_fun_preimage_integral.hb_instance_176.n" class="id"><a name="kernel_k_2__canonical__numfun_NonNegFun" class="" title="kernel_k_2__canonical__numfun_NonNegFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat -> nat -> {nnfun X * Y >-> R}
+sequences.sequence {nnsfun Y >-> R} -> nat -> {nnfun X * Y >-> R}
 
 kernel_k_2__canonical__numfun_NonNegFun is not universe polymorphic
 Arguments kernel_k_2__canonical__numfun_NonNegFun
@@ -4341,7 +4349,7 @@ Declared in library mathcomp.analysis.kernel, line 1118, characters 0-67
 ">instance</a></span></span></span><span class="vernacular"> Definition</span><span id="kernel_k_2__canonical__numfun_NonNegFun" class="id"><span id="HB_unnamed_factory_177" class="id"><span id="measurable_fun_preimage_integral.hb_instance_176.n" class="id"><a name="kernel_k_2__canonical__numfun_NonNegFun" class="" title="kernel_k_2__canonical__numfun_NonNegFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat -> nat -> {nnfun X * Y >-> R}
+sequences.sequence {nnsfun Y >-> R} -> nat -> {nnfun X * Y >-> R}
 
 kernel_k_2__canonical__numfun_NonNegFun is not universe polymorphic
 Arguments kernel_k_2__canonical__numfun_NonNegFun
@@ -4353,7 +4361,7 @@ Declared in library mathcomp.analysis.kernel, line 1118, characters 0-67
 "> _</a></span></span></span><span id="kernel_k_2__canonical__numfun_NonNegFun" class="id"><span id="HB_unnamed_factory_177" class="id"><span id="measurable_fun_preimage_integral.hb_instance_176.n" class="id"><a name="kernel_k_2__canonical__numfun_NonNegFun" class="" title="kernel_k_2__canonical__numfun_NonNegFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat -> nat -> {nnfun X * Y >-> R}
+sequences.sequence {nnsfun Y >-> R} -> nat -> {nnfun X * Y >-> R}
 
 kernel_k_2__canonical__numfun_NonNegFun is not universe polymorphic
 Arguments kernel_k_2__canonical__numfun_NonNegFun
@@ -4365,7 +4373,7 @@ Declared in library mathcomp.analysis.kernel, line 1118, characters 0-67
 "> n</a></span></span></span><span id="kernel_k_2__canonical__numfun_NonNegFun" class="id"><span id="HB_unnamed_factory_177" class="id"><span id="measurable_fun_preimage_integral.hb_instance_176.n" class="id"><a name="kernel_k_2__canonical__numfun_NonNegFun" class="" title="kernel_k_2__canonical__numfun_NonNegFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat -> nat -> {nnfun X * Y >-> R}
+sequences.sequence {nnsfun Y >-> R} -> nat -> {nnfun X * Y >-> R}
 
 kernel_k_2__canonical__numfun_NonNegFun is not universe polymorphic
 Arguments kernel_k_2__canonical__numfun_NonNegFun
@@ -4377,7 +4385,7 @@ Declared in library mathcomp.analysis.kernel, line 1118, characters 0-67
 "> :=</a></span></span></span><span id="kernel_k_2__canonical__numfun_NonNegFun" class="id"><span id="HB_unnamed_factory_177" class="id"><span id="measurable_fun_preimage_integral.hb_instance_176.n" class="id"><a name="kernel_k_2__canonical__numfun_NonNegFun" class="" title="kernel_k_2__canonical__numfun_NonNegFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat -> nat -> {nnfun X * Y >-> R}
+sequences.sequence {nnsfun Y >-> R} -> nat -> {nnfun X * Y >-> R}
 
 kernel_k_2__canonical__numfun_NonNegFun is not universe polymorphic
 Arguments kernel_k_2__canonical__numfun_NonNegFun
@@ -4397,7 +4405,7 @@ Declared in library mathcomp.analysis.kernel, line 1118, characters 0-67
 <span id="kernel_k_2__canonical__measurable_function_MeasurableFun" class="id"><span id="HB_unnamed_factory_180" class="id"><span id="measurable_fun_preimage_integral.hb_instance_179.n" class="id"><a name="kernel_k_2__canonical__measurable_function_MeasurableFun" class="" title="kernel_k_2__canonical__measurable_function_MeasurableFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat ->
+sequences.sequence {nnsfun Y >-> R} ->
 nat ->
 {mfun Datatypes_prod__canonical__measurable_structure_SigmaRing X Y >-> 
 Real_sort__canonical__measurable_structure_SigmaRing R}
@@ -4412,7 +4420,7 @@ Declared in library mathcomp.analysis.kernel, line 1123, characters 0-72
 ">HB</a></span></span></span>.<span id="kernel_k_2__canonical__measurable_function_MeasurableFun" class="id"><span id="HB_unnamed_factory_180" class="id"><span id="measurable_fun_preimage_integral.hb_instance_179.n" class="id"><a name="kernel_k_2__canonical__measurable_function_MeasurableFun" class="" title="kernel_k_2__canonical__measurable_function_MeasurableFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat ->
+sequences.sequence {nnsfun Y >-> R} ->
 nat ->
 {mfun Datatypes_prod__canonical__measurable_structure_SigmaRing X Y >-> 
 Real_sort__canonical__measurable_structure_SigmaRing R}
@@ -4427,7 +4435,7 @@ Declared in library mathcomp.analysis.kernel, line 1123, characters 0-72
 ">instance</a></span></span></span><span class="vernacular"> Definition</span><span id="kernel_k_2__canonical__measurable_function_MeasurableFun" class="id"><span id="HB_unnamed_factory_180" class="id"><span id="measurable_fun_preimage_integral.hb_instance_179.n" class="id"><a name="kernel_k_2__canonical__measurable_function_MeasurableFun" class="" title="kernel_k_2__canonical__measurable_function_MeasurableFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat ->
+sequences.sequence {nnsfun Y >-> R} ->
 nat ->
 {mfun Datatypes_prod__canonical__measurable_structure_SigmaRing X Y >-> 
 Real_sort__canonical__measurable_structure_SigmaRing R}
@@ -4442,7 +4450,7 @@ Declared in library mathcomp.analysis.kernel, line 1123, characters 0-72
 "> _</a></span></span></span><span id="kernel_k_2__canonical__measurable_function_MeasurableFun" class="id"><span id="HB_unnamed_factory_180" class="id"><span id="measurable_fun_preimage_integral.hb_instance_179.n" class="id"><a name="kernel_k_2__canonical__measurable_function_MeasurableFun" class="" title="kernel_k_2__canonical__measurable_function_MeasurableFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat ->
+sequences.sequence {nnsfun Y >-> R} ->
 nat ->
 {mfun Datatypes_prod__canonical__measurable_structure_SigmaRing X Y >-> 
 Real_sort__canonical__measurable_structure_SigmaRing R}
@@ -4457,7 +4465,7 @@ Declared in library mathcomp.analysis.kernel, line 1123, characters 0-72
 "> n</a></span></span></span><span id="kernel_k_2__canonical__measurable_function_MeasurableFun" class="id"><span id="HB_unnamed_factory_180" class="id"><span id="measurable_fun_preimage_integral.hb_instance_179.n" class="id"><a name="kernel_k_2__canonical__measurable_function_MeasurableFun" class="" title="kernel_k_2__canonical__measurable_function_MeasurableFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat ->
+sequences.sequence {nnsfun Y >-> R} ->
 nat ->
 {mfun Datatypes_prod__canonical__measurable_structure_SigmaRing X Y >-> 
 Real_sort__canonical__measurable_structure_SigmaRing R}
@@ -4472,7 +4480,7 @@ Declared in library mathcomp.analysis.kernel, line 1123, characters 0-72
 "> :=</a></span></span></span><span id="kernel_k_2__canonical__measurable_function_MeasurableFun" class="id"><span id="HB_unnamed_factory_180" class="id"><span id="measurable_fun_preimage_integral.hb_instance_179.n" class="id"><a name="kernel_k_2__canonical__measurable_function_MeasurableFun" class="" title="kernel_k_2__canonical__measurable_function_MeasurableFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat ->
+sequences.sequence {nnsfun Y >-> R} ->
 nat ->
 {mfun Datatypes_prod__canonical__measurable_structure_SigmaRing X Y >-> 
 Real_sort__canonical__measurable_structure_SigmaRing R}
@@ -4498,7 +4506,7 @@ Qed.</div></details>
 <span id="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun" class="id"><span id="kernel_k_2__canonical__cardinality_FImFun" class="id"><span id="HB_unnamed_factory_183" class="id"><span id="measurable_fun_preimage_integral.hb_instance_182.n" class="id"><a name="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun" class="" title="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat ->
+sequences.sequence {nnsfun Y >-> R} ->
 nat ->
 {nnsfun Datatypes_prod__canonical__measurable_structure_SigmaRing X Y >-> R}
 
@@ -4512,7 +4520,7 @@ Declared in library mathcomp.analysis.kernel, line 1132, characters 0-64
 ">HB</a></span></span></span></span>.<span id="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun" class="id"><span id="kernel_k_2__canonical__cardinality_FImFun" class="id"><span id="HB_unnamed_factory_183" class="id"><span id="measurable_fun_preimage_integral.hb_instance_182.n" class="id"><a name="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun" class="" title="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat ->
+sequences.sequence {nnsfun Y >-> R} ->
 nat ->
 {nnsfun Datatypes_prod__canonical__measurable_structure_SigmaRing X Y >-> R}
 
@@ -4526,7 +4534,7 @@ Declared in library mathcomp.analysis.kernel, line 1132, characters 0-64
 ">instance</a></span></span></span></span><span class="vernacular"> Definition</span><span id="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun" class="id"><span id="kernel_k_2__canonical__cardinality_FImFun" class="id"><span id="HB_unnamed_factory_183" class="id"><span id="measurable_fun_preimage_integral.hb_instance_182.n" class="id"><a name="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun" class="" title="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat ->
+sequences.sequence {nnsfun Y >-> R} ->
 nat ->
 {nnsfun Datatypes_prod__canonical__measurable_structure_SigmaRing X Y >-> R}
 
@@ -4540,7 +4548,7 @@ Declared in library mathcomp.analysis.kernel, line 1132, characters 0-64
 "> _</a></span></span></span></span><span id="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun" class="id"><span id="kernel_k_2__canonical__cardinality_FImFun" class="id"><span id="HB_unnamed_factory_183" class="id"><span id="measurable_fun_preimage_integral.hb_instance_182.n" class="id"><a name="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun" class="" title="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat ->
+sequences.sequence {nnsfun Y >-> R} ->
 nat ->
 {nnsfun Datatypes_prod__canonical__measurable_structure_SigmaRing X Y >-> R}
 
@@ -4554,7 +4562,7 @@ Declared in library mathcomp.analysis.kernel, line 1132, characters 0-64
 "> n</a></span></span></span></span><span id="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun" class="id"><span id="kernel_k_2__canonical__cardinality_FImFun" class="id"><span id="HB_unnamed_factory_183" class="id"><span id="measurable_fun_preimage_integral.hb_instance_182.n" class="id"><a name="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun" class="" title="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat ->
+sequences.sequence {nnsfun Y >-> R} ->
 nat ->
 {nnsfun Datatypes_prod__canonical__measurable_structure_SigmaRing X Y >-> R}
 
@@ -4568,7 +4576,7 @@ Declared in library mathcomp.analysis.kernel, line 1132, characters 0-64
 "> :=</a></span></span></span></span><span id="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun" class="id"><span id="kernel_k_2__canonical__cardinality_FImFun" class="id"><span id="HB_unnamed_factory_183" class="id"><span id="measurable_fun_preimage_integral.hb_instance_182.n" class="id"><a name="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun" class="" title="kernel_k_2__canonical__HBNNSimple_NonNegSimpleFun :
 forall [d d' : measure_display] (X : measurableType d)
   [Y : measurableType d'] [R : realType],
-{nnsfun Y >-> R} ^nat ->
+sequences.sequence {nnsfun Y >-> R} ->
 nat ->
 {nnsfun Datatypes_prod__canonical__measurable_structure_SigmaRing X Y >-> R}
 
@@ -4584,11 +4592,16 @@ Declared in library mathcomp.analysis.kernel, line 1132, characters 0-64
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="measurable_fun_preimage_integral" class="id"><a name="measurable_fun_preimage_integral" class="" title="measurable_fun_preimage_integral :
 forall [d d' : measure_display] [X : measurableType d]
   [Y : measurableType d'] [R : realType] [k : Y -> \bar R]
-  [k_ : {nnsfun Y >-> R} ^nat],
-{homo ((fun x : nat => k_ x) : (Y -> R) ^nat) : n m / 
+  [k_ : sequences.sequence {nnsfun Y >-> R}],
+{homo ((fun x : nat => k_ x) : sequences.sequence (Y -> R)) : n m / 
 n <= m >-> (n <= m)%O} ->
 (forall z : Y,
- [set: Y]%classic z -> ((k_ n z)%:E @[n --> \oo] --> k z)%classic) ->
+ [set: Y]%classic z ->
+ filter.cvg_to
+   (filter.nbhs
+      (filter.fmap (fun n : nat => (k_ n z)%:E)
+         (filter.nbhs filter.eventually)))
+   (filter.nbhs (k z))) ->
 forall [l : X -> measure Y R],
 (forall (n : nat) (r : R),
  measurable_fun (T:=X)
@@ -4605,11 +4618,16 @@ Expanded type for implicit arguments
 measurable_fun_preimage_integral :
 forall [d d' : measure_display] [X : measurableType d]
   [Y : measurableType d'] [R : realType] [k : Y -> \bar R]
-  [k_ : {nnsfun Y >-> R} ^nat],
-{homo ((fun x : nat => k_ x) : (Y -> R) ^nat) : n m / 
+  [k_ : sequences.sequence {nnsfun Y >-> R}],
+{homo ((fun x : nat => k_ x) : sequences.sequence (Y -> R)) : n m / 
 n <= m >-> (n <= m)%O} ->
 (forall z : Y,
- [set: Y]%classic z -> ((k_ n z)%:E @[n --> \oo] --> k z)%classic) ->
+ [set: Y]%classic z ->
+ filter.cvg_to
+   (filter.nbhs
+      (filter.fmap (fun n : nat => (k_ n z)%:E)
+         (filter.nbhs filter.eventually)))
+   (filter.nbhs (k z))) ->
 forall [l : X -> measure Y R],
 (forall (n : nat) (r : R),
  measurable_fun (T:=X)
@@ -5315,7 +5333,7 @@ trivIset
 ((d1, d2).-prod).-measurable%classic (\bigcup_n F n) ->
 forall
   [t : set constructive_ereal_extended__canonical__Algebra_BaseAddUMagma],
-nbhs (kproduct (T0:=T0) (T1:=T1) (T2:=T2) k1 k2 x (\bigcup_n F n)) t ->
+filter.nbhs (kproduct (T0:=T0) (T1:=T1) (T2:=T2) k1 k2 x (\bigcup_n F n)) t ->
 exists2 i : nat,
   [set: nat]%classic i &
   ((fun N : nat => [set n | N <= n]) i

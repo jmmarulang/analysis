@@ -310,7 +310,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="expn_prod" class="id"><a name="expn_prod" class="" title="expn_prod :
 forall [I : eqType] (r : seq I) (P : {pred I}) (F : I -> nat) (n : nat),
-((\prod_(i <- r | P i) F i) ^ n)%N = \prod_(i <- r | P i) F i ^ n
+(\prod_(i <- r | P i) F i) ^ n = \prod_(i <- r | P i) F i ^ n
 
 expn_prod is not universe polymorphic
 Arguments expn_prod [I] r%seq_scope P F%function_scope n%nat_scope
@@ -438,9 +438,10 @@ Qed.</div></details>
 <span class="vernacular">Variables</span> (<span id="bigmax_seq.r" class="id"><a name="bigmax_seq.r" class="">r</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.seq#seq">seq</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.unstable.html#bigmax_seq.I">I</a></span>) (<span id="bigmax_seq.i0" class="id"><a name="bigmax_seq.i0" class="">i0</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.unstable.html#bigmax_seq.I">I</a></span>) (<span id="bigmax_seq.P" class="id"><a name="bigmax_seq.P" class="">P</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#pred">pred</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.unstable.html#bigmax_seq.I">I</a></span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="le_bigmax_seq" class="id"><a name="le_bigmax_seq" class="" title="le_bigmax_seq :
-forall {disp : disp_t} {T : orderType disp} {I : eqType} 
-  {r : seq I} (x : T) (i0 : I) (P : pred I) (F : I -> T),
-i0 \in r -> P i0 -> (F i0 <= \big[Def.max/x]_(i <- r | P i) F i)%O
+forall {disp : Order.disp_t} {T : orderType disp} 
+  {I : eqType} {r : seq I} (x : T) (i0 : I) (P : pred I) 
+  (F : I -> T),
+i0 \in r -> P i0 -> (F i0 <= \big[Order.Def.max/x]_(i <- r | P i) F i)%O
 
 le_bigmax_seq is not universe polymorphic
 Arguments le_bigmax_seq {disp T I} {r}%seq_scope x i0 P F%function_scope _ _
@@ -458,11 +459,11 @@ Declared in library mathcomp.order.order, line 3212, characters 6-19
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="bigmax_sup_seq" class="id"><a name="bigmax_sup_seq" class="" title="bigmax_sup_seq :
-forall {disp : disp_t} {T : orderType disp} {I : eqType} 
-  {r : seq I} (x : T) (i0 : I) (P : pred I) (t : T) 
-  (F : I -> T),
+forall {disp : Order.disp_t} {T : orderType disp} 
+  {I : eqType} {r : seq I} (x : T) (i0 : I) (P : pred I) 
+  (t : T) (F : I -> T),
 i0 \in r ->
-P i0 -> (t <= F i0)%O -> (t <= \big[Def.max/x]_(i <- r | P i) F i)%O
+P i0 -> (t <= F i0)%O -> (t <= \big[Order.Def.max/x]_(i <- r | P i) F i)%O
 
 bigmax_sup_seq is not universe polymorphic
 Arguments bigmax_sup_seq {disp T I} {r}%seq_scope 
@@ -501,7 +502,7 @@ Declared in library mathcomp.classical.unstable, line 157, characters 6-18
 Qed.</div></details>
 <br/>
 <span class="vernacular">Definition</span><span class="id"> </span><span id="monotonous" class="id"><a name="monotonous" class="" title="monotonous :
-forall [d : disp_t] [T : porderType d] [pT : predType T],
+forall [d : Order.disp_t] [T : porderType d] [pT : predType T],
 pT -> (T -> T) -> Prop
 
 monotonous is not universe polymorphic
@@ -533,7 +534,7 @@ Qed.</div></details>
 <span class="vernacular">Implicit</span><span class="id"> Types</span> (<span class="id">a</span><span class="id"> b</span><span class="id"> c</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.unstable.html#path_lt.T">T</a></span>) (<span class="id">s</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.seq#seq">seq</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.unstable.html#path_lt.T">T</a></span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="last_filterP" class="id"><a name="last_filterP" class="" title="last_filterP :
-forall {d : disp_t} {T : orderType d} {a : T} (P : pred T) (s : seq T),
+forall {d : Order.disp_t} {T : orderType d} {a : T} (P : pred T) (s : seq T),
 P a -> P (last a [seq x <- s | P x])
 
 last_filterP is not universe polymorphic
@@ -550,7 +551,7 @@ Declared in library mathcomp.classical.unstable, line 181, characters 6-18
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="path_lt_filter0" class="id"><a name="path_lt_filter0" class="" title="path_lt_filter0 :
-forall [d : disp_t] {T : orderType d} [a : T] [s : seq T],
+forall [d : Order.disp_t] {T : orderType d} [a : T] [s : seq T],
 path <%O a s -> [seq x <- s | (x < a)%O] = [::]
 
 path_lt_filter0 is not universe polymorphic
@@ -568,7 +569,7 @@ Declared in library mathcomp.classical.unstable, line 187, characters 6-21
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="path_lt_filterT" class="id"><a name="path_lt_filterT" class="" title="path_lt_filterT :
-forall [d : disp_t] {T : orderType d} [a : T] [s : seq T],
+forall [d : Order.disp_t] {T : orderType d} [a : T] [s : seq T],
 path <%O a s -> [seq x <- s | (a < x)%O] = s
 
 path_lt_filterT is not universe polymorphic
@@ -585,7 +586,7 @@ Declared in library mathcomp.classical.unstable, line 194, characters 6-21
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="path_lt_head" class="id"><a name="path_lt_head" class="" title="path_lt_head :
-forall [d : disp_t] {T : orderType d} [a b : T] [s : seq T],
+forall [d : Order.disp_t] {T : orderType d} [a b : T] [s : seq T],
 (a < b)%O -> path <%O b s -> path <%O a s
 
 path_lt_head is not universe polymorphic
@@ -601,7 +602,7 @@ Declared in library mathcomp.classical.unstable, line 200, characters 6-18
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="path_lt_last_filter" class="id"><a name="path_lt_last_filter" class="" title="path_lt_last_filter :
-forall [d : disp_t] {T : orderType d} [a b c : T] [s : seq T],
+forall [d : Order.disp_t] {T : orderType d} [a b c : T] [s : seq T],
 (a < c)%O ->
 (c < b)%O ->
 path <%O a s -> last a s = b -> last c [seq x <- s | (c < x)%O] = b
@@ -625,7 +626,7 @@ Declared in library mathcomp.classical.unstable, line 206, characters 6-25
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="path_lt_le_last" class="id"><a name="path_lt_le_last" class="" title="path_lt_le_last :
-forall [d : disp_t] {T : orderType d} [a : T] [s : seq T],
+forall [d : Order.disp_t] {T : orderType d} [a : T] [s : seq T],
 path <%O a s -> (a <= last a s)%O
 
 path_lt_le_last is not universe polymorphic
@@ -1007,7 +1008,7 @@ Declared in library mathcomp.classical.unstable, line 343, characters 11-18
 <span class="vernacular">Arguments</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.unstable.html#inv_fun">inv_fun</a></span><span class="id"> {T</span><span class="id"> R}</span><span class="id"> _</span><span class="id"> _</span><span class="id"> /</span>.<br/>
 <br/>
 <span class="vernacular">Definition</span><span class="id"> </span><span id="bound_side" class="id"><a name="bound_side" class="" title="bound_side :
-forall [d : disp_t] [T : porderType d], bool -> itv_bound T -> bool
+forall [d : Order.disp_t] [T : porderType d], bool -> itv_bound T -> bool
 
 bound_side is not universe polymorphic
 Arguments bound_side [d T] c%bool_scope x
@@ -1120,8 +1121,8 @@ Declared in library mathcomp.classical.unstable, line 376, characters 11-19
 <span class="vernacular">Variables</span> (<span id="order_min.d" class="id"><a name="order_min.d" class="">d</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.preorder#Order.disp_t">Order</a></span>.<span class="id"><a href="NOTFOUND the module url for mathcomp.order.preorder#Order.disp_t">disp_t</a></span>) (<span id="order_min.T" class="id"><a name="order_min.T" class="">T</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.Total.Exports.orderType">orderType</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.unstable.html#d:219">d</a></span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="lt_min_lt" class="id"><a name="lt_min_lt" class="" title="lt_min_lt :
-forall [d : disp_t] [T : orderType d] [x y z : T],
-(Def.min x z < Def.min y z)%O -> (x < y)%O
+forall [d : Order.disp_t] [T : orderType d] [x y z : T],
+(Order.Def.min x z < Order.Def.min y z)%O -> (x < y)%O
 
 lt_min_lt is not universe polymorphic
 Arguments lt_min_lt [d T x y z] _
@@ -1170,7 +1171,7 @@ Declared in library mathcomp.classical.unstable, line 394, characters 6-12
 <span class="vernacular">Implicit</span><span class="gallina-kwd"> Type</span><span class="id"> x</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.unstable.html#trunc_floor_ceil.R">R</a></span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="abs_ceil_ge" class="id"><a name="abs_ceil_ge" class="" title="abs_ceil_ge :
-forall {R : archiRealDomainType} (x : R), (`|x| <= `|ceil x|.+1%:R)%R
+forall {R : archiRealDomainType} (x : R), (`|x| <= `|Num.Def.ceil x|.+1%:R)%R
 
 abs_ceil_ge is not universe polymorphic
 Arguments abs_ceil_ge {R} x%ring_scope
@@ -1230,15 +1231,15 @@ Declared in library mathcomp.classical.unstable, line 420, characters 6-17
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="mem_inc_segment" class="id"><a name="mem_inc_segment" class="" title="mem_inc_segment :
-forall [d : disp_t] [T : porderType d] [a b : T] [f : T -> T],
-{in `[a, b]%R &, increasing_fun f} ->
+forall [d : Order.disp_t] [T : porderType d] [a b : T] [f : T -> T],
+{in `[a, b]%R &, {mono f : x y / (x <= y)%O}} ->
 {homo f : x / x \in `[a, b]%R >-> x \in `[f a, f b]%R}
 
 mem_inc_segment is not universe polymorphic
 Expanded type for implicit arguments
 mem_inc_segment :
-forall [d : disp_t] [T : porderType d] [a b : T] [f : T -> T],
-{in `[a, b]%R &, increasing_fun f} ->
+forall [d : Order.disp_t] [T : porderType d] [a b : T] [f : T -> T],
+{in `[a, b]%R &, {mono f : x y / (x <= y)%O}} ->
 forall [x : T],
 (fun x0 : T => is_true (x0 \in `[a, b]%R)) x ->
 (f x \in `[f a, f b]%R) = true
@@ -1258,14 +1259,14 @@ Declared in library mathcomp.classical.unstable, line 428, characters 6-21
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="mem_dec_segment" class="id"><a name="mem_dec_segment" class="" title="mem_dec_segment :
-forall [d : disp_t] [T : porderType d] [a b : T] [f : T -> T],
+forall [d : Order.disp_t] [T : porderType d] [a b : T] [f : T -> T],
 {in `[a, b]%R &, {mono f : x y /~ (x <= y)%O}} ->
 {homo f : x / x \in `[a, b]%R >-> x \in `[f b, f a]%R}
 
 mem_dec_segment is not universe polymorphic
 Expanded type for implicit arguments
 mem_dec_segment :
-forall [d : disp_t] [T : porderType d] [a b : T] [f : T -> T],
+forall [d : Order.disp_t] [T : porderType d] [a b : T] [f : T -> T],
 {in `[a, b]%R &, {mono f : x y /~ (x <= y)%O}} ->
 forall [x : T],
 (fun x0 : T => is_true (x0 \in `[a, b]%R)) x ->
@@ -1310,7 +1311,7 @@ Declared in library mathcomp.classical.unstable, line 444, characters 11-19
 <span class="vernacular">Let</span><span class="id"> </span><span id="FsetPartitions.rhs" class="id"><a name="FsetPartitions.rhs" class="">rhs</a></span><span class="id"> </span><span id="P:292" class="id"><a name="P:292" class="">P</a></span><span class="id"> </span><span id="E:293" class="id"><a name="E:293" class="">E</a></span><span class="id"> :=</span> (<span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca">\big[</a></span><span class="id"><a href="mathcomp.classical.unstable.html#FsetPartitions.op">op</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca">/</a></span><span class="id"><a href="mathcomp.classical.unstable.html#FsetPartitions.idx">idx</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca">]_</a></span>(<span id="A:296" class="id"><span id="A:295" class="id"><span id="A:294" class="id"><a name="A:296" class="">A</a></span></span></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca"> &lt;-</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca"> </a></span><span class="id"><a href="mathcomp.classical.unstable.html#P:292">P</a></span>)<span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca"> </a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca">\big[</a></span><span class="id"><a href="mathcomp.classical.unstable.html#FsetPartitions.op">op</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca">/</a></span><span class="id"><a href="mathcomp.classical.unstable.html#FsetPartitions.idx">idx</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca">]_</a></span>(<span id="x:299" class="id"><span id="x:298" class="id"><span id="x:297" class="id"><a name="x:299" class="">x</a></span></span></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca"> &lt;-</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca"> </a></span><span class="id"><a href="mathcomp.classical.unstable.html#A:294">A</a></span>)<span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca"> </a></span><span class="id"><a href="mathcomp.classical.unstable.html#E:293">E</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.unstable.html#x:297">x</a></span>)<span class="id">%fset</span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="partition_disjoint_bigfcup" class="id"><a name="partition_disjoint_bigfcup" class="" title="partition_disjoint_bigfcup :
-forall [T I : choiceType] [R : Type] [idx : R] (op : com_law idx)
+forall [T I : choiceType] [R : Type] [idx : R] (op : Monoid.com_law idx)
   (f : T -> R) [F : I -> {fset T}] [K : {fset I}],
 (forall i j : I, i \in K -> j \in K -> i != j -> [disjoint F i & F j]%fset) ->
 \big[op/idx]_(i <- (\bigcup_(x <- K) F x)%fset) f i =

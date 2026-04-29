@@ -806,7 +806,7 @@ library mathcomp.reals.constructive_ereal, line 271, characters 6-20
 <span class="gallina-kwd">by</span><span class="id"> move=&gt;</span><span class="id"> cmp</span><span class="id"> /</span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.ge_comparable">ge_comparable</a></span><span class="id"> /</span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.numdomain.html#Num.Theory.comparabler_trans">comparabler_trans</a></span><span class="id">;</span><span class="id"> apply</span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Fact</span><span class="id"> </span><span id="ereal_display" class="id"><a name="ereal_display" class="" title="ereal_display : Order.disp_t
+<span class="vernacular">Fact</span><span class="id"> </span><span id="ereal_display" class="id"><a name="ereal_display" class="" title="ereal_display : disp_t
 
 ereal_display is not universe polymorphic
 ereal_display is opaque
@@ -1538,7 +1538,7 @@ library mathcomp.reals.constructive_ereal, line 440, characters 6-16
 <div class="proofscript">
 <span class="gallina-kwd"> by</span><span class="id"> case:</span><span class="id"> x</span><span class="id"> =&gt;</span><span class="id"> //=;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.numdomain.html#Num.Theory.real0">real0</a></span>. Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="minye" class="id"><a name="minye" class="" title="minye : forall {R : numDomainType}, left_id (+oo%E : \bar R) Order.Def.min
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="minye" class="id"><a name="minye" class="" title="minye : forall {R : numDomainType}, left_id (+oo%E : \bar R) Def.min
 
 minye is not universe polymorphic
 Arguments minye {R} x
@@ -1553,8 +1553,7 @@ library mathcomp.reals.constructive_ereal, line 443, characters 6-11
 <span class="gallina-kwd"> by</span><span class="id"> case</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="real_miney" class="id"><a name="real_miney" class="" title="real_miney :
-forall {R : numDomainType} [x : \bar R],
-(0%R >=< x)%O -> Order.Def.min x +oo%E = x
+forall {R : numDomainType} [x : \bar R], (0%R >=< x)%O -> Def.min x +oo%E = x
 
 real_miney is not universe polymorphic
 Arguments real_miney {R} [x]%ereal_scope _
@@ -1571,7 +1570,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="real_minNye" class="id"><a name="real_minNye" class="" title="real_minNye :
 forall {R : numDomainType} [x : \bar R],
-(0%R >=< x)%O -> Order.Def.min -oo%E x = -oo%E
+(0%R >=< x)%O -> Def.min -oo%E x = -oo%E
 
 real_minNye is not universe polymorphic
 Arguments real_minNye {R} [x]%ereal_scope _
@@ -1586,8 +1585,7 @@ library mathcomp.reals.constructive_ereal, line 451, characters 6-17
 <span class="gallina-kwd">by</span><span class="id"> case:</span><span class="id"> x</span><span class="id"> =&gt;</span><span class="id"> [x</span><span class="id"> |//|//]</span><span class="id"> rx;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.minEle">minEle</a></span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#real_leNye">real_leNye</a></span><span class="id"> [_</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#b09457274bcb94927e289b8a9e9cd3f7"> \in</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#b09457274bcb94927e289b8a9e9cd3f7"> </a></span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.orderedzmod.html#Num.real">Num</a></span>.<span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.orderedzmod.html#Num.real">real</a></span><span class="id">]rx</span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="mineNy" class="id"><a name="mineNy" class="" title="mineNy :
-forall {R : numDomainType}, right_zero (-oo%E : \bar R) Order.Def.min
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="mineNy" class="id"><a name="mineNy" class="" title="mineNy : forall {R : numDomainType}, right_zero (-oo%E : \bar R) Def.min
 
 mineNy is not universe polymorphic
 Arguments mineNy {R} x
@@ -1601,7 +1599,7 @@ library mathcomp.reals.constructive_ereal, line 456, characters 6-12
 <div class="proofscript">
 <span class="gallina-kwd"> by</span><span class="id"> case=&gt;</span><span class="id"> [x</span><span class="id"> |//|//];</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.minElt">minElt</a></span>. Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="maxye" class="id"><a name="maxye" class="" title="maxye : forall {R : numDomainType}, left_zero (+oo%E : \bar R) Order.Def.max
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="maxye" class="id"><a name="maxye" class="" title="maxye : forall {R : numDomainType}, left_zero (+oo%E : \bar R) Def.max
 
 maxye is not universe polymorphic
 Arguments maxye {R} x
@@ -1617,7 +1615,7 @@ library mathcomp.reals.constructive_ereal, line 459, characters 6-11
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="real_maxey" class="id"><a name="real_maxey" class="" title="real_maxey :
 forall {R : numDomainType} [x : \bar R],
-(0%R >=< x)%O -> Order.Def.max x +oo%E = +oo%E
+(0%R >=< x)%O -> Def.max x +oo%E = +oo%E
 
 real_maxey is not universe polymorphic
 Arguments real_maxey {R} [x]%ereal_scope _
@@ -1633,8 +1631,7 @@ library mathcomp.reals.constructive_ereal, line 462, characters 6-16
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="real_maxNye" class="id"><a name="real_maxNye" class="" title="real_maxNye :
-forall {R : numDomainType} [x : \bar R],
-(0%R >=< x)%O -> Order.Def.max -oo%E x = x
+forall {R : numDomainType} [x : \bar R], (0%R >=< x)%O -> Def.max -oo%E x = x
 
 real_maxNye is not universe polymorphic
 Arguments real_maxNye {R} [x]%ereal_scope _
@@ -1649,7 +1646,7 @@ library mathcomp.reals.constructive_ereal, line 467, characters 6-17
 <span class="gallina-kwd">by</span><span class="id"> case:</span><span class="id"> x</span><span class="id"> =&gt;</span><span class="id"> [x</span><span class="id"> |//|//]</span><span class="id"> rx;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.maxEle">maxEle</a></span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#real_leNye">real_leNye</a></span><span class="id"> [_</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#b09457274bcb94927e289b8a9e9cd3f7"> \in</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#b09457274bcb94927e289b8a9e9cd3f7"> </a></span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.orderedzmod.html#Num.real">Num</a></span>.<span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.orderedzmod.html#Num.real">real</a></span><span class="id">]rx</span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="maxeNy" class="id"><a name="maxeNy" class="" title="maxeNy : forall {R : numDomainType}, right_id (-oo%E : \bar R) Order.Def.max
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="maxeNy" class="id"><a name="maxeNy" class="" title="maxeNy : forall {R : numDomainType}, right_id (-oo%E : \bar R) Def.max
 
 maxeNy is not universe polymorphic
 Arguments maxeNy {R} x
@@ -3085,8 +3082,7 @@ library mathcomp.reals.constructive_ereal, line 888, characters 6-13
 <span class="id"> exact/</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrfun.html#esym">esym</a></span><span class="id">/</span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.ssralg.html#GRing.Theory.raddf_sum">raddf_sum</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="EFin_min" class="id"><a name="EFin_min" class="" title="EFin_min :
-forall {R : numDomainType},
-{morph EFin : r s / Num.min r s >-> Order.Def.min r s}
+forall {R : numDomainType}, {morph EFin : r s / Num.min r s >-> Def.min r s}
 
 EFin_min is not universe polymorphic
 Arguments EFin_min {R} x y
@@ -3101,8 +3097,7 @@ library mathcomp.reals.constructive_ereal, line 892, characters 6-14
 <span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> x</span><span class="id"> y;</span><span class="id"> rewrite</span><span class="id"> !</span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.minElt">minElt</a></span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#lte_fin">lte_fin</a></span><span class="id"> -</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#fun_if">fun_if</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="EFin_max" class="id"><a name="EFin_max" class="" title="EFin_max :
-forall {R : numDomainType},
-{morph EFin : r s / Num.max r s >-> Order.Def.max r s}
+forall {R : numDomainType}, {morph EFin : r s / Num.max r s >-> Def.max r s}
 
 EFin_max is not universe polymorphic
 Arguments EFin_max {R} x y
@@ -9837,7 +9832,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fine_max" class="id"><a name="fine_max" class="" title="fine_max :
 forall {R : realDomainType},
-{in fin_num &, {mono fine : x y / Order.Def.max x y >-> (Num.max x y)%:E}}
+{in fin_num &, {mono fine : x y / Def.max x y >-> (Num.max x y)%:E}}
 
 fine_max is not universe polymorphic
 Expanded type for implicit arguments
@@ -9846,7 +9841,7 @@ forall {R : realDomainType} [x y : \bar R],
 x \is a fin_num ->
 y \is a fin_num ->
 (fun x0 y0 : R => (Num.max x0 y0)%:E) (fine x) (fine y) =
-(fun x0 : \bar R => [eta Order.Def.max x0]) x y
+(fun x0 : \bar R => [eta Def.max x0]) x y
 
 Arguments fine_max {R} [x y] _ _
 fine_max is opaque
@@ -9865,7 +9860,7 @@ Qed.</div></details>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="EFin_bigmax" class="id"><a name="EFin_bigmax" class="" title="EFin_bigmax :
 forall {R : realDomainType} {I : Type} (s : seq I) 
   (P : I -> bool) (F : I -> R) (r : R),
-\big[Order.Def.max/r%:E]_(i <- s | P i) (F i)%:E =
+\big[Def.max/r%:E]_(i <- s | P i) (F i)%:E =
 (\big[Num.max/r]_(i <- s | P i) F i)%:E
 
 EFin_bigmax is not universe polymorphic
@@ -9885,7 +9880,7 @@ library mathcomp.reals.constructive_ereal, line 2708, characters 6-17
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fine_min" class="id"><a name="fine_min" class="" title="fine_min :
 forall {R : realDomainType},
-{in fin_num &, {mono fine : x y / Order.Def.min x y >-> (Num.min x y)%:E}}
+{in fin_num &, {mono fine : x y / Def.min x y >-> (Num.min x y)%:E}}
 
 fine_min is not universe polymorphic
 Expanded type for implicit arguments
@@ -9894,7 +9889,7 @@ forall {R : realDomainType} [x y : \bar R],
 x \is a fin_num ->
 y \is a fin_num ->
 (fun x0 y0 : R => (Num.min x0 y0)%:E) (fine x) (fine y) =
-(fun x0 : \bar R => [eta Order.Def.min x0]) x y
+(fun x0 : \bar R => [eta Def.min x0]) x y
 
 Arguments fine_min {R} [x y] _ _
 fine_min is opaque
@@ -9910,7 +9905,7 @@ library mathcomp.reals.constructive_ereal, line 2713, characters 6-14
 &nbsp;&nbsp;<span class="id">[apply/</span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.min_idPl">min_idPl</a></span><span class="id">;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#lee_fin">lee_fin</a></span><span class="id">|apply/</span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.TotalTheory.min_idPr">min_idPr</a></span><span class="id">;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#lee_fin">lee_fin</a></span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.ltW">ltW</a></span><span class="id">]</span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="adde_maxl" class="id"><a name="adde_maxl" class="" title="adde_maxl : forall {R : realDomainType}, left_distributive +%R Order.Def.max
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="adde_maxl" class="id"><a name="adde_maxl" class="" title="adde_maxl : forall {R : realDomainType}, left_distributive +%R Def.max
 
 adde_maxl is not universe polymorphic
 Arguments adde_maxl {R} x y z
@@ -9927,7 +9922,7 @@ library mathcomp.reals.constructive_ereal, line 2720, characters 6-15
 <span class="gallina-kwd">by</span><span class="id"> apply/</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrfun.html#esym">esym</a></span><span class="id">/</span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.TotalTheory.max_idPl">max_idPl</a></span><span class="id">;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#leeD2r">leeD2r</a></span><span class="id">//</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.ltW">ltW</a></span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="adde_maxr" class="id"><a name="adde_maxr" class="" title="adde_maxr : forall {R : realDomainType}, right_distributive +%R Order.Def.max
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="adde_maxr" class="id"><a name="adde_maxr" class="" title="adde_maxr : forall {R : realDomainType}, right_distributive +%R Def.max
 
 adde_maxr is not universe polymorphic
 Arguments adde_maxr {R} x y z
@@ -9944,8 +9939,7 @@ library mathcomp.reals.constructive_ereal, line 2727, characters 6-15
 <span class="gallina-kwd">by</span><span class="id"> apply/</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrfun.html#esym">esym</a></span><span class="id">/</span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.TotalTheory.max_idPl">max_idPl</a></span><span class="id">;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#leeD2l">leeD2l</a></span><span class="id">//</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.ltW">ltW</a></span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="maxey" class="id"><a name="maxey" class="" title="maxey :
-forall {R : realDomainType}, right_zero (+oo%E : \bar R) Order.Def.max
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="maxey" class="id"><a name="maxey" class="" title="maxey : forall {R : realDomainType}, right_zero (+oo%E : \bar R) Def.max
 
 maxey is not universe polymorphic
 Arguments maxey {R} x
@@ -9959,7 +9953,7 @@ library mathcomp.reals.constructive_ereal, line 2734, characters 6-11
 <div class="proofscript">
 <span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> x;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.TotalTheory.maxC">maxC</a></span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#maxye">maxye</a></span>. Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="maxNye" class="id"><a name="maxNye" class="" title="maxNye : forall {R : realDomainType}, left_id (-oo%E : \bar R) Order.Def.max
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="maxNye" class="id"><a name="maxNye" class="" title="maxNye : forall {R : realDomainType}, left_id (-oo%E : \bar R) Def.max
 
 maxNye is not universe polymorphic
 Arguments maxNye {R} x
@@ -10016,8 +10010,7 @@ library mathcomp.reals.constructive_ereal, line 2740, characters 0-86
 "> :=</a></span></span></span></span></span></span><br/>
 &nbsp;&nbsp;<span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#Monoid.isLaw.Build">Monoid</a></span>.<span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#Monoid.isLaw.Build">isLaw</a></span>.<span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#Monoid.isLaw.Build">Build</a></span> (<span class="id"><a href="mathcomp.reals.constructive_ereal.html#4c9ddfb63ff52527d9adecfde4a667c3">\bar</a></span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#4c9ddfb63ff52527d9adecfde4a667c3"> </a></span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#ERealArithTh_realDomainType.R">R</a></span>)<span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#::ereal_scope:'-oo'">-oo</a></span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#maxe">maxe</a></span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.TotalTheory.maxA">maxA</a></span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#maxNye">maxNye</a></span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#maxeNy">maxeNy</a></span>.<br/>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="minNye" class="id"><a name="minNye" class="" title="minNye :
-forall {R : realDomainType}, left_zero (-oo%E : \bar R) Order.Def.min
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="minNye" class="id"><a name="minNye" class="" title="minNye : forall {R : realDomainType}, left_zero (-oo%E : \bar R) Def.min
 
 minNye is not universe polymorphic
 Arguments minNye {R} x
@@ -10031,7 +10024,7 @@ library mathcomp.reals.constructive_ereal, line 2743, characters 6-12
 <div class="proofscript">
 <span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> x;</span><span class="id"> have</span><span class="id"> [|//]</span><span class="id"> :=</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.TotalTheory.leP">leP</a></span><span class="id"> x</span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#::ereal_scope:'-oo'">-oo</a></span><span class="id">;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#leeNy_eq">leeNy_eq</a></span><span class="id"> =&gt;</span><span class="id"> /</span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.eqtype#eqP">eqP</a></span>. Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="miney" class="id"><a name="miney" class="" title="miney : forall {R : realDomainType}, right_id (+oo%E : \bar R) Order.Def.min
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="miney" class="id"><a name="miney" class="" title="miney : forall {R : realDomainType}, right_id (+oo%E : \bar R) Def.min
 
 miney is not universe polymorphic
 Arguments miney {R} x
@@ -10090,7 +10083,7 @@ library mathcomp.reals.constructive_ereal, line 2749, characters 0-84
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="oppe_max" class="id"><a name="oppe_max" class="" title="oppe_max :
 forall {R : realDomainType},
-{morph -%E : x y / Order.Def.max x y >-> Order.Def.min x y : \bar R}
+{morph -%E : x y / Def.max x y >-> Def.min x y : \bar R}
 
 oppe_max is not universe polymorphic
 Arguments oppe_max {R} x y
@@ -10112,7 +10105,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="oppe_min" class="id"><a name="oppe_min" class="" title="oppe_min :
 forall {R : realDomainType},
-{morph -%E : x y / Order.Def.min x y >-> Order.Def.max x y : \bar R}
+{morph -%E : x y / Def.min x y >-> Def.max x y : \bar R}
 
 oppe_min is not universe polymorphic
 Arguments oppe_min {R} x y
@@ -10129,7 +10122,7 @@ library mathcomp.reals.constructive_ereal, line 2762, characters 6-14
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="maxe_pMr" class="id"><a name="maxe_pMr" class="" title="maxe_pMr :
 forall {R : realDomainType} [z : \bar R] (x y : \bar R),
 z \is a fin_num ->
-(0%R <= z)%E -> (z * Order.Def.max x y)%E = Order.Def.max (z * x)%E (z * y)%E
+(0%R <= z)%E -> (z * Def.max x y)%E = Def.max (z * x)%E (z * y)%E
 
 maxe_pMr is not universe polymorphic
 Arguments maxe_pMr {R} [z]%ereal_scope (x y)%ereal_scope _ _
@@ -10152,7 +10145,7 @@ Qed.</div></details>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="maxe_pMl" class="id"><a name="maxe_pMl" class="" title="maxe_pMl :
 forall {R : realDomainType} [z : \bar R] (x y : \bar R),
 z \is a fin_num ->
-(0%R <= z)%E -> (Order.Def.max x y * z)%E = Order.Def.max (x * z)%E (y * z)%E
+(0%R <= z)%E -> (Def.max x y * z)%E = Def.max (x * z)%E (y * z)%E
 
 maxe_pMl is not universe polymorphic
 Arguments maxe_pMl {R} [z]%ereal_scope (x y)%ereal_scope _ _
@@ -10170,7 +10163,7 @@ library mathcomp.reals.constructive_ereal, line 2775, characters 6-14
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="mine_pMr" class="id"><a name="mine_pMr" class="" title="mine_pMr :
 forall {R : realDomainType} [z : \bar R] (x y : \bar R),
 z \is a fin_num ->
-(0%R <= z)%E -> (z * Order.Def.min x y)%E = Order.Def.min (z * x)%E (z * y)%E
+(0%R <= z)%E -> (z * Def.min x y)%E = Def.min (z * x)%E (z * y)%E
 
 mine_pMr is not universe polymorphic
 Arguments mine_pMr {R} [z]%ereal_scope (x y)%ereal_scope _ _
@@ -10190,7 +10183,7 @@ Qed.</div></details>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="mine_pMl" class="id"><a name="mine_pMl" class="" title="mine_pMl :
 forall {R : realDomainType} [z : \bar R] (x y : \bar R),
 z \is a fin_num ->
-(0%R <= z)%E -> (Order.Def.min x y * z)%E = Order.Def.min (x * z)%E (y * z)%E
+(0%R <= z)%E -> (Def.min x y * z)%E = Def.min (x * z)%E (y * z)%E
 
 mine_pMl is not universe polymorphic
 Arguments mine_pMl {R} [z]%ereal_scope (x y)%ereal_scope _ _
@@ -10207,7 +10200,7 @@ library mathcomp.reals.constructive_ereal, line 2786, characters 6-14
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="bigmaxe_fin_num" class="id"><a name="bigmaxe_fin_num" class="" title="bigmaxe_fin_num :
 forall {R : realDomainType} [s : seq R] [r : R],
-r \in s -> \big[Order.Def.max/-oo%E]_(i <- s) i%:E \is a fin_num
+r \in s -> \big[Def.max/-oo%E]_(i <- s) i%:E \is a fin_num
 
 bigmaxe_fin_num is not universe polymorphic
 Arguments bigmaxe_fin_num {R} [s]%seq_scope [r]%ring_scope _
@@ -12057,7 +12050,7 @@ library mathcomp.reals.constructive_ereal, line 3334, characters 6-18
 <span class="gallina-kwd">by</span><span class="id"> move:</span><span class="id"> x</span><span class="id"> y</span><span class="id"> =&gt;</span><span class="id"> [x|</span><span class="id"> |]</span><span class="id"> [y|</span><span class="id"> |]</span><span class="id"> //;</span><span class="id"> rewrite</span><span class="id"> /</span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#abse">abse</a></span><span class="id"> -</span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#DualAddTheoryNumDomain.dEFinD">dEFinD</a></span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#lee_fin">lee_fin</a></span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.numdomain.html#Num.Theory.ler_normB">ler_normB</a></span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="DualAddTheoryRealDomain.dadde_minl" class="id"><a name="DualAddTheoryRealDomain.dadde_minl" class="" title="dadde_minl : forall {R : realDomainType}, left_distributive +%R Order.Def.min
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="DualAddTheoryRealDomain.dadde_minl" class="id"><a name="DualAddTheoryRealDomain.dadde_minl" class="" title="dadde_minl : forall {R : realDomainType}, left_distributive +%R Def.min
 
 dadde_minl is not universe polymorphic
 Arguments dadde_minl {R} x y z
@@ -12072,8 +12065,7 @@ library mathcomp.reals.constructive_ereal, line 3339, characters 6-16
 <div class="proofscript">
 <span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> x</span><span class="id"> y</span><span class="id"> z;</span><span class="id"> rewrite</span><span class="id"> !</span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#DualAddTheoryNumDomain.dual_addeE">dual_addeE</a></span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#oppe_min">oppe_min</a></span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#adde_maxl">adde_maxl</a></span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#oppe_max">oppe_max</a></span>. Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="DualAddTheoryRealDomain.dadde_minr" class="id"><a name="DualAddTheoryRealDomain.dadde_minr" class="" title="dadde_minr :
-forall {R : realDomainType}, right_distributive +%R Order.Def.min
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="DualAddTheoryRealDomain.dadde_minr" class="id"><a name="DualAddTheoryRealDomain.dadde_minr" class="" title="dadde_minr : forall {R : realDomainType}, right_distributive +%R Def.min
 
 dadde_minr is not universe polymorphic
 Arguments dadde_minr {R} x y z
@@ -14331,9 +14323,8 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ItvInstances.ext_num_itv_bound_min" class="id"><a name="ItvInstances.ext_num_itv_bound_min" class="" title="ItvInstances.ext_num_itv_bound_min :
 forall {R : numDomainType} (x y : itv_bound int),
-map_itv_bound (EFin \o intr) (Order.Def.min x y) =
-Order.Def.min (map_itv_bound (EFin \o intr) x)
-  (map_itv_bound (EFin \o intr) y)
+map_itv_bound (EFin \o intr) (Def.min x y) =
+Def.min (map_itv_bound (EFin \o intr) x) (map_itv_bound (EFin \o intr) y)
 
 ItvInstances.ext_num_itv_bound_min is not universe polymorphic
 Arguments ItvInstances.ext_num_itv_bound_min {R} x y
@@ -14355,9 +14346,8 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ItvInstances.ext_num_itv_bound_max" class="id"><a name="ItvInstances.ext_num_itv_bound_max" class="" title="ItvInstances.ext_num_itv_bound_max :
 forall {R : numDomainType} (x y : itv_bound int),
-map_itv_bound (EFin \o intr) (Order.Def.max x y) =
-Order.Def.max (map_itv_bound (EFin \o intr) x)
-  (map_itv_bound (EFin \o intr) y)
+map_itv_bound (EFin \o intr) (Def.max x y) =
+Def.max (map_itv_bound (EFin \o intr) x) (map_itv_bound (EFin \o intr) y)
 
 ItvInstances.ext_num_itv_bound_max is not universe polymorphic
 Arguments ItvInstances.ext_num_itv_bound_max {R} x y
@@ -14547,8 +14537,7 @@ forall {R : numDomainType}
   [b1 b2 : itv_bound int],
 (map_itv_bound (EFin \o intr) b1 <= BLeft x1)%O ->
 (map_itv_bound (EFin \o intr) b2 <= BLeft x2)%O ->
-(map_itv_bound (EFin \o intr) (Order.Def.min b1 b2) <=
- BLeft (Order.Def.min x1 x2))%O
+(map_itv_bound (EFin \o intr) (Def.min b1 b2) <= BLeft (Def.min x1 x2))%O
 
 ItvInstances.ext_min_itv_boundl_spec is not universe polymorphic
 Arguments ItvInstances.ext_min_itv_boundl_spec {R} [x1 x2 b1 b2] _ _
@@ -14578,8 +14567,7 @@ forall {R : numDomainType}
 (x1 >=< x2)%O ->
 (BRight x1 <= map_itv_bound (EFin \o intr) b1)%O ->
 (BRight x2 <= map_itv_bound (EFin \o intr) b2)%O ->
-(BRight (Order.Def.min x1 x2) <=
- map_itv_bound (EFin \o intr) (Order.Def.min b1 b2))%O
+(BRight (Def.min x1 x2) <= map_itv_bound (EFin \o intr) (Def.min b1 b2))%O
 
 ItvInstances.ext_min_itv_boundr_spec is not universe polymorphic
 Arguments ItvInstances.ext_min_itv_boundr_spec {R} [x1 x2 b1 b2] _ _ _
@@ -14606,7 +14594,7 @@ Qed.</div></details>
 forall {R : numDomainType} [xi yi : Itv.t] (x : Itv.def ext_num_sem xi)
   (y : Itv.def ext_num_sem yi),
 let r := Itv.real2 min xi yi in
-Itv.spec ext_num_sem r (Order.Def.min x%:num%R y%:num%R : \bar R)
+Itv.spec ext_num_sem r (Def.min x%:num%R y%:num%R : \bar R)
 
 ItvInstances.ext_num_spec_min is not universe polymorphic
 Arguments ItvInstances.ext_num_spec_min {R} [xi yi] x y
@@ -14640,8 +14628,7 @@ forall {R : numDomainType}
 (x1 >=< x2)%O ->
 (map_itv_bound (EFin \o intr) b1 <= BLeft x1)%O ->
 (map_itv_bound (EFin \o intr) b2 <= BLeft x2)%O ->
-(map_itv_bound (EFin \o intr) (Order.Def.max b1 b2) <=
- BLeft (Order.Def.max x1 x2))%O
+(map_itv_bound (EFin \o intr) (Def.max b1 b2) <= BLeft (Def.max x1 x2))%O
 
 ItvInstances.ext_max_itv_boundl_spec is not universe polymorphic
 Arguments ItvInstances.ext_max_itv_boundl_spec {R} [x1 x2 b1 b2] _ _ _
@@ -14671,8 +14658,7 @@ forall {R : numDomainType}
   [b1 b2 : itv_bound int],
 (BRight x1 <= map_itv_bound (EFin \o intr) b1)%O ->
 (BRight x2 <= map_itv_bound (EFin \o intr) b2)%O ->
-(BRight (Order.Def.max x1 x2) <=
- map_itv_bound (EFin \o intr) (Order.Def.max b1 b2))%O
+(BRight (Def.max x1 x2) <= map_itv_bound (EFin \o intr) (Def.max b1 b2))%O
 
 ItvInstances.ext_max_itv_boundr_spec is not universe polymorphic
 Arguments ItvInstances.ext_max_itv_boundr_spec {R} [x1 x2 b1 b2] _ _
@@ -14699,7 +14685,7 @@ Qed.</div></details>
 forall {R : numDomainType} [xi yi : Itv.t] (x : Itv.def ext_num_sem xi)
   (y : Itv.def ext_num_sem yi),
 let r := Itv.real2 max xi yi in
-Itv.spec ext_num_sem r (Order.Def.max x%:num%R y%:num%R : \bar R)
+Itv.spec ext_num_sem r (Def.max x%:num%R y%:num%R : \bar R)
 
 ItvInstances.ext_num_spec_max is not universe polymorphic
 Arguments ItvInstances.ext_num_spec_max {R} [xi yi] x y
@@ -14776,8 +14762,7 @@ library mathcomp.reals.constructive_ereal, line 4507, characters 6-18
 forall {R : numDomainType} {xi yi : interval int} 
   (a : \bar R) (x : Itv.def ext_num_sem (Itv.Real xi))
   (y : Itv.def ext_num_sem (Itv.Real yi)),
-(a <= Order.Def.max x%:num%R y%:num%R)%E =
-(a <= x%:num%R)%E || (a <= y%:num%R)%E
+(a <= Def.max x%:num%R y%:num%R)%E = (a <= x%:num%R)%E || (a <= y%:num%R)%E
 
 num_lee_max is not universe polymorphic
 Arguments num_lee_max {R xi yi} a%ereal_scope x y
@@ -14796,8 +14781,7 @@ library mathcomp.reals.constructive_ereal, line 4517, characters 6-17
 forall {R : numDomainType} {xi yi : interval int} 
   (a : \bar R) (x : Itv.def ext_num_sem (Itv.Real xi))
   (y : Itv.def ext_num_sem (Itv.Real yi)),
-(Order.Def.max x%:num%R y%:num%R <= a)%E =
-(x%:num%R <= a)%E && (y%:num%R <= a)%E
+(Def.max x%:num%R y%:num%R <= a)%E = (x%:num%R <= a)%E && (y%:num%R <= a)%E
 
 num_gee_max is not universe polymorphic
 Arguments num_gee_max {R xi yi} a%ereal_scope x y
@@ -14816,8 +14800,7 @@ library mathcomp.reals.constructive_ereal, line 4521, characters 6-17
 forall {R : numDomainType} {xi yi : interval int} 
   (a : \bar R) (x : Itv.def ext_num_sem (Itv.Real xi))
   (y : Itv.def ext_num_sem (Itv.Real yi)),
-(a <= Order.Def.min x%:num%R y%:num%R)%E =
-(a <= x%:num%R)%E && (a <= y%:num%R)%E
+(a <= Def.min x%:num%R y%:num%R)%E = (a <= x%:num%R)%E && (a <= y%:num%R)%E
 
 num_lee_min is not universe polymorphic
 Arguments num_lee_min {R xi yi} a%ereal_scope x y
@@ -14836,8 +14819,7 @@ library mathcomp.reals.constructive_ereal, line 4525, characters 6-17
 forall {R : numDomainType} {xi yi : interval int} 
   (a : \bar R) (x : Itv.def ext_num_sem (Itv.Real xi))
   (y : Itv.def ext_num_sem (Itv.Real yi)),
-(Order.Def.min x%:num%R y%:num%R <= a)%E =
-(x%:num%R <= a)%E || (y%:num%R <= a)%E
+(Def.min x%:num%R y%:num%R <= a)%E = (x%:num%R <= a)%E || (y%:num%R <= a)%E
 
 num_gee_min is not universe polymorphic
 Arguments num_gee_min {R xi yi} a%ereal_scope x y
@@ -14856,8 +14838,7 @@ library mathcomp.reals.constructive_ereal, line 4529, characters 6-17
 forall {R : numDomainType} {xi yi : interval int} 
   (a : \bar R) (x : Itv.def ext_num_sem (Itv.Real xi))
   (y : Itv.def ext_num_sem (Itv.Real yi)),
-(a < Order.Def.max x%:num%R y%:num%R)%E =
-(a < x%:num%R)%E || (a < y%:num%R)%E
+(a < Def.max x%:num%R y%:num%R)%E = (a < x%:num%R)%E || (a < y%:num%R)%E
 
 num_lte_max is not universe polymorphic
 Arguments num_lte_max {R xi yi} a%ereal_scope x y
@@ -14876,8 +14857,7 @@ library mathcomp.reals.constructive_ereal, line 4533, characters 6-17
 forall {R : numDomainType} {xi yi : interval int} 
   (a : \bar R) (x : Itv.def ext_num_sem (Itv.Real xi))
   (y : Itv.def ext_num_sem (Itv.Real yi)),
-(Order.Def.max x%:num%R y%:num%R < a)%E =
-(x%:num%R < a)%E && (y%:num%R < a)%E
+(Def.max x%:num%R y%:num%R < a)%E = (x%:num%R < a)%E && (y%:num%R < a)%E
 
 num_gte_max is not universe polymorphic
 Arguments num_gte_max {R xi yi} a%ereal_scope x y
@@ -14896,8 +14876,7 @@ library mathcomp.reals.constructive_ereal, line 4537, characters 6-17
 forall {R : numDomainType} {xi yi : interval int} 
   (a : \bar R) (x : Itv.def ext_num_sem (Itv.Real xi))
   (y : Itv.def ext_num_sem (Itv.Real yi)),
-(a < Order.Def.min x%:num%R y%:num%R)%E =
-(a < x%:num%R)%E && (a < y%:num%R)%E
+(a < Def.min x%:num%R y%:num%R)%E = (a < x%:num%R)%E && (a < y%:num%R)%E
 
 num_lte_min is not universe polymorphic
 Arguments num_lte_min {R xi yi} a%ereal_scope x y
@@ -14916,8 +14895,7 @@ library mathcomp.reals.constructive_ereal, line 4541, characters 6-17
 forall {R : numDomainType} {xi yi : interval int} 
   (a : \bar R) (x : Itv.def ext_num_sem (Itv.Real xi))
   (y : Itv.def ext_num_sem (Itv.Real yi)),
-(Order.Def.min x%:num%R y%:num%R < a)%E =
-(x%:num%R < a)%E || (y%:num%R < a)%E
+(Def.min x%:num%R y%:num%R < a)%E = (x%:num%R < a)%E || (y%:num%R < a)%E
 
 num_gte_min is not universe polymorphic
 Arguments num_gte_min {R xi yi} a%ereal_scope x y

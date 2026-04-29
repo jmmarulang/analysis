@@ -332,8 +332,7 @@ library mathcomp.analysis_stdlib.Rstruct_topology, line 29, characters 0-47
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="continuity_pt_nbhs" class="id"><a name="continuity_pt_nbhs" class="" title="continuity_pt_nbhs :
 forall (f : R -> R) (x : R),
 continuity_pt f x <->
-(forall eps : {posnum R}%R,
- filter.nbhs x (fun u : R => (`|f u - f x| < eps%:num)%R))
+(forall eps : {posnum R}%R, nbhs x (fun u : R => (`|f u - f x| < eps%:num)%R))
 
 continuity_pt_nbhs is not universe polymorphic
 Arguments continuity_pt_nbhs f%function_scope x%R_scope
@@ -361,12 +360,7 @@ library mathcomp.analysis_stdlib.Rstruct_topology, line 32, characters 6-24
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="continuity_pt_cvg" class="id"><a name="continuity_pt_cvg" class="" title="continuity_pt_cvg :
-forall (f : R -> R) (x : R),
-continuity_pt f x <->
-{for x,
-  forall x0 : filter.Nbhs.sort RbaseSymbolsImpl_R__canonical__filter_Nbhs,
-  filter.continuous_at (T:=RbaseSymbolsImpl_R__canonical__filter_Nbhs)
-    (U:=RbaseSymbolsImpl_R__canonical__filter_Nbhs) x0 f}
+forall (f : R -> R) (x : R), continuity_pt f x <-> {for x, continuous f}
 
 continuity_pt_cvg is not universe polymorphic
 Arguments continuity_pt_cvg f%function_scope x%R_scope
@@ -397,12 +391,7 @@ library mathcomp.analysis_stdlib.Rstruct_topology, line 48, characters 6-23
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="continuity_ptE" class="id"><a name="continuity_ptE" class="" title="continuity_ptE :
-forall (f : R -> R) (x : R),
-continuity_pt f x <->
-{for x,
-  forall x0 : filter.Nbhs.sort RbaseSymbolsImpl_R__canonical__filter_Nbhs,
-  filter.continuous_at (T:=RbaseSymbolsImpl_R__canonical__filter_Nbhs)
-    (U:=RbaseSymbolsImpl_R__canonical__filter_Nbhs) x0 f}
+forall (f : R -> R) (x : R), continuity_pt f x <-> {for x, continuous f}
 
 continuity_ptE is not universe polymorphic
 Arguments continuity_ptE f%function_scope x%R_scope
@@ -421,10 +410,7 @@ library mathcomp.analysis_stdlib.Rstruct_topology, line 67, characters 6-20
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="continuity_pt_cvg'" class="id"><a name="continuity_pt_cvg'" class="" title="continuity_pt_cvg' :
 forall (f : R -> R) (x : R),
-continuity_pt f x <->
-filter.cvg_to
-  (filter.nbhs (filter.fmap f (filter.nbhs (topology_structure.dnbhs x))))
-  (filter.nbhs (f x))
+continuity_pt f x <-> (f x @[x --> x^'] --> f x)%classic
 
 continuity_pt_cvg' is not universe polymorphic
 Arguments continuity_pt_cvg' f%function_scope x%R_scope
@@ -452,19 +438,19 @@ continuity_pt f x <->
                  Num.POrderedZmodule.Algebra_hasOpp_mixin :=
                    Rstruct.HB_unnamed_mixin_22;
                  Num.POrderedZmodule.Algebra_hasZero_mixin :=
-                   HB_unnamed_mixin_21;
+                   Rstruct.HB_unnamed_mixin_21;
                  Num.POrderedZmodule.Algebra_hasAdd_mixin :=
                    Rstruct.HB_unnamed_mixin_16;
                  Num.POrderedZmodule.Algebra_BaseZmoduleNmodule_isZmodule_mixin :=
-                   HB_unnamed_mixin_24;
+                   Rstruct.HB_unnamed_mixin_24;
                  Num.POrderedZmodule.Algebra_BaseAddUMagma_isAddUMagma_mixin :=
                    HB_unnamed_mixin_23;
                  Num.POrderedZmodule.Algebra_BaseAddMagma_isAddMagma_mixin :=
-                   HB_unnamed_mixin_19;
+                   Rstruct.HB_unnamed_mixin_19;
                  Num.POrderedZmodule.choice_hasChoice_mixin :=
-                   HB_unnamed_mixin_6;
+                   Rstruct.HB_unnamed_mixin_6;
                  Num.POrderedZmodule.eqtype_hasDecEq_mixin :=
-                   HB_unnamed_mixin_3;
+                   Rstruct.HB_unnamed_mixin_3;
                  Num.POrderedZmodule.Order_isDuallyPreorder_mixin :=
                    Num.Builders_41.Num_IntegralDomain_isNumRing__to__Order_isDuallyPreorder
                      (local_mixin_GRing_ComUnitRing_isIntegral:=HB_unnamed_mixin_104)
@@ -474,14 +460,12 @@ continuity_pt f x <->
                      (local_mixin_GRing_ComUnitRing_isIntegral:=HB_unnamed_mixin_104)
                      HB_unnamed_factory_107;
                  Num.POrderedZmodule.Algebra_AddMagma_isAddSemigroup_mixin :=
-                   HB_unnamed_mixin_20
+                   Rstruct.HB_unnamed_mixin_20
                |}
            |},
  (0 < eps)%R ->
- topology_structure.dnbhs x
-   (fun
-      u : topology_structure.Topological.Exports.topology_structure_Topological__to__eqtype_Equality
-            RbaseSymbolsImpl_R__canonical__topology_structure_Topological =>
+ x^'%classic
+   (fun u : RbaseSymbolsImpl_R__canonical__topology_structure_Topological =>
     (`|f x - f u| < eps)%R))
 
 continuity_pt_dnbhs is not universe polymorphic
@@ -502,10 +486,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="nbhs_pt_comp" class="id"><a name="nbhs_pt_comp" class="" title="nbhs_pt_comp :
 forall [P : R -> Prop] [f : R -> R] [x : R],
-filter.nbhs (f x) P ->
-continuity_pt f x ->
-filter.prop_near1 x (P:=fun x0 : R => P (f x0))
-  (inPhantom (forall x0 : R, P (f x0)))
+nbhs (f x) P -> continuity_pt f x -> \near x, P (f x)
 
 nbhs_pt_comp is not universe polymorphic
 Arguments nbhs_pt_comp [P f]%function_scope [x]%R_scope _ _

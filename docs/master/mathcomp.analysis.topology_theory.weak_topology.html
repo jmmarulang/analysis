@@ -994,8 +994,8 @@ library mathcomp.analysis.topology_theory.weak_topology, line 185, characters 6-
 <span class="vernacular">Let</span><span class="id"> </span><span id="weak_order_refine.WeakU" class="id"><a name="weak_order_refine.WeakU" class="">WeakU</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.topology_theory.topology_structure.html#Topological.Exports.topologicalType">topologicalType</a></span><span class="id"> :=</span><span class="id"> @</span><span class="id"><a href="mathcomp.analysis.topology_theory.weak_topology.html#weak_topology">weak_topology</a></span> (<span class="id"><a href="NOTFOUND the module url for mathcomp.boot.eqtype#sub_type">sub_type</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.topology_theory.weak_topology.html#weak_order_refine.Y">Y</a></span>)<span class="id"> </span><span class="id"><a href="mathcomp.analysis.topology_theory.weak_topology.html#weak_order_refine.X">X</a></span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.eqtype#val">val</a></span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="open_order_weak" class="id"><a name="open_order_weak" class="" title="open_order_weak :
-forall {d : disp_t} {X : orderTopologicalType d} {Y : subType (T:=X) X}
-  [U : set Y],
+forall {d : Order.disp_t} {X : orderTopologicalType d} 
+  {Y : subType (T:=X) X} [U : set Y],
 open U -> open U
 
 open_order_weak is not universe polymorphic

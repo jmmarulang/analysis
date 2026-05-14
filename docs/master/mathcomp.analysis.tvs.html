@@ -680,7 +680,7 @@ PreTopologicalNmodule_isTopologicalZmodule.phant_axioms
        |})
   id_phant id_phant id_phant id_phant id_phant
   (m35:=local_mixin_Algebra_AddMagma_isAddSemigroup) id_phant id_phant ->
-continuous (fst \+ snd)%E
+continuous (fun x0 : M * M => (x0.1 + x0.2)%R)
 
 Builders_1.add_continuous is not universe polymorphic
 Expanded type for implicit arguments
@@ -807,7 +807,7 @@ forall
                local_mixin_filter_selfFiltered local_mixin_filter_isFiltered
                local_mixin_Algebra_BaseAddUMagma_isAddUMagma
                local_mixin_Algebra_AddMagma_isAddSemigroup))],
-nbhs ((fst \+ snd)%E x) t ->
+nbhs ((fun x0 : M * M => (x0.1 + x0.2)%R) x) t ->
 exists2
   i : set
         (tvs.Builders_1.Builders_1_M__canonical__filter_Nbhs
@@ -837,7 +837,7 @@ exists2
                local_mixin_filter_selfFiltered local_mixin_filter_isFiltered
                local_mixin_choice_hasChoice local_mixin_eqtype_hasDecEq) =>
     P.1 `*` P.2) i
-   `<=` (fst \+ snd)%E @^-1` t)%classic
+   `<=` (fun x0 : M * M => (x0.1 + x0.2)%R) @^-1` t)%classic
 
 Arguments Builders_1.add_continuous [M]%type_scope
   [local_mixin_filter_selfFiltered local_mixin_filter_isFiltered
@@ -2969,7 +2969,7 @@ unif_continuous (U:=Datatypes_prod__canonical__uniform_structure_Uniform)
            local_mixin_topology_structure_Nbhs_isTopological
            local_mixin_Algebra_BaseAddUMagma_isAddUMagma
            local_mixin_Algebra_AddMagma_isAddSemigroup))
-  (fst \+ snd)%E
+  (fun x : M * M => (x.1 + x.2)%R)
 
 Builders_15.add_unif_continuous is not universe polymorphic
 Expanded type for implicit arguments
@@ -3171,7 +3171,8 @@ exists2
            | xy in (fun
                       xy : Datatypes_prod__canonical__uniform_structure_Uniform *
                            Datatypes_prod__canonical__uniform_structure_Uniform =>
-                    ((fst \+ snd)%E xy.1, (fst \+ snd)%E xy.2)) @^-1`
+                    ((fun x : M * M => (x.1 + x.2)%R) xy.1,
+                     (fun x : M * M => (x.1 + x.2)%R) xy.2)) @^-1`
                    t])%classic
 
 Arguments Builders_15.add_unif_continuous [M]%type_scope
@@ -6580,7 +6581,7 @@ Declared in library mathcomp.analysis.tvs, line 345, characters 6-21
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="nbhsT_subproof" class="id"><a name="nbhsT_subproof" class="" title="nbhsT_subproof :
 forall [R : numDomainType] [E : preTopologicalLmodType R] [U : set E],
-continuous (fst \+ snd)%E ->
+continuous (fun x0 : E * E => (x0.1 + x0.2)%R) ->
 forall x : E, nbhs 0%R U -> nbhs x [set (x + x0)%R | x0 in U]%classic
 
 nbhsT_subproof is not universe polymorphic
@@ -6601,7 +6602,7 @@ Declared in library mathcomp.analysis.tvs, line 349, characters 6-20
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="nbhsB_subproof" class="id"><a name="nbhsB_subproof" class="" title="nbhsB_subproof :
 forall [R : numDomainType] [E : preTopologicalLmodType R] [U : set E],
-continuous (fst \+ snd)%E ->
+continuous (fun x0 : E * E => (x0.1 + x0.2)%R) ->
 forall [z : E] (x : E),
 nbhs z U -> nbhs (x + z)%R [set (x + x0)%R | x0 in U]%classic
 

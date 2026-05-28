@@ -478,7 +478,7 @@ forall [A B : set T],
 d.-measurable%classic A ->
 d.-measurable%classic B ->
 d.-measurable%classic (A `|` B) ->
-(A `&` B)%classic = set0 -> mu (A `|` B)%classic = (mu A + mu B)%E
+(A `&` B)%classic = set0 -> mu (A `|` B)%classic = (mu A + mu B)%R
 
 Arguments semi_additiveW [d]%measure_display_scope 
   [R T] [mu]%function_scope _ _ [A B] _ _ _ _
@@ -910,7 +910,7 @@ forall [d : measure_display] [T : semiRingOfSetsType d]
 d.-measurable%classic A ->
 d.-measurable%classic B ->
 d.-measurable%classic (A `|` B) ->
-(A `&` B)%classic = set0 -> mu (A `|` B)%classic = (mu A + mu B)%E
+(A `&` B)%classic = set0 -> mu (A `|` B)%classic = (mu A + mu B)%R
 
 Arguments measure_semi_additive2 [d]%measure_display_scope 
   [T R] mu [A B] _ _ _ _
@@ -960,7 +960,7 @@ forall [d : measure_display] [R : realFieldType] [T : ringOfSetsType d]
   (mu : {content set T -> \bar R}%R) [A B : set T],
 d.-measurable%classic A ->
 d.-measurable%classic B ->
-(A `&` B)%classic = set0 -> mu (A `|` B)%classic = (mu A + mu B)%E
+(A `&` B)%classic = set0 -> mu (A `|` B)%classic = (mu A + mu B)%R
 
 Arguments measureU [d]%measure_display_scope [R T] mu [A B] _ _ _
 measureU is opaque
@@ -1412,7 +1412,7 @@ forall [d : measure_display] [R : realFieldType] [T : sigmaRingType d]
 trivIset (T:=T) [set: nat] F ->
 forall
   [t : set constructive_ereal_extended__canonical__Algebra_BaseAddUMagma],
-nbhs (mu (\bigcup_n F n)%classic) t ->
+filter.nbhs (mu (\bigcup_n F n)%classic) t ->
 exists2 i : nat,
   [set: nat]%classic i &
   ((fun N : nat => [set n | N <= n]) i
@@ -1718,7 +1718,7 @@ library mathcomp.analysis.measure_theory.measure_function, line 580, characters 
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="measure_addE" class="id"><a name="measure_addE" class="" title="measure_addE :
 forall [d : measure_display] [T : sigmaRingType d] 
   [R : realType] (m1 m2 : measure T R) (A : set T),
-measure_add (T:=T) (R:=R) m1 m2 A = (m1 A + m2 A)%E
+measure_add (T:=T) (R:=R) m1 m2 A = (m1 A + m2 A)%R
 
 measure_addE is not universe polymorphic
 Arguments measure_addE [d]%measure_display_scope [T R] 
@@ -2105,11 +2105,11 @@ Expands to: Constant
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 686, characters 11-15
 ">type</a></span> (<span id="T:406" class="id"><a name="T:406" class="">T</a></span><span class="id"> :</span><span class="gallina-kwd"> Type</span>)<span class="id"> :=</span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#T:406">T</a></span>.<br/>
-<span class="vernacular">Definition</span><span class="id"> </span><span id="SetRing.display" class="id"><a name="SetRing.display" class="" title="SetRing.display : measure_display -> measure_display
+<span class="vernacular">Definition</span><span class="id"> </span><span id="SetRing.display" class="id"><a name="SetRing.display" class="" title="display : measure_display -> measure_display
 
-SetRing.display is not universe polymorphic
-Arguments SetRing.display _%measure_display_scope
-SetRing.display is opaque
+display is not universe polymorphic
+Arguments display _%measure_display_scope
+display is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.display
 Declared in
@@ -2125,137 +2125,137 @@ library mathcomp.analysis.measure_theory.measure_function, line 687, characters 
 <span class="vernacular">Context</span><span class="id"> </span><span id="SetRing.SetRing.d" class="id"><a name="SetRing.SetRing.d" class="">d</a></span><span class="id"> {</span><span id="SetRing.SetRing.T" class="id"><a name="SetRing.SetRing.T" class="">T</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measurable_structure.html#SemiRingOfSets.Exports.semiRingOfSetsType">semiRingOfSetsType</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#d:407">d</a></span><span class="id">}</span>.<br/>
 <br/>
 <span class="vernacular">Notation</span><span class="id"> </span><span id="SetRing.rT" class="id"><a name="SetRing.rT" class="">rT</a></span><span class="id"> :=</span> (<span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#SetRing.type">type</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#SetRing.SetRing.T">T</a></span>).<br/>
-<span id="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="id"><span id="SetRing.HB_unnamed_mixin_47" class="id"><span id="SetRing.SetRing_type__canonical__choice_Choice" class="id"><span id="SetRing.HB_unnamed_mixin_46" class="id"><span id="SetRing.SetRing_type__canonical__eqtype_Equality" class="id"><span id="SetRing.HB_unnamed_mixin_45" class="id"><span id="SetRing.classical_sets_Pointed__to__eqtype_hasDecEq" class="id"><span id="SetRing.classical_sets_Pointed__to__choice_hasChoice" class="id"><span id="SetRing.classical_sets_Pointed__to__classical_sets_isPointed" class="id"><span id="SetRing.HB_unnamed_factory_41" class="id"><a name="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="" title="SetRing.SetRing_type__canonical__classical_sets_Pointed :
+<span id="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="id"><span id="SetRing.HB_unnamed_mixin_47" class="id"><span id="SetRing.SetRing_type__canonical__choice_Choice" class="id"><span id="SetRing.HB_unnamed_mixin_46" class="id"><span id="SetRing.SetRing_type__canonical__eqtype_Equality" class="id"><span id="SetRing.HB_unnamed_mixin_45" class="id"><span id="SetRing.classical_sets_Pointed__to__eqtype_hasDecEq" class="id"><span id="SetRing.classical_sets_Pointed__to__choice_hasChoice" class="id"><span id="SetRing.classical_sets_Pointed__to__classical_sets_isPointed" class="id"><span id="SetRing.HB_unnamed_factory_41" class="id"><a name="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="" title="SetRing_type__canonical__classical_sets_Pointed :
 forall [d : measure_display], semiRingOfSetsType d -> pointedType
 
-SetRing.SetRing_type__canonical__classical_sets_Pointed is not universe polymorphic
-Arguments SetRing.SetRing_type__canonical__classical_sets_Pointed
+SetRing_type__canonical__classical_sets_Pointed is not universe polymorphic
+Arguments SetRing_type__canonical__classical_sets_Pointed
   [d]%measure_display_scope {T}
-SetRing.SetRing_type__canonical__classical_sets_Pointed is transparent
+SetRing_type__canonical__classical_sets_Pointed is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_type__canonical__classical_sets_Pointed
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 694, characters 0-52
 ">#[export]</a></span></span></span></span></span></span></span></span></span></span><br/>
-<span id="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="id"><span id="SetRing.HB_unnamed_mixin_47" class="id"><span id="SetRing.SetRing_type__canonical__choice_Choice" class="id"><span id="SetRing.HB_unnamed_mixin_46" class="id"><span id="SetRing.SetRing_type__canonical__eqtype_Equality" class="id"><span id="SetRing.HB_unnamed_mixin_45" class="id"><span id="SetRing.classical_sets_Pointed__to__eqtype_hasDecEq" class="id"><span id="SetRing.classical_sets_Pointed__to__choice_hasChoice" class="id"><span id="SetRing.classical_sets_Pointed__to__classical_sets_isPointed" class="id"><span id="SetRing.HB_unnamed_factory_41" class="id"><a name="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="" title="SetRing.SetRing_type__canonical__classical_sets_Pointed :
+<span id="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="id"><span id="SetRing.HB_unnamed_mixin_47" class="id"><span id="SetRing.SetRing_type__canonical__choice_Choice" class="id"><span id="SetRing.HB_unnamed_mixin_46" class="id"><span id="SetRing.SetRing_type__canonical__eqtype_Equality" class="id"><span id="SetRing.HB_unnamed_mixin_45" class="id"><span id="SetRing.classical_sets_Pointed__to__eqtype_hasDecEq" class="id"><span id="SetRing.classical_sets_Pointed__to__choice_hasChoice" class="id"><span id="SetRing.classical_sets_Pointed__to__classical_sets_isPointed" class="id"><span id="SetRing.HB_unnamed_factory_41" class="id"><a name="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="" title="SetRing_type__canonical__classical_sets_Pointed :
 forall [d : measure_display], semiRingOfSetsType d -> pointedType
 
-SetRing.SetRing_type__canonical__classical_sets_Pointed is not universe polymorphic
-Arguments SetRing.SetRing_type__canonical__classical_sets_Pointed
+SetRing_type__canonical__classical_sets_Pointed is not universe polymorphic
+Arguments SetRing_type__canonical__classical_sets_Pointed
   [d]%measure_display_scope {T}
-SetRing.SetRing_type__canonical__classical_sets_Pointed is transparent
+SetRing_type__canonical__classical_sets_Pointed is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_type__canonical__classical_sets_Pointed
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 694, characters 0-52
-">HB</a></span></span></span></span></span></span></span></span></span></span>.<span id="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="id"><span id="SetRing.HB_unnamed_mixin_47" class="id"><span id="SetRing.SetRing_type__canonical__choice_Choice" class="id"><span id="SetRing.HB_unnamed_mixin_46" class="id"><span id="SetRing.SetRing_type__canonical__eqtype_Equality" class="id"><span id="SetRing.HB_unnamed_mixin_45" class="id"><span id="SetRing.classical_sets_Pointed__to__eqtype_hasDecEq" class="id"><span id="SetRing.classical_sets_Pointed__to__choice_hasChoice" class="id"><span id="SetRing.classical_sets_Pointed__to__classical_sets_isPointed" class="id"><span id="SetRing.HB_unnamed_factory_41" class="id"><a name="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="" title="SetRing.SetRing_type__canonical__classical_sets_Pointed :
+">HB</a></span></span></span></span></span></span></span></span></span></span>.<span id="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="id"><span id="SetRing.HB_unnamed_mixin_47" class="id"><span id="SetRing.SetRing_type__canonical__choice_Choice" class="id"><span id="SetRing.HB_unnamed_mixin_46" class="id"><span id="SetRing.SetRing_type__canonical__eqtype_Equality" class="id"><span id="SetRing.HB_unnamed_mixin_45" class="id"><span id="SetRing.classical_sets_Pointed__to__eqtype_hasDecEq" class="id"><span id="SetRing.classical_sets_Pointed__to__choice_hasChoice" class="id"><span id="SetRing.classical_sets_Pointed__to__classical_sets_isPointed" class="id"><span id="SetRing.HB_unnamed_factory_41" class="id"><a name="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="" title="SetRing_type__canonical__classical_sets_Pointed :
 forall [d : measure_display], semiRingOfSetsType d -> pointedType
 
-SetRing.SetRing_type__canonical__classical_sets_Pointed is not universe polymorphic
-Arguments SetRing.SetRing_type__canonical__classical_sets_Pointed
+SetRing_type__canonical__classical_sets_Pointed is not universe polymorphic
+Arguments SetRing_type__canonical__classical_sets_Pointed
   [d]%measure_display_scope {T}
-SetRing.SetRing_type__canonical__classical_sets_Pointed is transparent
+SetRing_type__canonical__classical_sets_Pointed is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_type__canonical__classical_sets_Pointed
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 694, characters 0-52
-">instance</a></span></span></span></span></span></span></span></span></span></span><span class="vernacular"> Definition</span><span id="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="id"><span id="SetRing.HB_unnamed_mixin_47" class="id"><span id="SetRing.SetRing_type__canonical__choice_Choice" class="id"><span id="SetRing.HB_unnamed_mixin_46" class="id"><span id="SetRing.SetRing_type__canonical__eqtype_Equality" class="id"><span id="SetRing.HB_unnamed_mixin_45" class="id"><span id="SetRing.classical_sets_Pointed__to__eqtype_hasDecEq" class="id"><span id="SetRing.classical_sets_Pointed__to__choice_hasChoice" class="id"><span id="SetRing.classical_sets_Pointed__to__classical_sets_isPointed" class="id"><span id="SetRing.HB_unnamed_factory_41" class="id"><a name="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="" title="SetRing.SetRing_type__canonical__classical_sets_Pointed :
+">instance</a></span></span></span></span></span></span></span></span></span></span><span class="vernacular"> Definition</span><span id="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="id"><span id="SetRing.HB_unnamed_mixin_47" class="id"><span id="SetRing.SetRing_type__canonical__choice_Choice" class="id"><span id="SetRing.HB_unnamed_mixin_46" class="id"><span id="SetRing.SetRing_type__canonical__eqtype_Equality" class="id"><span id="SetRing.HB_unnamed_mixin_45" class="id"><span id="SetRing.classical_sets_Pointed__to__eqtype_hasDecEq" class="id"><span id="SetRing.classical_sets_Pointed__to__choice_hasChoice" class="id"><span id="SetRing.classical_sets_Pointed__to__classical_sets_isPointed" class="id"><span id="SetRing.HB_unnamed_factory_41" class="id"><a name="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="" title="SetRing_type__canonical__classical_sets_Pointed :
 forall [d : measure_display], semiRingOfSetsType d -> pointedType
 
-SetRing.SetRing_type__canonical__classical_sets_Pointed is not universe polymorphic
-Arguments SetRing.SetRing_type__canonical__classical_sets_Pointed
+SetRing_type__canonical__classical_sets_Pointed is not universe polymorphic
+Arguments SetRing_type__canonical__classical_sets_Pointed
   [d]%measure_display_scope {T}
-SetRing.SetRing_type__canonical__classical_sets_Pointed is transparent
+SetRing_type__canonical__classical_sets_Pointed is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_type__canonical__classical_sets_Pointed
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 694, characters 0-52
-"> _</a></span></span></span></span></span></span></span></span></span></span><span id="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="id"><span id="SetRing.HB_unnamed_mixin_47" class="id"><span id="SetRing.SetRing_type__canonical__choice_Choice" class="id"><span id="SetRing.HB_unnamed_mixin_46" class="id"><span id="SetRing.SetRing_type__canonical__eqtype_Equality" class="id"><span id="SetRing.HB_unnamed_mixin_45" class="id"><span id="SetRing.classical_sets_Pointed__to__eqtype_hasDecEq" class="id"><span id="SetRing.classical_sets_Pointed__to__choice_hasChoice" class="id"><span id="SetRing.classical_sets_Pointed__to__classical_sets_isPointed" class="id"><span id="SetRing.HB_unnamed_factory_41" class="id"><a name="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="" title="SetRing.SetRing_type__canonical__classical_sets_Pointed :
+"> _</a></span></span></span></span></span></span></span></span></span></span><span id="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="id"><span id="SetRing.HB_unnamed_mixin_47" class="id"><span id="SetRing.SetRing_type__canonical__choice_Choice" class="id"><span id="SetRing.HB_unnamed_mixin_46" class="id"><span id="SetRing.SetRing_type__canonical__eqtype_Equality" class="id"><span id="SetRing.HB_unnamed_mixin_45" class="id"><span id="SetRing.classical_sets_Pointed__to__eqtype_hasDecEq" class="id"><span id="SetRing.classical_sets_Pointed__to__choice_hasChoice" class="id"><span id="SetRing.classical_sets_Pointed__to__classical_sets_isPointed" class="id"><span id="SetRing.HB_unnamed_factory_41" class="id"><a name="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="" title="SetRing_type__canonical__classical_sets_Pointed :
 forall [d : measure_display], semiRingOfSetsType d -> pointedType
 
-SetRing.SetRing_type__canonical__classical_sets_Pointed is not universe polymorphic
-Arguments SetRing.SetRing_type__canonical__classical_sets_Pointed
+SetRing_type__canonical__classical_sets_Pointed is not universe polymorphic
+Arguments SetRing_type__canonical__classical_sets_Pointed
   [d]%measure_display_scope {T}
-SetRing.SetRing_type__canonical__classical_sets_Pointed is transparent
+SetRing_type__canonical__classical_sets_Pointed is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_type__canonical__classical_sets_Pointed
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 694, characters 0-52
-"> :=</a></span></span></span></span></span></span></span></span></span></span><span id="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="id"><span id="SetRing.HB_unnamed_mixin_47" class="id"><span id="SetRing.SetRing_type__canonical__choice_Choice" class="id"><span id="SetRing.HB_unnamed_mixin_46" class="id"><span id="SetRing.SetRing_type__canonical__eqtype_Equality" class="id"><span id="SetRing.HB_unnamed_mixin_45" class="id"><span id="SetRing.classical_sets_Pointed__to__eqtype_hasDecEq" class="id"><span id="SetRing.classical_sets_Pointed__to__choice_hasChoice" class="id"><span id="SetRing.classical_sets_Pointed__to__classical_sets_isPointed" class="id"><span id="SetRing.HB_unnamed_factory_41" class="id"><a name="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="" title="SetRing.SetRing_type__canonical__classical_sets_Pointed :
+"> :=</a></span></span></span></span></span></span></span></span></span></span><span id="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="id"><span id="SetRing.HB_unnamed_mixin_47" class="id"><span id="SetRing.SetRing_type__canonical__choice_Choice" class="id"><span id="SetRing.HB_unnamed_mixin_46" class="id"><span id="SetRing.SetRing_type__canonical__eqtype_Equality" class="id"><span id="SetRing.HB_unnamed_mixin_45" class="id"><span id="SetRing.classical_sets_Pointed__to__eqtype_hasDecEq" class="id"><span id="SetRing.classical_sets_Pointed__to__choice_hasChoice" class="id"><span id="SetRing.classical_sets_Pointed__to__classical_sets_isPointed" class="id"><span id="SetRing.HB_unnamed_factory_41" class="id"><a name="SetRing.SetRing_type__canonical__classical_sets_Pointed" class="" title="SetRing_type__canonical__classical_sets_Pointed :
 forall [d : measure_display], semiRingOfSetsType d -> pointedType
 
-SetRing.SetRing_type__canonical__classical_sets_Pointed is not universe polymorphic
-Arguments SetRing.SetRing_type__canonical__classical_sets_Pointed
+SetRing_type__canonical__classical_sets_Pointed is not universe polymorphic
+Arguments SetRing_type__canonical__classical_sets_Pointed
   [d]%measure_display_scope {T}
-SetRing.SetRing_type__canonical__classical_sets_Pointed is transparent
+SetRing_type__canonical__classical_sets_Pointed is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_type__canonical__classical_sets_Pointed
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 694, characters 0-52
 "> Pointed</a></span></span></span></span></span></span></span></span></span></span>.<span class="id"><a href="mathcomp.classical.classical_sets.html#Pointed.on">on</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#SetRing.rT">rT</a></span>.<br/>
-<span id="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_52" class="id"><span id="SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_51" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_isSemiRingOfSets" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_SemiRingOfSets_isRingOfSets" class="id"><span id="SetRing.HB_unnamed_factory_48" class="id"><a name="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="" title="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets :
+<span id="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_52" class="id"><span id="SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_51" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_isSemiRingOfSets" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_SemiRingOfSets_isRingOfSets" class="id"><span id="SetRing.HB_unnamed_factory_48" class="id"><a name="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="" title="SetRing_type__canonical__measurable_structure_RingOfSets :
 forall [d : measure_display], semiRingOfSetsType d -> ringOfSetsType d.-ring
 
-SetRing.SetRing_type__canonical__measurable_structure_RingOfSets is not universe polymorphic
-Arguments SetRing.SetRing_type__canonical__measurable_structure_RingOfSets
+SetRing_type__canonical__measurable_structure_RingOfSets is not universe polymorphic
+Arguments SetRing_type__canonical__measurable_structure_RingOfSets
   [d]%measure_display_scope {T}
-SetRing.SetRing_type__canonical__measurable_structure_RingOfSets is transparent
+SetRing_type__canonical__measurable_structure_RingOfSets is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_type__canonical__measurable_structure_RingOfSets
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 696, characters 0-149
 ">#[export]</a></span></span></span></span></span></span></span><br/>
-<span id="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_52" class="id"><span id="SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_51" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_isSemiRingOfSets" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_SemiRingOfSets_isRingOfSets" class="id"><span id="SetRing.HB_unnamed_factory_48" class="id"><a name="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="" title="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets :
+<span id="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_52" class="id"><span id="SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_51" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_isSemiRingOfSets" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_SemiRingOfSets_isRingOfSets" class="id"><span id="SetRing.HB_unnamed_factory_48" class="id"><a name="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="" title="SetRing_type__canonical__measurable_structure_RingOfSets :
 forall [d : measure_display], semiRingOfSetsType d -> ringOfSetsType d.-ring
 
-SetRing.SetRing_type__canonical__measurable_structure_RingOfSets is not universe polymorphic
-Arguments SetRing.SetRing_type__canonical__measurable_structure_RingOfSets
+SetRing_type__canonical__measurable_structure_RingOfSets is not universe polymorphic
+Arguments SetRing_type__canonical__measurable_structure_RingOfSets
   [d]%measure_display_scope {T}
-SetRing.SetRing_type__canonical__measurable_structure_RingOfSets is transparent
+SetRing_type__canonical__measurable_structure_RingOfSets is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_type__canonical__measurable_structure_RingOfSets
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 696, characters 0-149
-">HB</a></span></span></span></span></span></span></span>.<span id="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_52" class="id"><span id="SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_51" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_isSemiRingOfSets" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_SemiRingOfSets_isRingOfSets" class="id"><span id="SetRing.HB_unnamed_factory_48" class="id"><a name="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="" title="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets :
+">HB</a></span></span></span></span></span></span></span>.<span id="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_52" class="id"><span id="SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_51" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_isSemiRingOfSets" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_SemiRingOfSets_isRingOfSets" class="id"><span id="SetRing.HB_unnamed_factory_48" class="id"><a name="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="" title="SetRing_type__canonical__measurable_structure_RingOfSets :
 forall [d : measure_display], semiRingOfSetsType d -> ringOfSetsType d.-ring
 
-SetRing.SetRing_type__canonical__measurable_structure_RingOfSets is not universe polymorphic
-Arguments SetRing.SetRing_type__canonical__measurable_structure_RingOfSets
+SetRing_type__canonical__measurable_structure_RingOfSets is not universe polymorphic
+Arguments SetRing_type__canonical__measurable_structure_RingOfSets
   [d]%measure_display_scope {T}
-SetRing.SetRing_type__canonical__measurable_structure_RingOfSets is transparent
+SetRing_type__canonical__measurable_structure_RingOfSets is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_type__canonical__measurable_structure_RingOfSets
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 696, characters 0-149
-">instance</a></span></span></span></span></span></span></span><span class="vernacular"> Definition</span><span id="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_52" class="id"><span id="SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_51" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_isSemiRingOfSets" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_SemiRingOfSets_isRingOfSets" class="id"><span id="SetRing.HB_unnamed_factory_48" class="id"><a name="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="" title="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets :
+">instance</a></span></span></span></span></span></span></span><span class="vernacular"> Definition</span><span id="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_52" class="id"><span id="SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_51" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_isSemiRingOfSets" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_SemiRingOfSets_isRingOfSets" class="id"><span id="SetRing.HB_unnamed_factory_48" class="id"><a name="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="" title="SetRing_type__canonical__measurable_structure_RingOfSets :
 forall [d : measure_display], semiRingOfSetsType d -> ringOfSetsType d.-ring
 
-SetRing.SetRing_type__canonical__measurable_structure_RingOfSets is not universe polymorphic
-Arguments SetRing.SetRing_type__canonical__measurable_structure_RingOfSets
+SetRing_type__canonical__measurable_structure_RingOfSets is not universe polymorphic
+Arguments SetRing_type__canonical__measurable_structure_RingOfSets
   [d]%measure_display_scope {T}
-SetRing.SetRing_type__canonical__measurable_structure_RingOfSets is transparent
+SetRing_type__canonical__measurable_structure_RingOfSets is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_type__canonical__measurable_structure_RingOfSets
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 696, characters 0-149
-"> _</a></span></span></span></span></span></span></span><span id="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_52" class="id"><span id="SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_51" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_isSemiRingOfSets" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_SemiRingOfSets_isRingOfSets" class="id"><span id="SetRing.HB_unnamed_factory_48" class="id"><a name="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="" title="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets :
+"> _</a></span></span></span></span></span></span></span><span id="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_52" class="id"><span id="SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_51" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_isSemiRingOfSets" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_SemiRingOfSets_isRingOfSets" class="id"><span id="SetRing.HB_unnamed_factory_48" class="id"><a name="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="" title="SetRing_type__canonical__measurable_structure_RingOfSets :
 forall [d : measure_display], semiRingOfSetsType d -> ringOfSetsType d.-ring
 
-SetRing.SetRing_type__canonical__measurable_structure_RingOfSets is not universe polymorphic
-Arguments SetRing.SetRing_type__canonical__measurable_structure_RingOfSets
+SetRing_type__canonical__measurable_structure_RingOfSets is not universe polymorphic
+Arguments SetRing_type__canonical__measurable_structure_RingOfSets
   [d]%measure_display_scope {T}
-SetRing.SetRing_type__canonical__measurable_structure_RingOfSets is transparent
+SetRing_type__canonical__measurable_structure_RingOfSets is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_type__canonical__measurable_structure_RingOfSets
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 696, characters 0-149
-"> :=</a></span></span></span></span></span></span></span><span id="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_52" class="id"><span id="SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_51" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_isSemiRingOfSets" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_SemiRingOfSets_isRingOfSets" class="id"><span id="SetRing.HB_unnamed_factory_48" class="id"><a name="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="" title="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets :
+"> :=</a></span></span></span></span></span></span></span><span id="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_52" class="id"><span id="SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets" class="id"><span id="SetRing.HB_unnamed_mixin_51" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_isSemiRingOfSets" class="id"><span id="SetRing.measurable_structure_isRingOfSets__to__measurable_structure_SemiRingOfSets_isRingOfSets" class="id"><span id="SetRing.HB_unnamed_factory_48" class="id"><a name="SetRing.SetRing_type__canonical__measurable_structure_RingOfSets" class="" title="SetRing_type__canonical__measurable_structure_RingOfSets :
 forall [d : measure_display], semiRingOfSetsType d -> ringOfSetsType d.-ring
 
-SetRing.SetRing_type__canonical__measurable_structure_RingOfSets is not universe polymorphic
-Arguments SetRing.SetRing_type__canonical__measurable_structure_RingOfSets
+SetRing_type__canonical__measurable_structure_RingOfSets is not universe polymorphic
+Arguments SetRing_type__canonical__measurable_structure_RingOfSets
   [d]%measure_display_scope {T}
-SetRing.SetRing_type__canonical__measurable_structure_RingOfSets is transparent
+SetRing_type__canonical__measurable_structure_RingOfSets is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_type__canonical__measurable_structure_RingOfSets
 Declared in
@@ -2273,14 +2273,14 @@ library mathcomp.analysis.measure_theory.measure_function, line 696, characters 
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#554fc3f3cf0a27fe0863b7741d119014">[/\</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#554fc3f3cf0a27fe0863b7741d119014"> </a></span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#A:409">A</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"> =</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"> </a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#6c1866a3b78974b64276da9cd4d63a55">\bigcup_</a></span>(<span id="X:411" class="id"><a name="X:411" class="">X</a></span><span class="gallina-kwd"> in</span><span class="id"><a href="mathcomp.classical.classical_sets.html#6c1866a3b78974b64276da9cd4d63a55"> </a></span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#B:410">B</a></span>)<span class="id"><a href="mathcomp.classical.classical_sets.html#6c1866a3b78974b64276da9cd4d63a55"> </a></span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#X:411">X</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#554fc3f3cf0a27fe0863b7741d119014">,</a></span><span class="gallina-kwd"> forall</span><span class="id"> </span><span id="X:412" class="id"><a name="X:412" class="">X</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#set">set</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#SetRing.SetRing.T">T</a></span><span class="id">,</span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#B:410">B</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#X:412">X</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"> -&gt;</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"> </a></span><span class="id"><a href="mathcomp.analysis.measure_theory.measurable_structure.html#measurable">measurable</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#X:412">X</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#554fc3f3cf0a27fe0863b7741d119014">,</a></span><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id"><a href="mathcomp.classical.cardinality.html#finite_set">finite_set</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#B:410">B</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#554fc3f3cf0a27fe0863b7741d119014"> &amp;</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#554fc3f3cf0a27fe0863b7741d119014"> </a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#trivIset">trivIset</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#B:410">B</a></span><span class="id"> </span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrfun.html#id">id</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#554fc3f3cf0a27fe0863b7741d119014">]</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#075f2dd209aa707f1415a58a026b96d9">]</a></span>.<br/>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.ring_measurableE" class="id"><a name="SetRing.ring_measurableE" class="" title="SetRing.ring_measurableE :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.ring_measurableE" class="id"><a name="SetRing.ring_measurableE" class="" title="ring_measurableE :
 forall [d : measure_display] {T : semiRingOfSetsType d},
 d.-ring.-measurable%classic =
 measure_function.SetRing.measurable_fin_trivIset (d:=d)
 
-SetRing.ring_measurableE is not universe polymorphic
-Arguments SetRing.ring_measurableE [d]%measure_display_scope {T}
-SetRing.ring_measurableE is opaque
+ring_measurableE is not universe polymorphic
+Arguments ring_measurableE [d]%measure_display_scope {T}
+ring_measurableE is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.ring_measurableE
 Declared in
@@ -2340,21 +2340,20 @@ library mathcomp.analysis.measure_theory.measure_function, line 709, characters 
 <span class="gallina-kwd">by</span><span class="id"> move=&gt;</span><span class="id"> [|[]]//</span><span class="id"> [|[]]//=</span><span class="id"> _</span><span class="id"> _</span><span class="id"> [];</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#setDE">setDE</a></span><span class="id"> ?</span><span class="id"><a href="mathcomp.classical.classical_sets.html#setIA">setIA</a></span><span class="id"> =&gt;</span><span class="id"> X</span><span class="id"> []</span><span class="id"> []//</span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.measurable_subring" class="id"><a name="SetRing.measurable_subring" class="" title="SetRing.measurable_subring :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.measurable_subring" class="id"><a name="SetRing.measurable_subring" class="" title="measurable_subring :
 forall [d : measure_display] {T : semiRingOfSetsType d},
 ((d.-measurable : set (set T)) `<=` d.-ring.-measurable)%classic
 
-SetRing.measurable_subring is not universe polymorphic
+measurable_subring is not universe polymorphic
 Expanded type for implicit arguments
-SetRing.measurable_subring :
+measurable_subring :
 forall [d : measure_display] {T : semiRingOfSetsType d} [t : set T],
 (d.-measurable%classic : set (set T)) t ->
 forall [i : set (set T)],
 [set M | setring M /\ d.-measurable `<=` M]%classic i -> i t
 
-Arguments SetRing.measurable_subring [d]%measure_display_scope 
-  {T} [t] _ [i] _
-SetRing.measurable_subring is opaque
+Arguments measurable_subring [d]%measure_display_scope {T} [t] _ [i] _
+measurable_subring is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.measurable_subring
 Declared in
@@ -2365,7 +2364,7 @@ library mathcomp.analysis.measure_theory.measure_function, line 762, characters 
 <div class="proofscript">
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> /</span><span class="id"><a href="mathcomp.analysis.measure_theory.measurable_structure.html#measurable">measurable</a></span><span class="id"> =&gt;</span><span class="id"> X</span><span class="id"> Xmeas</span><span class="id"> /=</span><span class="id"> M</span><span class="id"> /=</span><span class="id"> [_];</span><span class="id"> apply</span>. Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.ring_finite_set" class="id"><a name="SetRing.ring_finite_set" class="" title="SetRing.ring_finite_set :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.ring_finite_set" class="id"><a name="SetRing.ring_finite_set" class="" title="ring_finite_set :
 forall [d : measure_display] {T : semiRingOfSetsType d}
   [A : set (SetRing.type T)],
 (d.-ring).-measurable%classic A ->
@@ -2375,10 +2374,10 @@ exists B : set (set T),
       forall X : set T, X \in B -> d.-measurable%classic X
     & A = (\bigcup_(X in B) X)%classic]
 
-SetRing.ring_finite_set is not universe polymorphic
-Arguments SetRing.ring_finite_set [d]%measure_display_scope 
+ring_finite_set is not universe polymorphic
+Arguments ring_finite_set [d]%measure_display_scope 
   {T} [A]%classical_set_scope _
-SetRing.ring_finite_set is opaque
+ring_finite_set is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.ring_finite_set
 Declared in
@@ -2402,14 +2401,13 @@ library mathcomp.analysis.measure_theory.measure_function, line 765, characters 
 <span class="gallina-kwd">by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#notin_setE">notin_setE</a></span><span class="id">/=</span><span class="id"> =&gt;</span><span class="id"> /</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#negP">negP</a></span><span class="id">/</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#negPn">negPn</a></span><span class="id">/</span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.eqtype#eqP">eqP</a></span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Definition</span><span class="id"> </span><span id="SetRing.decomp" class="id"><a name="SetRing.decomp" class="" title="SetRing.decomp :
+<span class="vernacular">Definition</span><span class="id"> </span><span id="SetRing.decomp" class="id"><a name="SetRing.decomp" class="" title="decomp :
 forall [d : measure_display] {T : semiRingOfSetsType d},
 set (SetRing.type T) -> set (set T)
 
-SetRing.decomp is not universe polymorphic
-Arguments SetRing.decomp [d]%measure_display_scope 
-  {T} A%classical_set_scope _
-SetRing.decomp is transparent
+decomp is not universe polymorphic
+Arguments decomp [d]%measure_display_scope {T} A%classical_set_scope _
+decomp is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.decomp
 Declared in
@@ -2419,15 +2417,15 @@ library mathcomp.analysis.measure_theory.measure_function, line 782, characters 
 &nbsp;&nbsp;<span class="gallina-kwd">if</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.boolp.html#pselect">pselect</a></span> (<span class="id"><a href="mathcomp.analysis.measure_theory.measurable_structure.html#measurable">measurable</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#A:428">A</a></span>)<span class="id"> is</span><span class="id"> </span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Specif.html#left">left</a></span><span class="id"> mA</span><span class="gallina-kwd"> then</span><span class="id"> </span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Specif.html#projT1">projT1</a></span> (<span class="id"><a href="mathcomp.classical.boolp.html#cid">cid</a></span> (<span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#SetRing.ring_finite_set">ring_finite_set</a></span><span class="id"> mA</span>))<br/>
 &nbsp;&nbsp;<span class="gallina-kwd">else</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#29c78c22490f2dae838b1b504eb858a2">[set</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#29c78c22490f2dae838b1b504eb858a2"> </a></span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#A:428">A</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#29c78c22490f2dae838b1b504eb858a2">]</a></span>.<br/>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.decomp_finite_set" class="id"><a name="SetRing.decomp_finite_set" class="" title="SetRing.decomp_finite_set :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.decomp_finite_set" class="id"><a name="SetRing.decomp_finite_set" class="" title="decomp_finite_set :
 forall [d : measure_display] {T : semiRingOfSetsType d}
   (A : set (SetRing.type T)),
-finite_set (SetRing.decomp A)
+finite_set (decomp A)
 
-SetRing.decomp_finite_set is not universe polymorphic
-Arguments SetRing.decomp_finite_set [d]%measure_display_scope 
+decomp_finite_set is not universe polymorphic
+Arguments decomp_finite_set [d]%measure_display_scope 
   {T} A%classical_set_scope
-SetRing.decomp_finite_set is opaque
+decomp_finite_set is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.decomp_finite_set
 Declared in
@@ -2440,22 +2438,21 @@ library mathcomp.analysis.measure_theory.measure_function, line 787, characters 
 <span class="gallina-kwd">by</span><span class="id"> case:</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.boolp.html#cid">cid</a></span><span class="id"> =&gt;</span><span class="id"> /=</span><span class="id"> ?</span><span class="id"> []</span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.decomp_triv" class="id"><a name="SetRing.decomp_triv" class="" title="SetRing.decomp_triv :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.decomp_triv" class="id"><a name="SetRing.decomp_triv" class="" title="decomp_triv :
 forall [d : measure_display] {T : semiRingOfSetsType d}
   [A : set (SetRing.type T)],
-trivIset (T:=T) (SetRing.decomp A) id
+trivIset (T:=T) (decomp A) id
 
-SetRing.decomp_triv is not universe polymorphic
+decomp_triv is not universe polymorphic
 Expanded type for implicit arguments
-SetRing.decomp_triv :
+decomp_triv :
 forall [d : measure_display] {T : semiRingOfSetsType d}
   [A : set (SetRing.type T)] [i j : set T],
-SetRing.decomp A i ->
-SetRing.decomp A j -> (id i `&` id j !=set0)%classic -> i = j
+decomp A i -> decomp A j -> (id i `&` id j !=set0)%classic -> i = j
 
-Arguments SetRing.decomp_triv [d]%measure_display_scope 
-  {T} [A]%classical_set_scope [i j] _ _ _
-SetRing.decomp_triv is opaque
+Arguments decomp_triv [d]%measure_display_scope {T} 
+  [A]%classical_set_scope [i j] _ _ _
+decomp_triv is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.decomp_triv
 Declared in
@@ -2470,17 +2467,16 @@ library mathcomp.analysis.measure_theory.measure_function, line 793, characters 
 Qed.</div></details>
 <span class="vernacular">Hint</span><span class="id"> Resolve</span><span class="id"> decomp_triv</span><span class="id"> :</span><span class="id"> core</span>.<br/>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.all_decomp_neq0" class="id"><a name="SetRing.all_decomp_neq0" class="" title="SetRing.all_decomp_neq0 :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.all_decomp_neq0" class="id"><a name="SetRing.all_decomp_neq0" class="" title="all_decomp_neq0 :
 forall [d : measure_display] {T : semiRingOfSetsType d}
   [A : set (SetRing.type T)],
-(A !=set0)%classic ->
-forall [X : set T], SetRing.decomp A X -> (X !=set0)%classic
+(A !=set0)%classic -> forall [X : set T], decomp A X -> (X !=set0)%classic
 
-SetRing.all_decomp_neq0 is not universe polymorphic
-Arguments SetRing.all_decomp_neq0 [d]%measure_display_scope 
+all_decomp_neq0 is not universe polymorphic
+Arguments all_decomp_neq0 [d]%measure_display_scope 
   {T} [A]%classical_set_scope _ [X]%classical_set_scope 
   _
-SetRing.all_decomp_neq0 is opaque
+all_decomp_neq0 is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.all_decomp_neq0
 Declared in
@@ -2495,15 +2491,15 @@ library mathcomp.analysis.measure_theory.measure_function, line 801, characters 
 <span class="gallina-kwd">by</span><span class="id"> move=&gt;</span><span class="id"> X</span><span class="id"> -&gt;;</span><span class="id"> exact/</span><span class="id"><a href="mathcomp.classical.classical_sets.html#set0P">set0P</a></span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.decomp_neq0" class="id"><a name="SetRing.decomp_neq0" class="" title="SetRing.decomp_neq0 :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.decomp_neq0" class="id"><a name="SetRing.decomp_neq0" class="" title="decomp_neq0 :
 forall [d : measure_display] {T : semiRingOfSetsType d}
   [A : set (SetRing.type T)] [X : set T],
-(A !=set0)%classic -> X \in SetRing.decomp A -> (X !=set0)%classic
+(A !=set0)%classic -> X \in decomp A -> (X !=set0)%classic
 
-SetRing.decomp_neq0 is not universe polymorphic
-Arguments SetRing.decomp_neq0 [d]%measure_display_scope 
-  {T} [A X]%classical_set_scope _ _
-SetRing.decomp_neq0 is opaque
+decomp_neq0 is not universe polymorphic
+Arguments decomp_neq0 [d]%measure_display_scope {T} 
+  [A X]%classical_set_scope _ _
+decomp_neq0 is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.decomp_neq0
 Declared in
@@ -2514,16 +2510,15 @@ library mathcomp.analysis.measure_theory.measure_function, line 809, characters 
 <div class="proofscript">
 <span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> /</span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#SetRing.all_decomp_neq0">all_decomp_neq0</a></span><span class="id">/</span>(_<span class="id"> X</span>)<span class="id"> /</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssreflect.html#a4185b2be48be717d1ed9bd3d9ed6b28">[!</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#inE">inE</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssreflect.html#a4185b2be48be717d1ed9bd3d9ed6b28">]</a></span>. Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.decomp_measurable" class="id"><a name="SetRing.decomp_measurable" class="" title="SetRing.decomp_measurable :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.decomp_measurable" class="id"><a name="SetRing.decomp_measurable" class="" title="decomp_measurable :
 forall [d : measure_display] {T : semiRingOfSetsType d}
   [A : set (SetRing.type T)] [X : set T],
-(d.-ring).-measurable%classic A ->
-X \in SetRing.decomp A -> d.-measurable%classic X
+(d.-ring).-measurable%classic A -> X \in decomp A -> d.-measurable%classic X
 
-SetRing.decomp_measurable is not universe polymorphic
-Arguments SetRing.decomp_measurable [d]%measure_display_scope 
+decomp_measurable is not universe polymorphic
+Arguments decomp_measurable [d]%measure_display_scope 
   {T} [A X]%classical_set_scope _ _
-SetRing.decomp_measurable is opaque
+decomp_measurable is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.decomp_measurable
 Declared in
@@ -2537,15 +2532,14 @@ library mathcomp.analysis.measure_theory.measure_function, line 812, characters 
 <span class="gallina-kwd">by</span><span class="id"> case:</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.boolp.html#pselect">pselect</a></span><span class="id"> =&gt;</span><span class="id"> //</span><span class="id"> Am</span><span class="id"> _;</span><span class="id"> case:</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.boolp.html#cid">cid</a></span><span class="id"> =&gt;</span><span class="id"> //=</span><span class="id"> ?</span><span class="id"> [_</span><span class="id"> _</span><span class="id"> _</span><span class="id"> +</span><span class="id"> _];</span><span class="id"> apply</span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.cover_decomp" class="id"><a name="SetRing.cover_decomp" class="" title="SetRing.cover_decomp :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.cover_decomp" class="id"><a name="SetRing.cover_decomp" class="" title="cover_decomp :
 forall [d : measure_display] {T : semiRingOfSetsType d}
   (A : set (SetRing.type T)),
-(\bigcup_(X in SetRing.decomp A) X)%classic = A
+(\bigcup_(X in decomp A) X)%classic = A
 
-SetRing.cover_decomp is not universe polymorphic
-Arguments SetRing.cover_decomp [d]%measure_display_scope 
-  {T} A%classical_set_scope
-SetRing.cover_decomp is opaque
+cover_decomp is not universe polymorphic
+Arguments cover_decomp [d]%measure_display_scope {T} A%classical_set_scope
+cover_decomp is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.cover_decomp
 Declared in
@@ -2559,21 +2553,21 @@ library mathcomp.analysis.measure_theory.measure_function, line 819, characters 
 <span class="gallina-kwd">by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#bigcup_set1">bigcup_set1</a></span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.decomp_sub" class="id"><a name="SetRing.decomp_sub" class="" title="SetRing.decomp_sub :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.decomp_sub" class="id"><a name="SetRing.decomp_sub" class="" title="decomp_sub :
 forall [d : measure_display] {T : semiRingOfSetsType d}
   [A : set (SetRing.type T)] [X : set T],
-X \in SetRing.decomp A -> (X `<=` A)%classic
+X \in decomp A -> (X `<=` A)%classic
 
-SetRing.decomp_sub is not universe polymorphic
+decomp_sub is not universe polymorphic
 Expanded type for implicit arguments
-SetRing.decomp_sub :
+decomp_sub :
 forall [d : measure_display] {T : semiRingOfSetsType d}
   [A : set (SetRing.type T)] [X : set T],
-X \in SetRing.decomp A -> forall [t : T], X t -> A t
+X \in decomp A -> forall [t : T], X t -> A t
 
-Arguments SetRing.decomp_sub [d]%measure_display_scope 
-  {T} [A X]%classical_set_scope _ [t] _
-SetRing.decomp_sub is opaque
+Arguments decomp_sub [d]%measure_display_scope {T} 
+  [A X]%classical_set_scope _ [t] _
+decomp_sub is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.decomp_sub
 Declared in
@@ -2587,13 +2581,13 @@ library mathcomp.analysis.measure_theory.measure_function, line 826, characters 
 <span class="gallina-kwd">by</span><span class="id"> case:</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.boolp.html#cid">cid</a></span><span class="id"> =&gt;</span><span class="id"> //=</span><span class="id"> D</span><span class="id"> [_</span><span class="id"> _</span><span class="id"> _</span><span class="id"> _</span><span class="id"> -&gt;]</span><span class="id"> /</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssreflect.html#a4185b2be48be717d1ed9bd3d9ed6b28">[!</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#inE">inE</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssreflect.html#a4185b2be48be717d1ed9bd3d9ed6b28">]</a></span><span class="id"> XD;</span><span class="id"> apply:</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#bigcup_sup">bigcup_sup</a></span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.decomp_set0" class="id"><a name="SetRing.decomp_set0" class="" title="SetRing.decomp_set0 :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.decomp_set0" class="id"><a name="SetRing.decomp_set0" class="" title="decomp_set0 :
 forall [d : measure_display] {T : semiRingOfSetsType d},
-SetRing.decomp set0 = [set set0]%classic
+decomp set0 = [set set0]%classic
 
-SetRing.decomp_set0 is not universe polymorphic
-Arguments SetRing.decomp_set0 [d]%measure_display_scope {T}
-SetRing.decomp_set0 is opaque
+decomp_set0 is not universe polymorphic
+Arguments decomp_set0 [d]%measure_display_scope {T}
+decomp_set0 is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.decomp_set0
 Declared in
@@ -2604,15 +2598,14 @@ library mathcomp.analysis.measure_theory.measure_function, line 833, characters 
 <div class="proofscript">
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> /</span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#SetRing.decomp">decomp</a></span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.eqtype#eqxx">eqxx</a></span>. Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.decompN0" class="id"><a name="SetRing.decompN0" class="" title="SetRing.decompN0 :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.decompN0" class="id"><a name="SetRing.decompN0" class="" title="decompN0 :
 forall [d : measure_display] {T : semiRingOfSetsType d}
   (A : set (SetRing.type T)),
-SetRing.decomp A != set0
+decomp A != set0
 
-SetRing.decompN0 is not universe polymorphic
-Arguments SetRing.decompN0 [d]%measure_display_scope 
-  {T} A%classical_set_scope
-SetRing.decompN0 is opaque
+decompN0 is not universe polymorphic
+Arguments decompN0 [d]%measure_display_scope {T} A%classical_set_scope
+decompN0 is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.decompN0
 Declared in
@@ -2647,7 +2640,7 @@ library mathcomp.analysis.measure_theory.measure_function, line 844, characters 
 <span class="vernacular">Local</span><span class="vernacular"> Notation</span><span class="id"> </span><span id="SetRing.Rmu" class="id"><a name="SetRing.Rmu" class="">Rmu</a></span><span class="id"> :=</span> (<span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#SetRing.measure">measure</a></span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#SetRing.SetRing.content.mu">mu</a></span>).<br/>
 <span class="vernacular">Arguments</span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measurable_structure.html#big_trivIset">big_trivIset</a></span><span class="id"> {I</span><span class="id"> D</span><span class="id"> T</span><span class="id"> R</span><span class="id"> idx</span><span class="id"> op}</span><span class="id"> A</span><span class="id"> F</span>.<br/>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.Rmu_fin_bigcup" class="id"><a name="SetRing.Rmu_fin_bigcup" class="" title="SetRing.Rmu_fin_bigcup :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.Rmu_fin_bigcup" class="id"><a name="SetRing.Rmu_fin_bigcup" class="" title="Rmu_fin_bigcup :
 forall [d : measure_display] {T : semiRingOfSetsType d} 
   {R : realFieldType} (mu : {content set T -> \bar R}%R) 
   [I : choiceType] [D : set I] [F : I -> set T],
@@ -2657,11 +2650,11 @@ trivIset (T:=T) D F ->
 SetRing.measure (R:=R) mu (\bigcup_(i in D) F i) =
 (\sum_(i \in D) mu (F i))%R
 
-SetRing.Rmu_fin_bigcup is not universe polymorphic
-Arguments SetRing.Rmu_fin_bigcup [d]%measure_display_scope 
+Rmu_fin_bigcup is not universe polymorphic
+Arguments Rmu_fin_bigcup [d]%measure_display_scope 
   {T R} mu [I] [D]%classical_set_scope [F]%function_scope 
   _ _ _%function_scope
-SetRing.Rmu_fin_bigcup is opaque
+Rmu_fin_bigcup is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.Rmu_fin_bigcup
 Declared in
@@ -2694,16 +2687,15 @@ library mathcomp.analysis.measure_theory.measure_function, line 852, characters 
 <span class="id">-</span><span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> X</span><span class="id"> /=</span><span class="id"> XE;</span><span class="id"> apply:</span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measurable_structure.html#measurableI">measurableI</a></span><span class="id">;</span><span class="id"> [apply:</span><span class="id"> Em;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#inE">inE</a></span><span class="id"> |</span><span class="id"> exact:</span><span class="id"> Fm]</span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.RmuE" class="id"><a name="SetRing.RmuE" class="" title="SetRing.RmuE :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.RmuE" class="id"><a name="SetRing.RmuE" class="" title="RmuE :
 forall [d : measure_display] {T : semiRingOfSetsType d} 
   {R : realFieldType} (mu : {content set T -> \bar R}%R) 
   [A : set T],
 d.-measurable%classic A -> SetRing.measure (R:=R) mu A = mu A
 
-SetRing.RmuE is not universe polymorphic
-Arguments SetRing.RmuE [d]%measure_display_scope {T R} 
-  mu [A]%classical_set_scope _
-SetRing.RmuE is opaque
+RmuE is not universe polymorphic
+Arguments RmuE [d]%measure_display_scope {T R} mu [A]%classical_set_scope _
+RmuE is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.RmuE
 Declared in
@@ -2724,16 +2716,15 @@ Qed.</div></details>
 <span class="gallina-kwd">by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.measure_theory.measure_function.html#SetRing.Rmu_fin_bigcup">Rmu_fin_bigcup</a></span><span class="id">//</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#fsbig_set0">fsbig_set0</a></span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.Rmu_ge0" class="id"><a name="SetRing.Rmu_ge0" class="" title="SetRing.Rmu_ge0 :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.Rmu_ge0" class="id"><a name="SetRing.Rmu_ge0" class="" title="Rmu_ge0 :
 forall [d : measure_display] {T : semiRingOfSetsType d} 
   {R : realFieldType} (mu : {content set T -> \bar R}%R)
   (A : set (SetRing.type T)),
 (0%R <= SetRing.measure (R:=R) mu A)%E
 
-SetRing.Rmu_ge0 is not universe polymorphic
-Arguments SetRing.Rmu_ge0 [d]%measure_display_scope 
-  {T R} mu A%classical_set_scope
-SetRing.Rmu_ge0 is opaque
+Rmu_ge0 is not universe polymorphic
+Arguments Rmu_ge0 [d]%measure_display_scope {T R} mu A%classical_set_scope
+Rmu_ge0 is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.Rmu_ge0
 Declared in
@@ -2744,35 +2735,32 @@ library mathcomp.analysis.measure_theory.measure_function, line 890, characters 
 <div class="proofscript">
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.reals.constructive_ereal.html#sume_ge0">sume_ge0</a></span>. Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.Rmu_additive" class="id"><a name="SetRing.Rmu_additive" class="" title="SetRing.Rmu_additive :
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="SetRing.Rmu_additive" class="id"><a name="SetRing.Rmu_additive" class="" title="Rmu_additive :
 forall [d : measure_display] {T : semiRingOfSetsType d} 
   {R : realFieldType} (mu : {content set T -> \bar R}%R),
 measure_function.semi_additive (R:=R)
-  (T:=SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets
-        (d:=d))
+  (T:=SetRing_type__canonical__measurable_structure_SemiRingOfSets (d:=d))
   (SetRing.measure (R:=R) mu)
 
-SetRing.Rmu_additive is not universe polymorphic
+Rmu_additive is not universe polymorphic
 Expanded type for implicit arguments
-SetRing.Rmu_additive :
+Rmu_additive :
 forall [d : measure_display] {T : semiRingOfSetsType d} 
   {R : realFieldType} (mu : {content set T -> \bar R}%R)
   [F : nat ->
        set
-         (SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets
-            (d:=d))]
+         (SetRing_type__canonical__measurable_structure_SemiRingOfSets (d:=d))]
   [n : nat],
 (forall k : nat, (d.-ring).-measurable%classic (F k)) ->
 trivIset
-  (T:=SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets
-        (d:=d))
+  (T:=SetRing_type__canonical__measurable_structure_SemiRingOfSets (d:=d))
   [set: nat] F ->
 (d.-ring).-measurable%classic (\big[setU/set0]_(k < n) F k) ->
 SetRing.measure (R:=R) mu (\big[setU/set0]_(i < n) F i) =
 (\sum_(i < n) SetRing.measure (R:=R) mu (F i))%R
 
-Arguments SetRing.Rmu_additive [d]%measure_display_scope {T R} mu [F n] _ _ _
-SetRing.Rmu_additive is opaque
+Arguments Rmu_additive [d]%measure_display_scope {T R} mu [F n] _ _ _
+Rmu_additive is opaque
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.Rmu_additive
 Declared in
@@ -2795,87 +2783,87 @@ library mathcomp.analysis.measure_theory.measure_function, line 893, characters 
 <span class="id">-</span><span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> X</span><span class="id"> /</span><span class="id"><a href="mathcomp.classical.classical_sets.html#set_mem">set_mem</a></span><span class="id"> [|]</span><span class="id"> /</span><span class="id"><a href="mathcomp.classical.classical_sets.html#mem_set">mem_set</a></span><span class="id"> ?;</span><span class="id"> [exact:</span><span class="id"> Am|exact:</span><span class="id"> Bm]</span>.<br/>
 Qed.</div></details>
 <br/>
-<span id="SetRing.SetRing_measure__canonical__measure_function_Content" class="id"><span id="SetRing.HB_unnamed_factory_53" class="id"><a name="SetRing.SetRing_measure__canonical__measure_function_Content" class="" title="SetRing.SetRing_measure__canonical__measure_function_Content :
+<span id="SetRing.SetRing_measure__canonical__measure_function_Content" class="id"><span id="SetRing.HB_unnamed_factory_53" class="id"><a name="SetRing.SetRing_measure__canonical__measure_function_Content" class="" title="SetRing_measure__canonical__measure_function_Content :
 forall [d : measure_display] {T : semiRingOfSetsType d} {R : realFieldType},
 {content set T -> \bar R}%R ->
-{content set SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets
+{content set SetRing_type__canonical__measurable_structure_SemiRingOfSets
                (d:=d) -> \bar R}%R
 
-SetRing.SetRing_measure__canonical__measure_function_Content is not universe polymorphic
-Arguments SetRing.SetRing_measure__canonical__measure_function_Content
+SetRing_measure__canonical__measure_function_Content is not universe polymorphic
+Arguments SetRing_measure__canonical__measure_function_Content
   [d]%measure_display_scope {T R} mu
-SetRing.SetRing_measure__canonical__measure_function_Content is transparent
+SetRing_measure__canonical__measure_function_Content is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_measure__canonical__measure_function_Content
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 909, characters 0-85
 ">#[export]</a></span></span><br/>
-<span id="SetRing.SetRing_measure__canonical__measure_function_Content" class="id"><span id="SetRing.HB_unnamed_factory_53" class="id"><a name="SetRing.SetRing_measure__canonical__measure_function_Content" class="" title="SetRing.SetRing_measure__canonical__measure_function_Content :
+<span id="SetRing.SetRing_measure__canonical__measure_function_Content" class="id"><span id="SetRing.HB_unnamed_factory_53" class="id"><a name="SetRing.SetRing_measure__canonical__measure_function_Content" class="" title="SetRing_measure__canonical__measure_function_Content :
 forall [d : measure_display] {T : semiRingOfSetsType d} {R : realFieldType},
 {content set T -> \bar R}%R ->
-{content set SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets
+{content set SetRing_type__canonical__measurable_structure_SemiRingOfSets
                (d:=d) -> \bar R}%R
 
-SetRing.SetRing_measure__canonical__measure_function_Content is not universe polymorphic
-Arguments SetRing.SetRing_measure__canonical__measure_function_Content
+SetRing_measure__canonical__measure_function_Content is not universe polymorphic
+Arguments SetRing_measure__canonical__measure_function_Content
   [d]%measure_display_scope {T R} mu
-SetRing.SetRing_measure__canonical__measure_function_Content is transparent
+SetRing_measure__canonical__measure_function_Content is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_measure__canonical__measure_function_Content
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 909, characters 0-85
-">HB</a></span></span>.<span id="SetRing.SetRing_measure__canonical__measure_function_Content" class="id"><span id="SetRing.HB_unnamed_factory_53" class="id"><a name="SetRing.SetRing_measure__canonical__measure_function_Content" class="" title="SetRing.SetRing_measure__canonical__measure_function_Content :
+">HB</a></span></span>.<span id="SetRing.SetRing_measure__canonical__measure_function_Content" class="id"><span id="SetRing.HB_unnamed_factory_53" class="id"><a name="SetRing.SetRing_measure__canonical__measure_function_Content" class="" title="SetRing_measure__canonical__measure_function_Content :
 forall [d : measure_display] {T : semiRingOfSetsType d} {R : realFieldType},
 {content set T -> \bar R}%R ->
-{content set SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets
+{content set SetRing_type__canonical__measurable_structure_SemiRingOfSets
                (d:=d) -> \bar R}%R
 
-SetRing.SetRing_measure__canonical__measure_function_Content is not universe polymorphic
-Arguments SetRing.SetRing_measure__canonical__measure_function_Content
+SetRing_measure__canonical__measure_function_Content is not universe polymorphic
+Arguments SetRing_measure__canonical__measure_function_Content
   [d]%measure_display_scope {T R} mu
-SetRing.SetRing_measure__canonical__measure_function_Content is transparent
+SetRing_measure__canonical__measure_function_Content is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_measure__canonical__measure_function_Content
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 909, characters 0-85
-">instance</a></span></span><span class="vernacular"> Definition</span><span id="SetRing.SetRing_measure__canonical__measure_function_Content" class="id"><span id="SetRing.HB_unnamed_factory_53" class="id"><a name="SetRing.SetRing_measure__canonical__measure_function_Content" class="" title="SetRing.SetRing_measure__canonical__measure_function_Content :
+">instance</a></span></span><span class="vernacular"> Definition</span><span id="SetRing.SetRing_measure__canonical__measure_function_Content" class="id"><span id="SetRing.HB_unnamed_factory_53" class="id"><a name="SetRing.SetRing_measure__canonical__measure_function_Content" class="" title="SetRing_measure__canonical__measure_function_Content :
 forall [d : measure_display] {T : semiRingOfSetsType d} {R : realFieldType},
 {content set T -> \bar R}%R ->
-{content set SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets
+{content set SetRing_type__canonical__measurable_structure_SemiRingOfSets
                (d:=d) -> \bar R}%R
 
-SetRing.SetRing_measure__canonical__measure_function_Content is not universe polymorphic
-Arguments SetRing.SetRing_measure__canonical__measure_function_Content
+SetRing_measure__canonical__measure_function_Content is not universe polymorphic
+Arguments SetRing_measure__canonical__measure_function_Content
   [d]%measure_display_scope {T R} mu
-SetRing.SetRing_measure__canonical__measure_function_Content is transparent
+SetRing_measure__canonical__measure_function_Content is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_measure__canonical__measure_function_Content
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 909, characters 0-85
-"> _</a></span></span><span id="SetRing.SetRing_measure__canonical__measure_function_Content" class="id"><span id="SetRing.HB_unnamed_factory_53" class="id"><a name="SetRing.SetRing_measure__canonical__measure_function_Content" class="" title="SetRing.SetRing_measure__canonical__measure_function_Content :
+"> _</a></span></span><span id="SetRing.SetRing_measure__canonical__measure_function_Content" class="id"><span id="SetRing.HB_unnamed_factory_53" class="id"><a name="SetRing.SetRing_measure__canonical__measure_function_Content" class="" title="SetRing_measure__canonical__measure_function_Content :
 forall [d : measure_display] {T : semiRingOfSetsType d} {R : realFieldType},
 {content set T -> \bar R}%R ->
-{content set SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets
+{content set SetRing_type__canonical__measurable_structure_SemiRingOfSets
                (d:=d) -> \bar R}%R
 
-SetRing.SetRing_measure__canonical__measure_function_Content is not universe polymorphic
-Arguments SetRing.SetRing_measure__canonical__measure_function_Content
+SetRing_measure__canonical__measure_function_Content is not universe polymorphic
+Arguments SetRing_measure__canonical__measure_function_Content
   [d]%measure_display_scope {T R} mu
-SetRing.SetRing_measure__canonical__measure_function_Content is transparent
+SetRing_measure__canonical__measure_function_Content is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_measure__canonical__measure_function_Content
 Declared in
 library mathcomp.analysis.measure_theory.measure_function, line 909, characters 0-85
-"> :=</a></span></span><span id="SetRing.SetRing_measure__canonical__measure_function_Content" class="id"><span id="SetRing.HB_unnamed_factory_53" class="id"><a name="SetRing.SetRing_measure__canonical__measure_function_Content" class="" title="SetRing.SetRing_measure__canonical__measure_function_Content :
+"> :=</a></span></span><span id="SetRing.SetRing_measure__canonical__measure_function_Content" class="id"><span id="SetRing.HB_unnamed_factory_53" class="id"><a name="SetRing.SetRing_measure__canonical__measure_function_Content" class="" title="SetRing_measure__canonical__measure_function_Content :
 forall [d : measure_display] {T : semiRingOfSetsType d} {R : realFieldType},
 {content set T -> \bar R}%R ->
-{content set SetRing.SetRing_type__canonical__measurable_structure_SemiRingOfSets
+{content set SetRing_type__canonical__measurable_structure_SemiRingOfSets
                (d:=d) -> \bar R}%R
 
-SetRing.SetRing_measure__canonical__measure_function_Content is not universe polymorphic
-Arguments SetRing.SetRing_measure__canonical__measure_function_Content
+SetRing_measure__canonical__measure_function_Content is not universe polymorphic
+Arguments SetRing_measure__canonical__measure_function_Content
   [d]%measure_display_scope {T R} mu
-SetRing.SetRing_measure__canonical__measure_function_Content is transparent
+SetRing_measure__canonical__measure_function_Content is transparent
 Expands to: Constant
             mathcomp.analysis.measure_theory.measure_function.SetRing.SetRing_measure__canonical__measure_function_Content
 Declared in
@@ -3098,7 +3086,7 @@ trivIset (T:=T) [set: nat] F ->
 d.-measurable%classic (\bigcup_n F n) ->
 forall
   [t : set constructive_ereal_extended__canonical__Algebra_BaseAddUMagma],
-nbhs (mu (\bigcup_n F n)%classic) t ->
+filter.nbhs (mu (\bigcup_n F n)%classic) t ->
 exists2 i : nat,
   [set: nat]%classic i &
   ((fun N : nat => [set n | N <= n]) i
@@ -3243,7 +3231,7 @@ trivIset
 (d.-ring).-measurable%classic (\bigcup_n F n) ->
 forall
   [t : set constructive_ereal_extended__canonical__Algebra_BaseAddUMagma],
-nbhs (measure (R:=R) mu (\bigcup_n F n)) t ->
+filter.nbhs (measure (R:=R) mu (\bigcup_n F n)) t ->
 exists2 i : nat,
   [set: nat]%classic i &
   ((fun N : nat => [set n | N <= n]) i
@@ -3283,7 +3271,7 @@ trivIset (T:=T) [set: nat] F ->
 d.-measurable%classic (\bigcup_n F n) ->
 forall
   [t : set constructive_ereal_extended__canonical__Algebra_BaseAddUMagma],
-nbhs (mu (\bigcup_n F n)%classic) t ->
+filter.nbhs (mu (\bigcup_n F n)%classic) t ->
 exists2 i : nat,
   [set: nat]%classic i &
   ((fun N : nat => [set n | N <= n]) i
@@ -6008,7 +5996,7 @@ forall [d : measure_display] [T : ringOfSetsType d]
   [A B : set T],
 d.-measurable%classic A ->
 d.-measurable%classic B ->
-mu A = (mu (A `\` B)%classic + mu (A `&` B)%classic)%E
+mu A = (mu (A `\` B)%classic + mu (A `&` B)%classic)%R
 
 measureDI is not universe polymorphic
 Arguments measureDI [d]%measure_display_scope [T R] 
@@ -6063,7 +6051,7 @@ forall [d : measure_display] [T : ringOfSetsType d]
   [R : realFieldType] (mu : {content set T -> \bar R}%R) 
   [A B : set T],
 d.-measurable%classic A ->
-d.-measurable%classic B -> (mu (A `|` B)%classic <= mu A + mu B)%E
+d.-measurable%classic B -> (mu (A `|` B)%classic <= (mu A + mu B)%R)%E
 
 measureU2 is not universe polymorphic
 Arguments measureU2 [d]%measure_display_scope [T R] 
@@ -6099,7 +6087,7 @@ forall [d : measure_display] [T : ringOfSetsType d]
 d.-measurable%classic A ->
 d.-measurable%classic B ->
 (mu B < +oo)%E ->
-mu (A `|` B)%classic = (mu A + mu B - mu (A `&` B)%classic)%E
+mu (A `|` B)%classic = ((mu A + mu B)%R - mu (A `&` B)%classic)%E
 
 measureUfinr is not universe polymorphic
 Arguments measureUfinr [d]%measure_display_scope [T R mu]
@@ -6128,7 +6116,7 @@ forall [d : measure_display] [T : ringOfSetsType d]
 d.-measurable%classic A ->
 d.-measurable%classic B ->
 (mu A < +oo)%E ->
-mu (A `|` B)%classic = (mu A + mu B - mu (A `&` B)%classic)%E
+mu (A `|` B)%classic = ((mu A + mu B)%R - mu (A `&` B)%classic)%E
 
 measureUfinl is not universe polymorphic
 Arguments measureUfinl [d]%measure_display_scope [T R mu]
@@ -6239,7 +6227,9 @@ forall [d : measure_display] [T : ringOfSetsType d]
 (forall i : nat, d.-measurable%classic (F i)) ->
 d.-measurable%classic (\bigcup_n F n) ->
 {homo F : n m / n <= m >-> (n <= m)%O} ->
-((mu \o F) x @[x --> \oo] --> mu (\bigcup_n F n))%classic
+filter.cvg_to
+  (filter.nbhs (filter.fmap (mu \o F) (filter.nbhs filter.eventually)))
+  (filter.nbhs (mu (\bigcup_n F n)%classic))
 
 nondecreasing_cvg_mu is not universe polymorphic
 Expanded type for implicit arguments
@@ -6251,7 +6241,7 @@ forall [d : measure_display] [T : ringOfSetsType d]
 d.-measurable%classic (\bigcup_n F n) ->
 {homo F : n m / n <= m >-> (n <= m)%O} ->
 forall [t : set \bar R],
-nbhs (mu (\bigcup_n F n)%classic) t ->
+filter.nbhs (mu (\bigcup_n F n)%classic) t ->
 exists2 i : nat,
   [set: nat]%classic i &
   ((fun N : nat => [set n | N <= n]) i `<=` (mu \o F) @^-1` t)%classic
@@ -6296,7 +6286,9 @@ forall [d : measure_display] [T : algebraOfSetsType d]
 (forall i : nat, d.-measurable%classic (F i)) ->
 d.-measurable%classic (\bigcap_n F n) ->
 {homo F : n m / n <= m >-> (m <= n)%O} ->
-((mu \o F) x @[x --> \oo] --> mu (\bigcap_n F n))%classic
+filter.cvg_to
+  (filter.nbhs (filter.fmap (mu \o F) (filter.nbhs filter.eventually)))
+  (filter.nbhs (mu (\bigcap_n F n)%classic))
 
 nonincreasing_cvg_mu is not universe polymorphic
 Expanded type for implicit arguments
@@ -6309,7 +6301,7 @@ forall [d : measure_display] [T : algebraOfSetsType d]
 d.-measurable%classic (\bigcap_n F n) ->
 {homo F : n m / n <= m >-> (m <= n)%O} ->
 forall [t : set \bar R],
-nbhs (mu (\bigcap_n F n)%classic) t ->
+filter.nbhs (mu (\bigcap_n F n)%classic) t ->
 exists2 i : nat,
   [set: nat]%classic i &
   ((fun N : nat => [set n | N <= n]) i `<=` (mu \o F) @^-1` t)%classic
@@ -6470,8 +6462,12 @@ forall {d : measure_display} {T : measurableType d}
   (F : (set T) ^nat),
 (forall k : nat, d.-measurable%classic (F k)) ->
 (mu (\bigcup_(k in [set k | (0 <= k)%N]) F k)%classic < +oo)%E ->
-(mu (\bigcup_(k in [set k | n <= k]) F k) @[n --> \oo] --> 
- mu (lim_sup_set F))%classic
+filter.cvg_to
+  (filter.nbhs
+     (filter.fmap
+        (fun n : nat => mu (\bigcup_(k in [set k | n <= k]) F k)%classic)
+        (filter.nbhs filter.eventually)))
+  (filter.nbhs (mu (lim_sup_set F)))
 
 lim_sup_set_cvg is not universe polymorphic
 Arguments lim_sup_set_cvg {d}%measure_display_scope 

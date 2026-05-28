@@ -2123,10 +2123,11 @@ Declared in library mathcomp.reals_stdlib.Rstruct, line 535, characters 6-15
 <span class="gallina-kwd">by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.reals_stdlib.Rstruct.html#RplusE">RplusE</a></span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#big_nat_recr">big_nat_recr</a></span><span class="id">//=</span><span class="id"> ih</span>.<br/>
 Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="factE" class="id"><a name="factE" class="" title="factE : forall n : nat, n`! = match n with
-                              | 0 => 1
-                              | n'.+1 => n * n'`!
-                              end
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="factE" class="id"><a name="factE" class="" title="factE :
+forall n : nat, n`! = match n with
+                      | 0%N => 1%N
+                      | n'.+1 => (n * n'`!)%N
+                      end
 
 factE is not universe polymorphic
 Arguments factE n%nat_scope

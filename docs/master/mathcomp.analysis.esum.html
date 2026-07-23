@@ -1270,11 +1270,7 @@ forall [R : realType] [P : pred nat] [f : (\bar R) ^nat],
 (forall i : nat, P i -> (0%R <= f i)%E) ->
 summable (T:=Datatypes_nat__canonical__choice_Choice) (R:=R)
   (fun x : Datatypes_nat__canonical__choice_Choice => P x) f ->
-filter.cvg_to
-  (filter.nbhs
-     (filter.fmap (fun n : nat => (\sum_(0 <= k < n | P k) fine (f k))%R)
-        (filter.nbhs filter.eventually)))
-  (filter.nbhs (\big[+%R/0%R]_(0 <= k <oo | P k) fine (f k)))
+cvgn (fun n : nat => (\sum_(0 <= k < n | P k) fine (f k))%R)
 
 summable_cvg is not universe polymorphic
 Expanded type for implicit arguments
@@ -1284,7 +1280,7 @@ forall [R : realType] [P : pred nat] [f : (\bar R) ^nat],
 summable (T:=Datatypes_nat__canonical__choice_Choice) (R:=R)
   (fun x : Datatypes_nat__canonical__choice_Choice => P x) f ->
 forall [t : set R],
-filter.nbhs (\big[+%R/0%R]_(0 <= k <oo | P k) fine (f k)) t ->
+nbhs (\big[+%R/0%R]_(0 <= k <oo | P k) fine (f k)) t ->
 exists2 i : nat,
   [set: nat]%classic i &
   ((fun N : nat => [set n | N <= n]) i

@@ -4427,7 +4427,7 @@ library mathcomp.classical.classical_sets, line 1256, characters 6-9
 <div class="proofscript">
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.boolp.html#predeqE">predeqE</a></span>. Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="II1" class="id"><a name="II1" class="" title="II1 : `I_1 = [set 0%N]%classic
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="II1" class="id"><a name="II1" class="" title="II1 : `I_1 = [set 0]%classic
 
 II1 is not universe polymorphic
 II1 is opaque
@@ -4440,7 +4440,7 @@ library mathcomp.classical.classical_sets, line 1258, characters 6-9
 <div class="proofscript">
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.boolp.html#predeqE">predeqE</a></span><span class="id">;</span><span class="id"> case</span>. Qed.</div></details>
 <br/>
-<span class="vernacular">Lemma</span><span class="id"> </span><span id="IIn_eq0" class="id"><a name="IIn_eq0" class="" title="IIn_eq0 : forall [n : nat], `I_n = classical_sets.set0 -> n = 0%N
+<span class="vernacular">Lemma</span><span class="id"> </span><span id="IIn_eq0" class="id"><a name="IIn_eq0" class="" title="IIn_eq0 : forall [n : nat], `I_n = classical_sets.set0 -> n = 0
 
 IIn_eq0 is not universe polymorphic
 Arguments IIn_eq0 [n]%nat_scope _
@@ -8117,7 +8117,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="bigcup_recl" class="id"><a name="bigcup_recl" class="" title="bigcup_recl :
 forall [T : Type] (F : nat -> set T),
-(\bigcup_n F n)%classic = (F 0%N `|` \bigcup_(n in ~` `I_1) F n)%classic
+(\bigcup_n F n)%classic = (F 0 `|` \bigcup_(n in ~` `I_1) F n)%classic
 
 bigcup_recl is not universe polymorphic
 Arguments bigcup_recl [T]%type_scope F%function_scope
@@ -8744,7 +8744,7 @@ library mathcomp.classical.classical_sets, line 2300, characters 6-21
 forall {T : Type} (n : nat) (F : nat -> set T),
 (\bigcup_i F i)%classic =
 (\big[classical_sets.setU/classical_sets.set0]_(i < n) F i
- `|` \bigcup_i F (n + i)%N)%classic
+ `|` \bigcup_i F (n + i))%classic
 
 bigcup_splitn is not universe polymorphic
 Arguments bigcup_splitn {T}%type_scope n%nat_scope F%function_scope
@@ -8766,7 +8766,7 @@ Qed.</div></details>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="bigcap_splitn" class="id"><a name="bigcap_splitn" class="" title="bigcap_splitn :
 forall {T : Type} (n : nat) (F : nat -> set T),
 (\bigcap_i F i)%classic =
-(\big[classical_sets.setI/[set: T]]_(i < n) F i `&` \bigcap_i F (n + i)%N)%classic
+(\big[classical_sets.setI/[set: T]]_(i < n) F i `&` \bigcap_i F (n + i))%classic
 
 bigcap_splitn is not universe polymorphic
 Arguments bigcap_splitn {T}%type_scope n%nat_scope F%function_scope
@@ -8906,8 +8906,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="bigcup_addn" class="id"><a name="bigcup_addn" class="" title="bigcup_addn :
 forall {T : Type} (F : nat -> set T) (n : nat),
-(\bigcup_i F (n + i)%N)%classic =
-(\bigcup_(i in [set i | n <= i]) F i)%classic
+(\bigcup_i F (n + i))%classic = (\bigcup_(i in [set i | n <= i]) F i)%classic
 
 bigcup_addn is not universe polymorphic
 Arguments bigcup_addn {T}%type_scope F%function_scope n%nat_scope
@@ -8926,8 +8925,7 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="bigcap_addn" class="id"><a name="bigcap_addn" class="" title="bigcap_addn :
 forall {T : Type} (F : nat -> set T) (n : nat),
-(\bigcap_i F (n + i)%N)%classic =
-(\bigcap_(i in [set i | n <= i]) F i)%classic
+(\bigcap_i F (n + i))%classic = (\bigcap_(i in [set i | n <= i]) F i)%classic
 
 bigcap_addn is not universe polymorphic
 Arguments bigcap_addn {T}%type_scope F%function_scope n%nat_scope

@@ -255,7 +255,8 @@ This files contains lemmas about sets and intervals.
 <span class="vernacular">Variables</span> (<span id="set_itv_porderType.disp" class="id"><a name="set_itv_porderType.disp" class="">disp</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.preorder#Order.disp_t">Order</a></span>.<span class="id"><a href="NOTFOUND the module url for mathcomp.order.preorder#Order.disp_t">disp_t</a></span>) (<span id="set_itv_porderType.T" class="id"><a name="set_itv_porderType.T" class="">T</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrder.Exports.porderType">porderType</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#disp:2">disp</a></span>).<br/>
 <span class="vernacular">Implicit</span><span class="id"> Types</span> (<span class="id">i</span><span class="id"> j</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#interval">interval</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_porderType.T">T</a></span>) (<span class="id">x</span><span class="id"> y</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_porderType.T">T</a></span>) (<span class="id">a</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#itv_bound">itv_bound</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_porderType.T">T</a></span>).<br/>
 <br/>
-<span class="vernacular">Definition</span><span class="id"> </span><span id="neitv" class="id"><a name="neitv" class="" title="neitv : forall {disp : disp_t} {T : porderType disp}, interval T -> bool
+<span class="vernacular">Definition</span><span class="id"> </span><span id="neitv" class="id"><a name="neitv" class="" title="neitv :
+forall {disp : Order.disp_t} {T : porderType disp}, interval T -> bool
 
 neitv is not universe polymorphic
 Arguments neitv {disp T} i
@@ -266,7 +267,7 @@ library mathcomp.classical.set_interval, line 47, characters 11-16
 ">neitv</a></span><span class="id"> </span><span id="i:5" class="id"><a name="i:5" class="">i</a></span><span class="id"> :=</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#fd1315670760bbd104fd4b87ca2730c7">[set`</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#fd1315670760bbd104fd4b87ca2730c7"> </a></span><span class="id"><a href="mathcomp.classical.set_interval.html#i:5">i</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#fd1315670760bbd104fd4b87ca2730c7">]</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.eqtype#c385a484ee9d1b4e0615924561a9b75e"> !=</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.eqtype#c385a484ee9d1b4e0615924561a9b75e"> </a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#set0">set0</a></span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="neitv_lt_bnd" class="id"><a name="neitv_lt_bnd" class="" title="neitv_lt_bnd :
-forall [disp : disp_t] [T : porderType disp] [i : interval T],
+forall [disp : Order.disp_t] [T : porderType disp] [i : interval T],
 neitv i -> (i.1 < i.2)%O
 
 neitv_lt_bnd is not universe polymorphic
@@ -283,7 +284,7 @@ Declared in library mathcomp.classical.set_interval, line 49, characters 6-18
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvP" class="id"><a name="set_itvP" class="" title="set_itvP :
-forall [disp : disp_t] [T : porderType disp] (i j : interval T),
+forall [disp : Order.disp_t] [T : porderType disp] (i j : interval T),
 [set` i]%classic = [set` j]%classic <-> i =i j
 
 set_itvP is not universe polymorphic
@@ -300,7 +301,7 @@ Declared in library mathcomp.classical.set_interval, line 55, characters 6-14
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="subset_itvP" class="id"><a name="subset_itvP" class="" title="subset_itvP :
-forall [disp : disp_t] [T : porderType disp] (i j : interval T),
+forall [disp : Order.disp_t] [T : porderType disp] (i j : interval T),
 {subset i <= j} <-> ([set` i] `<=` [set` j])%classic
 
 subset_itvP is not universe polymorphic
@@ -315,16 +316,16 @@ Declared in library mathcomp.classical.set_interval, line 61, characters 6-17
 <span class="gallina-kwd"> by</span><span class="id"> []</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="in1_subset_itv" class="id"><a name="in1_subset_itv" class="" title="in1_subset_itv :
-forall [disp : disp_t] [T : porderType disp] [P : T -> Prop]
-  [i j : interval T],
+forall [disp : Order.disp_t] [T : porderType disp] 
+  [P : T -> Prop] [i j : interval T],
 ([set` j] `<=` [set` i])%classic ->
 {in i, forall x : T, P x} -> {in j, forall x : T, P x}
 
 in1_subset_itv is not universe polymorphic
 Expanded type for implicit arguments
 in1_subset_itv :
-forall [disp : disp_t] [T : porderType disp] [P : T -> Prop]
-  [i j : interval T],
+forall [disp : Order.disp_t] [T : porderType disp] 
+  [P : T -> Prop] [i j : interval T],
 ([set` j] `<=` [set` i])%classic ->
 {in i, forall x : T, P x} -> forall [x : T], x \in j -> P x
 
@@ -340,7 +341,8 @@ Declared in library mathcomp.classical.set_interval, line 64, characters 6-20
 <span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> /</span><span class="id"><a href="mathcomp.classical.set_interval.html#subset_itvP">subset_itvP</a></span><span class="id"> ji</span><span class="id"> iP</span><span class="id"> z</span><span class="id"> zB;</span><span class="id"> apply:</span><span class="id"> iP;</span><span class="id"> exact:</span><span class="id"> ji</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="subset_itvW" class="id"><a name="subset_itvW" class="" title="subset_itvW :
-forall [disp : disp_t] [T : porderType disp] [x y z u : T] (b0 b1 : bool),
+forall [disp : Order.disp_t] [T : porderType disp] 
+  [x y z u : T] (b0 b1 : bool),
 (x <= y)%O ->
 (z <= u)%O ->
 (`]y, z[ `<=` [set` Interval (BSide b0 x) (BSide b1 u)])%classic
@@ -348,7 +350,8 @@ forall [disp : disp_t] [T : porderType disp] [x y z u : T] (b0 b1 : bool),
 subset_itvW is not universe polymorphic
 Expanded type for implicit arguments
 subset_itvW :
-forall [disp : disp_t] [T : porderType disp] [x y z u : T] (b0 b1 : bool),
+forall [disp : Order.disp_t] [T : porderType disp] 
+  [x y z u : T] (b0 b1 : bool),
 (x <= y)%O ->
 (z <= u)%O ->
 forall [t : T],
@@ -372,13 +375,13 @@ Declared in library mathcomp.classical.set_interval, line 68, characters 6-17
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="subset_itvl" class="id"><a name="subset_itvl" class="" title="subset_itvl :
-forall [disp : disp_t] [T : porderType disp] [a b c : itv_bound T],
+forall [disp : Order.disp_t] [T : porderType disp] [a b c : itv_bound T],
 (b <= c)%O -> ([set` Interval a b] `<=` [set` Interval a c])%classic
 
 subset_itvl is not universe polymorphic
 Expanded type for implicit arguments
 subset_itvl :
-forall [disp : disp_t] [T : porderType disp] [a b c : itv_bound T],
+forall [disp : Order.disp_t] [T : porderType disp] [a b c : itv_bound T],
 (b <= c)%O ->
 forall [t : T], [set` Interval a b]%classic t -> (t \in Interval a c) = true
 
@@ -394,13 +397,13 @@ Declared in library mathcomp.classical.set_interval, line 79, characters 6-17
 <span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> /</span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#subitvPr">subitvPr</a></span><span class="id"> /</span><span class="id"><a href="mathcomp.classical.classical_sets.html#subsetP">subsetP</a></span><span class="id"> h;</span><span class="id"> apply/</span><span class="id"><a href="mathcomp.classical.classical_sets.html#subsetP">subsetP</a></span><span class="id"> =&gt;</span><span class="id"> x</span><span class="id"> /h</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="subset_itvr" class="id"><a name="subset_itvr" class="" title="subset_itvr :
-forall [disp : disp_t] [T : porderType disp] [a b c : itv_bound T],
+forall [disp : Order.disp_t] [T : porderType disp] [a b c : itv_bound T],
 (c <= a)%O -> ([set` Interval a b] `<=` [set` Interval c b])%classic
 
 subset_itvr is not universe polymorphic
 Expanded type for implicit arguments
 subset_itvr :
-forall [disp : disp_t] [T : porderType disp] [a b c : itv_bound T],
+forall [disp : Order.disp_t] [T : porderType disp] [a b c : itv_bound T],
 (c <= a)%O ->
 forall [t : T], [set` Interval a b]%classic t -> (t \in Interval c b) = true
 
@@ -416,13 +419,13 @@ Declared in library mathcomp.classical.set_interval, line 83, characters 6-17
 <span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> /</span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#subitvPl">subitvPl</a></span><span class="id"> /</span><span class="id"><a href="mathcomp.classical.classical_sets.html#subsetP">subsetP</a></span><span class="id"> h;</span><span class="id"> apply/</span><span class="id"><a href="mathcomp.classical.classical_sets.html#subsetP">subsetP</a></span><span class="id"> =&gt;</span><span class="id"> x</span><span class="id"> /h</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="subset_itv" class="id"><a name="subset_itv" class="" title="subset_itv :
-forall [disp : disp_t] [T : porderType disp] [x y z u : itv_bound T],
+forall [disp : Order.disp_t] [T : porderType disp] [x y z u : itv_bound T],
 (x <= y)%O -> (z <= u)%O -> {subset Interval y z <= Interval x u}
 
 subset_itv is not universe polymorphic
 Expanded type for implicit arguments
 subset_itv :
-forall [disp : disp_t] [T : porderType disp] [x y z u : itv_bound T],
+forall [disp : Order.disp_t] [T : porderType disp] [x y z u : itv_bound T],
 (x <= y)%O ->
 (z <= u)%O ->
 forall [x0 : T], x0 \in Interval y z -> (x0 \in Interval x u) = true
@@ -439,14 +442,16 @@ Declared in library mathcomp.algebra.interval, line 330, characters 6-16
 <span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> ac</span><span class="id"> bd;</span><span class="id"> apply/</span>(<span class="id"><a href="mathcomp.classical.classical_sets.html#subset_trans">subset_trans</a></span> (<span class="id"><a href="mathcomp.classical.set_interval.html#subset_itvl">subset_itvl</a></span><span class="id"> _</span>))<span class="id">/</span><span class="id"><a href="mathcomp.classical.set_interval.html#subset_itvr">subset_itvr</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="subset_itvScc" class="id"><a name="subset_itvScc" class="" title="subset_itvScc :
-forall [disp : disp_t] [T : porderType disp] [a b : itv_bound T] [c e : T],
+forall [disp : Order.disp_t] [T : porderType disp] 
+  [a b : itv_bound T] [c e : T],
 (BLeft c <= a)%O ->
 (b <= BRight e)%O -> ([set` Interval a b] `<=` `[c, e])%classic
 
 subset_itvScc is not universe polymorphic
 Expanded type for implicit arguments
 subset_itvScc :
-forall [disp : disp_t] [T : porderType disp] [a b : itv_bound T] [c e : T],
+forall [disp : Order.disp_t] [T : porderType disp] 
+  [a b : itv_bound T] [c e : T],
 (BLeft c <= a)%O ->
 (b <= BRight e)%O ->
 forall [t : T], [set` Interval a b]%classic t -> (t \in `[c, e]%R) = true
@@ -474,14 +479,16 @@ Declared in library mathcomp.classical.set_interval, line 91, characters 6-19
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="subset_itvSoo" class="id"><a name="subset_itvSoo" class="" title="subset_itvSoo :
-forall [disp : disp_t] [T : porderType disp] [a b : itv_bound T] [c e : T],
+forall [disp : Order.disp_t] [T : porderType disp] 
+  [a b : itv_bound T] [c e : T],
 (BLeft c < a)%O ->
 (b < BRight e)%O -> ([set` Interval a b] `<=` `]c, e[)%classic
 
 subset_itvSoo is not universe polymorphic
 Expanded type for implicit arguments
 subset_itvSoo :
-forall [disp : disp_t] [T : porderType disp] [a b : itv_bound T] [c e : T],
+forall [disp : Order.disp_t] [T : porderType disp] 
+  [a b : itv_bound T] [c e : T],
 (BLeft c < a)%O ->
 (b < BRight e)%O ->
 forall [t : T], [set` Interval a b]%classic t -> (t \in `]c, e[%R) = true
@@ -510,7 +517,7 @@ library mathcomp.classical.set_interval, line 107, characters 6-19
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvoo" class="id"><a name="set_itvoo" class="" title="set_itvoo :
-forall [disp : disp_t] [T : porderType disp] (x y : T),
+forall [disp : Order.disp_t] [T : porderType disp] (x y : T),
 `]x, y[%classic = [set z | (x < z < y)%O]%classic
 
 set_itvoo is not universe polymorphic
@@ -526,7 +533,7 @@ library mathcomp.classical.set_interval, line 123, characters 6-15
 <span class="gallina-kwd"> by</span><span class="id"> []</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvco" class="id"><a name="set_itvco" class="" title="set_itvco :
-forall [disp : disp_t] [T : porderType disp] (x y : T),
+forall [disp : Order.disp_t] [T : porderType disp] (x y : T),
 `[x, y[%classic = [set z | (x <= z < y)%O]%classic
 
 set_itvco is not universe polymorphic
@@ -542,7 +549,7 @@ library mathcomp.classical.set_interval, line 126, characters 6-15
 <span class="gallina-kwd"> by</span><span class="id"> []</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvcc" class="id"><a name="set_itvcc" class="" title="set_itvcc :
-forall [disp : disp_t] [T : porderType disp] (x y : T),
+forall [disp : Order.disp_t] [T : porderType disp] (x y : T),
 `[x, y]%classic = [set z | (x <= z <= y)%O]%classic
 
 set_itvcc is not universe polymorphic
@@ -558,7 +565,7 @@ library mathcomp.classical.set_interval, line 129, characters 6-15
 <span class="gallina-kwd"> by</span><span class="id"> []</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvoc" class="id"><a name="set_itvoc" class="" title="set_itvoc :
-forall [disp : disp_t] [T : porderType disp] (x y : T),
+forall [disp : Order.disp_t] [T : porderType disp] (x y : T),
 `]x, y]%classic = [set z | (x < z <= y)%O]%classic
 
 set_itvoc is not universe polymorphic
@@ -574,7 +581,7 @@ library mathcomp.classical.set_interval, line 132, characters 6-15
 <span class="gallina-kwd"> by</span><span class="id"> []</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itv1" class="id"><a name="set_itv1" class="" title="set_itv1 :
-forall [disp : disp_t] [T : porderType disp] (x : T),
+forall [disp : Order.disp_t] [T : porderType disp] (x : T),
 `[x, x]%classic = [set x]%classic
 
 set_itv1 is not universe polymorphic
@@ -590,7 +597,8 @@ library mathcomp.classical.set_interval, line 135, characters 6-14
 <span class="gallina-kwd"> by</span><span class="id"> apply/</span><span class="id"><a href="mathcomp.classical.classical_sets.html#seteqP">seteqP</a></span><span class="id">;</span><span class="id"> split=&gt;</span><span class="id"> y</span><span class="id"> /=;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#itvxx">itvxx</a></span><span class="id"> ?</span><span class="id"><a href="mathcomp.classical.classical_sets.html#inE">inE</a></span> (<span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#rwP">rwP</a></span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.eqtype#eqP">eqP</a></span>). Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvoo0" class="id"><a name="set_itvoo0" class="" title="set_itvoo0 :
-forall [disp : disp_t] [T : porderType disp] (x : T), `]x, x[%classic = set0
+forall [disp : Order.disp_t] [T : porderType disp] (x : T),
+`]x, x[%classic = set0
 
 set_itvoo0 is not universe polymorphic
 Arguments set_itvoo0 [disp T] x
@@ -605,7 +613,8 @@ library mathcomp.classical.set_interval, line 138, characters 6-16
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> -</span><span class="id"><a href="mathcomp.classical.classical_sets.html#subset0">subset0</a></span><span class="id"> =&gt;</span><span class="id"> y</span><span class="id"> /=;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#itv_ge">itv_ge</a></span><span class="id">//=</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#bnd_simp">bnd_simp</a></span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.ltxx">ltxx</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvoc0" class="id"><a name="set_itvoc0" class="" title="set_itvoc0 :
-forall [disp : disp_t] [T : porderType disp] (x : T), `]x, x]%classic = set0
+forall [disp : Order.disp_t] [T : porderType disp] (x : T),
+`]x, x]%classic = set0
 
 set_itvoc0 is not universe polymorphic
 Arguments set_itvoc0 [disp T] x
@@ -620,7 +629,8 @@ library mathcomp.classical.set_interval, line 141, characters 6-16
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> -</span><span class="id"><a href="mathcomp.classical.classical_sets.html#subset0">subset0</a></span><span class="id"> =&gt;</span><span class="id"> y</span><span class="id"> /=;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#itv_ge">itv_ge</a></span><span class="id">//=</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#bnd_simp">bnd_simp</a></span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.ltxx">ltxx</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvco0" class="id"><a name="set_itvco0" class="" title="set_itvco0 :
-forall [disp : disp_t] [T : porderType disp] (x : T), `[x, x[%classic = set0
+forall [disp : Order.disp_t] [T : porderType disp] (x : T),
+`[x, x[%classic = set0
 
 set_itvco0 is not universe polymorphic
 Arguments set_itvco0 [disp T] x
@@ -635,7 +645,7 @@ library mathcomp.classical.set_interval, line 144, characters 6-16
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> -</span><span class="id"><a href="mathcomp.classical.classical_sets.html#subset0">subset0</a></span><span class="id"> =&gt;</span><span class="id"> y</span><span class="id"> /=;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#itv_ge">itv_ge</a></span><span class="id">//=</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#bnd_simp">bnd_simp</a></span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.ltxx">ltxx</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvNyy" class="id"><a name="set_itvNyy" class="" title="set_itvNyy :
-forall [disp : disp_t] (T : porderType disp),
+forall [disp : Order.disp_t] (T : porderType disp),
 `]-oo, +oo[%classic = [set: T]%classic
 
 set_itvNyy is not universe polymorphic
@@ -651,7 +661,7 @@ library mathcomp.classical.set_interval, line 147, characters 6-16
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.boolp.html#predeqE">predeqE</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvoy" class="id"><a name="set_itvoy" class="" title="set_itvoy :
-forall [disp : disp_t] [T : porderType disp] (x : T),
+forall [disp : Order.disp_t] [T : porderType disp] (x : T),
 `]x, +oo[%classic = [set z | (x < z)%O]%classic
 
 set_itvoy is not universe polymorphic
@@ -667,7 +677,7 @@ library mathcomp.classical.set_interval, line 150, characters 6-15
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.boolp.html#predeqE">predeqE</a></span><span class="id"> =&gt;</span><span class="id"> r</span><span class="id"> /=;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#in_itv">in_itv</a></span><span class="id"> </span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#andbT">andbT</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvcy" class="id"><a name="set_itvcy" class="" title="set_itvcy :
-forall [disp : disp_t] [T : porderType disp] (x : T),
+forall [disp : Order.disp_t] [T : porderType disp] (x : T),
 `[x, +oo[%classic = [set z | (x <= z)%O]%classic
 
 set_itvcy is not universe polymorphic
@@ -683,7 +693,7 @@ library mathcomp.classical.set_interval, line 153, characters 6-15
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.boolp.html#predeqE">predeqE</a></span><span class="id"> /</span><span class="id"><a href="mathcomp.classical.classical_sets.html#mkset">mkset</a></span><span class="id"> =&gt;</span><span class="id"> r;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#in_itv">in_itv</a></span><span class="id"> </span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#andbT">andbT</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvNyo" class="id"><a name="set_itvNyo" class="" title="set_itvNyo :
-forall [disp : disp_t] [T : porderType disp] (x : T),
+forall [disp : Order.disp_t] [T : porderType disp] (x : T),
 `]-oo, x[%classic = [set z | (z < x)%O]%classic
 
 set_itvNyo is not universe polymorphic
@@ -699,7 +709,7 @@ library mathcomp.classical.set_interval, line 156, characters 6-16
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.boolp.html#predeqE">predeqE</a></span><span class="id"> /</span><span class="id"><a href="mathcomp.classical.classical_sets.html#mkset">mkset</a></span><span class="id"> =&gt;</span><span class="id"> r;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#in_itv">in_itv</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvNyc" class="id"><a name="set_itvNyc" class="" title="set_itvNyc :
-forall [disp : disp_t] [T : porderType disp] (x : T),
+forall [disp : Order.disp_t] [T : porderType disp] (x : T),
 `]-oo, x]%classic = [set z | (z <= x)%O]%classic
 
 set_itvNyc is not universe polymorphic
@@ -715,7 +725,7 @@ library mathcomp.classical.set_interval, line 159, characters 6-16
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.boolp.html#predeqE">predeqE</a></span><span class="id"> /</span><span class="id"><a href="mathcomp.classical.classical_sets.html#mkset">mkset</a></span><span class="id"> =&gt;</span><span class="id"> r;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#in_itv">in_itv</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itv_ybnd" class="id"><a name="set_itv_ybnd" class="" title="set_itv_ybnd :
-forall [disp : disp_t] [T : porderType disp] (a : itv_bound T),
+forall [disp : Order.disp_t] [T : porderType disp] (a : itv_bound T),
 [set` Interval +oo%O a]%classic = set0
 
 set_itv_ybnd is not universe polymorphic
@@ -731,7 +741,7 @@ library mathcomp.classical.set_interval, line 162, characters 6-18
 <span class="gallina-kwd"> by</span><span class="id"> apply/</span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.eqtype#eqP">eqP</a></span><span class="id">/</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#negPn">negPn</a></span><span class="id">/</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#negP">negP</a></span><span class="id"> =&gt;</span><span class="id"> /</span><span class="id"><a href="mathcomp.classical.set_interval.html#neitv_lt_bnd">neitv_lt_bnd</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itv_bndNy" class="id"><a name="set_itv_bndNy" class="" title="set_itv_bndNy :
-forall [disp : disp_t] [T : porderType disp] (a : itv_bound T),
+forall [disp : Order.disp_t] [T : porderType disp] (a : itv_bound T),
 [set` Interval a -oo%O]%classic = set0
 
 set_itv_bndNy is not universe polymorphic
@@ -747,7 +757,7 @@ library mathcomp.classical.set_interval, line 165, characters 6-19
 <span class="gallina-kwd"> by</span><span class="id"> apply/</span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.eqtype#eqP">eqP</a></span><span class="id">/</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#negPn">negPn</a></span><span class="id">/</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#negP">negP</a></span><span class="id"> =&gt;</span><span class="id"> /</span><span class="id"><a href="mathcomp.classical.set_interval.html#neitv_lt_bnd">neitv_lt_bnd</a></span><span class="id"> /=;</span><span class="id"> case:</span><span class="id"> a</span><span class="id"> =&gt;</span><span class="id"> [[]a|[]]</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Definition</span><span class="id"> </span><span id="set_itv_infty_set0" class="id"><a name="set_itv_infty_set0" class="" title="set_itv_infty_set0 :
-forall [disp : disp_t] (T : porderType disp),
+forall [disp : Order.disp_t] (T : porderType disp),
 (forall a : itv_bound T, [set` Interval a -oo%O]%classic = set0) *
 (forall a : itv_bound T, [set` Interval +oo%O a]%classic = set0)
 
@@ -760,7 +770,7 @@ library mathcomp.classical.set_interval, line 168, characters 11-29
 ">set_itv_infty_set0</a></span><span class="id"> :=</span> (<span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_bndNy">set_itv_bndNy</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079">,</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"> </a></span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_ybnd">set_itv_ybnd</a></span>).<br/>
 <br/>
 <span class="vernacular">Definition</span><span class="id"> </span><span id="set_itvE" class="id"><a name="set_itvE" class="" title="set_itvE :
-forall [disp : disp_t] (T : porderType disp),
+forall [disp : Order.disp_t] (T : porderType disp),
 (forall x : T, `[x, x]%classic = [set x]%classic) *
 (forall x : T, `]x, x[%classic = set0) *
 (forall x : T, `]x, x]%classic = set0) *
@@ -788,7 +798,7 @@ library mathcomp.classical.set_interval, line 170, characters 11-19
 &nbsp;&nbsp;<span class="id"><a href="mathcomp.classical.set_interval.html#set_itvcy">set_itvcy</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079">,</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"> </a></span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itvNyo">set_itvNyo</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079">,</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"> </a></span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itvNyc">set_itvNyc</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079">,</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"> </a></span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_infty_set0">set_itv_infty_set0</a></span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvxx" class="id"><a name="set_itvxx" class="" title="set_itvxx :
-forall [disp : disp_t] [T : porderType disp] (a : itv_bound T),
+forall [disp : Order.disp_t] [T : porderType disp] (a : itv_bound T),
 [set` Interval a a]%classic = set0
 
 set_itvxx is not universe polymorphic
@@ -804,7 +814,7 @@ library mathcomp.classical.set_interval, line 174, characters 6-15
 <span class="gallina-kwd"> by</span><span class="id"> move:</span><span class="id"> a</span><span class="id"> =&gt;</span><span class="id"> [[|]</span><span class="id"> a</span><span class="id"> |[|]];</span><span class="id"> rewrite</span><span class="id"> !</span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itvE">set_itvE</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="setUitv1" class="id"><a name="setUitv1" class="" title="setUitv1 :
-forall [disp : disp_t] [T : porderType disp] [a : itv_bound T] [x : T],
+forall [disp : Order.disp_t] [T : porderType disp] [a : itv_bound T] [x : T],
 (a <= BLeft x)%O ->
 ([set` Interval a (BLeft x)] `|` [set x])%classic =
 [set` Interval a (BRight x)]%classic
@@ -825,7 +835,7 @@ library mathcomp.classical.set_interval, line 177, characters 6-14
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="setU1itv" class="id"><a name="setU1itv" class="" title="setU1itv :
-forall [disp : disp_t] [T : porderType disp] [a : itv_bound T] [x : T],
+forall [disp : Order.disp_t] [T : porderType disp] [a : itv_bound T] [x : T],
 (BRight x <= a)%O ->
 (x |` [set` Interval (BRight x) a])%classic =
 [set` Interval (BLeft x) a]%classic
@@ -846,7 +856,7 @@ library mathcomp.classical.set_interval, line 184, characters 6-14
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="setDitv1r" class="id"><a name="setDitv1r" class="" title="setDitv1r :
-forall [disp : disp_t] [T : porderType disp] (a : itv_bound T) (x : T),
+forall [disp : Order.disp_t] [T : porderType disp] (a : itv_bound T) (x : T),
 ([set` Interval a (BRight x)] `\ x)%classic =
 [set` Interval a (BLeft x)]%classic
 
@@ -867,7 +877,7 @@ library mathcomp.classical.set_interval, line 191, characters 6-15
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="setDitv1l" class="id"><a name="setDitv1l" class="" title="setDitv1l :
-forall [disp : disp_t] [T : porderType disp] (a : itv_bound T) (x : T),
+forall [disp : Order.disp_t] [T : porderType disp] (a : itv_bound T) (x : T),
 ([set` Interval (BLeft x) a] `\ x)%classic =
 [set` Interval (BRight x) a]%classic
 
@@ -915,7 +925,7 @@ Qed.</div></details>
 <span class="vernacular">Implicit</span><span class="id"> Types</span><span class="id"> a</span><span class="id"> b</span><span class="id"> x</span><span class="id"> y</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#itv_bound">itv_bound</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_orderType.T">T</a></span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="itv_bndbnd_setU" class="id"><a name="itv_bndbnd_setU" class="" title="itv_bndbnd_setU :
-forall [d : disp_t] [T : orderType d] [a x y : itv_bound T],
+forall [d : Order.disp_t] [T : orderType d] [a x y : itv_bound T],
 (a <= x)%O ->
 (x <= y)%O ->
 [set` Interval a y]%classic =
@@ -987,7 +997,7 @@ library mathcomp.classical.set_interval, line 234, characters 6-21
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itv_splitU" class="id"><a name="set_itv_splitU" class="" title="set_itv_splitU :
-forall [d : disp_t] [T : orderType d] [a b : itv_bound T] [c : T],
+forall [d : Order.disp_t] [T : orderType d] [a b : itv_bound T] [c : T],
 c \in Interval a b ->
 ([set` Interval a b] `\ c)%classic =
 ([set` Interval a (BLeft c)] `|` [set` Interval (BRight c) b])%classic
@@ -1023,7 +1033,7 @@ Qed.</div></details>
 <span class="vernacular">End</span><span class="id"> set_itv_orderType</span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itv_ge" class="id"><a name="set_itv_ge" class="" title="set_itv_ge :
-forall [disp : disp_t] [T : porderType disp] [b1 b2 : itv_bound T],
+forall [disp : Order.disp_t] [T : porderType disp] [b1 b2 : itv_bound T],
 ~~ (b1 < b2)%O -> [set` Interval b1 b2]%classic = set0
 
 set_itv_ge is not universe polymorphic
@@ -1044,7 +1054,7 @@ library mathcomp.classical.set_interval, line 313, characters 6-16
 <span class="vernacular">Implicit</span><span class="id"> Types</span> (<span class="id">i</span><span class="id"> j</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#interval">interval</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_latticeType.T">T</a></span>) (<span class="id">x</span><span class="id"> y</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_latticeType.T">T</a></span>) (<span class="id">a</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#itv_bound">itv_bound</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_latticeType.T">T</a></span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itvI" class="id"><a name="set_itvI" class="" title="set_itvI :
-forall [d : disp_t] [T : latticeType d] (i j : interval T),
+forall [d : Order.disp_t] [T : latticeType d] (i j : interval T),
 [set` (i `&` j)%O]%classic = ([set` i] `&` [set` j])%classic
 
 set_itvI is not universe polymorphic
@@ -1495,7 +1505,7 @@ Qed.</div></details>
 <span class="vernacular">Implicit</span><span class="id"> Types</span> (<span class="id">a</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#itv_bound">itv_bound</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_porderType.T">T</a></span>) (<span class="id">x</span><span class="id"> y</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_porderType.T">T</a></span>) (<span class="id">i</span><span class="id"> j</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#interval">interval</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_porderType.T">T</a></span>) (<span class="id">b</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#bool">bool</a></span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itv_splitI" class="id"><a name="set_itv_splitI" class="" title="set_itv_splitI :
-forall [d : disp_t] [T : porderType d] (i : interval T),
+forall [d : Order.disp_t] [T : porderType d] (i : interval T),
 [set` i]%classic =
 ([set` Interval i.1 +oo%O] `&` [set` Interval -oo%O i.2])%classic
 
@@ -1520,7 +1530,7 @@ Qed.</div></details>
 <span class="vernacular">Implicit</span><span class="id"> Types</span> (<span class="id">a</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#itv_bound">itv_bound</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_orderType.T">T</a></span>) (<span class="id">x</span><span class="id"> y</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_orderType.T">T</a></span>) (<span class="id">i</span><span class="id"> j</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#interval">interval</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_orderType.T">T</a></span>) (<span class="id">b</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#bool">bool</a></span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="setCitvl" class="id"><a name="setCitvl" class="" title="setCitvl :
-forall [d : disp_t] [T : orderType d] (a : itv_bound T),
+forall [d : Order.disp_t] [T : orderType d] (a : itv_bound T),
 (~` [set` Interval -oo%O a])%classic = [set` Interval a +oo%O]%classic
 
 setCitvl is not universe polymorphic
@@ -1536,7 +1546,7 @@ library mathcomp.classical.set_interval, line 519, characters 6-14
 <span class="gallina-kwd"> by</span><span class="id"> apply/</span><span class="id"><a href="mathcomp.classical.boolp.html#predeqP">predeqP</a></span><span class="id"> =&gt;</span><span class="id"> y</span><span class="id"> /=;</span><span class="id"> rewrite</span><span class="id"> -</span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.interval.html#predC_itvl">predC_itvl</a></span> (<span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#rwP">rwP</a></span><span class="id"> </span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrbool.html#negP">negP</a></span>). Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="setCitvr" class="id"><a name="setCitvr" class="" title="setCitvr :
-forall [d : disp_t] [T : orderType d] (a : itv_bound T),
+forall [d : Order.disp_t] [T : orderType d] (a : itv_bound T),
 (~` [set` Interval a +oo%O])%classic = [set` Interval -oo%O a]%classic
 
 setCitvr is not universe polymorphic
@@ -1552,7 +1562,7 @@ library mathcomp.classical.set_interval, line 522, characters 6-14
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> -</span><span class="id"><a href="mathcomp.classical.set_interval.html#setCitvl">setCitvl</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#setCK">setCK</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="setCitv" class="id"><a name="setCitv" class="" title="setCitv :
-forall [d : disp_t] [T : orderType d] (i : interval T),
+forall [d : Order.disp_t] [T : orderType d] (i : interval T),
 (~` [set` i])%classic =
 ([set` Interval -oo%O i.1] `|` [set` Interval i.2 +oo%O])%classic
 
@@ -1571,7 +1581,7 @@ library mathcomp.classical.set_interval, line 525, characters 6-13
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_itv_splitD" class="id"><a name="set_itv_splitD" class="" title="set_itv_splitD :
-forall [d : disp_t] [T : orderType d] (i : interval T),
+forall [d : Order.disp_t] [T : orderType d] (i : interval T),
 [set` i]%classic =
 ([set` Interval i.1 +oo%O] `\` [set` Interval i.2 +oo%O])%classic
 
@@ -1589,7 +1599,7 @@ library mathcomp.classical.set_interval, line 531, characters 6-20
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#set_itv_splitI">set_itv_splitI</a></span><span class="id">/=</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#setDE">setDE</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#setCitvr">setCitvr</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="itv_setU_setT" class="id"><a name="itv_setU_setT" class="" title="itv_setU_setT :
-forall [d : disp_t] [T : orderType d] (b : bool) (x : T),
+forall [d : Order.disp_t] [T : orderType d] (b : bool) (x : T),
 ([set` Interval -oo%O (BSide b x)] `|` [set` Interval (BSide b x) +oo%O])%classic =
 [set: T]%classic
 
@@ -2498,7 +2508,8 @@ Qed.</div></details>
 <span class="vernacular">Section</span><span class="id"> disjoint_itv</span>.<br/>
 <span class="vernacular">Context</span><span class="id"> {</span><span id="disjoint_itv.disp" class="id"><a name="disjoint_itv.disp" class="">disp</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.preorder#Order.disp_t">Order</a></span>.<span class="id"><a href="NOTFOUND the module url for mathcomp.order.preorder#Order.disp_t">disp_t</a></span><span class="id">}</span><span class="id"> {</span><span id="disjoint_itv.T" class="id"><a name="disjoint_itv.T" class="">T</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrder.Exports.porderType">porderType</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#disp:306">disp</a></span><span class="id">}</span>.<br/>
 <br/>
-<span class="vernacular">Definition</span><span class="id"> </span><span id="disjoint_itv" class="id"><a name="disjoint_itv" class="" title="disjoint_itv : forall {disp : disp_t} {T : porderType disp}, rel (interval T)
+<span class="vernacular">Definition</span><span class="id"> </span><span id="disjoint_itv" class="id"><a name="disjoint_itv" class="" title="disjoint_itv :
+forall {disp : Order.disp_t} {T : porderType disp}, rel (interval T)
 
 disjoint_itv is not universe polymorphic
 Arguments disjoint_itv {disp T} _ _
@@ -2510,7 +2521,7 @@ library mathcomp.classical.set_interval, line 762, characters 11-23
 &nbsp;&nbsp;<span class="gallina-kwd">fun</span><span class="id"> </span><span id="a:308" class="id"><a name="a:308" class="">a</a></span><span class="id"> </span><span id="b:309" class="id"><a name="b:309" class="">b</a></span><span class="id"> =&gt;</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#4018333acbc7108eb3f9ccdb961a2cbb">[disjoint</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#4018333acbc7108eb3f9ccdb961a2cbb"> </a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#fd1315670760bbd104fd4b87ca2730c7">[set`</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#fd1315670760bbd104fd4b87ca2730c7"> </a></span><span class="id"><a href="mathcomp.classical.set_interval.html#a:308">a</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#fd1315670760bbd104fd4b87ca2730c7">]</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#4018333acbc7108eb3f9ccdb961a2cbb"> &amp;</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#4018333acbc7108eb3f9ccdb961a2cbb"> </a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#fd1315670760bbd104fd4b87ca2730c7">[set`</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#fd1315670760bbd104fd4b87ca2730c7"> </a></span><span class="id"><a href="mathcomp.classical.set_interval.html#b:309">b</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#fd1315670760bbd104fd4b87ca2730c7">]</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#4018333acbc7108eb3f9ccdb961a2cbb">]</a></span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="disjoint_itvxx" class="id"><a name="disjoint_itvxx" class="" title="disjoint_itvxx :
-forall {disp : disp_t} {T : porderType disp} [i : interval T],
+forall {disp : Order.disp_t} {T : porderType disp} [i : interval T],
 neitv i -> ~~ disjoint_itv i i
 
 disjoint_itvxx is not universe polymorphic
@@ -2526,7 +2537,7 @@ library mathcomp.classical.set_interval, line 765, characters 6-20
 <span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> i0;</span><span class="id"> rewrite</span><span class="id"> /</span><span class="id"><a href="mathcomp.classical.set_interval.html#disjoint_itv">disjoint_itv</a></span><span class="id">/=</span><span class="id"> /</span><span class="id"><a href="mathcomp.classical.classical_sets.html#disj_set">disj_set</a></span><span class="id"> /=</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#setIid">setIid</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="disjoint_rays" class="id"><a name="disjoint_rays" class="" title="disjoint_rays :
-forall {disp : disp_t} {T : porderType disp} (b : bool) (x : T),
+forall {disp : Order.disp_t} {T : porderType disp} (b : bool) (x : T),
 disjoint_itv (Interval -oo%O (BSide b x)) (Interval (BSide b x) +oo%O)
 
 disjoint_rays is not universe polymorphic
@@ -2548,7 +2559,7 @@ library mathcomp.classical.set_interval, line 768, characters 6-19
 <span class="vernacular">Context</span><span class="id"> {</span><span id="disjoint_itv_orderType.disp" class="id"><a name="disjoint_itv_orderType.disp" class="">disp</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.preorder#Order.disp_t">Order</a></span>.<span class="id"><a href="NOTFOUND the module url for mathcomp.order.preorder#Order.disp_t">disp_t</a></span><span class="id">}</span><span class="id"> {</span><span id="disjoint_itv_orderType.T" class="id"><a name="disjoint_itv_orderType.T" class="">T</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.Total.Exports.orderType">orderType</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#disp:313">disp</a></span><span class="id">}</span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="disjoint_neitv" class="id"><a name="disjoint_neitv" class="" title="disjoint_neitv :
-forall {disp : disp_t} {T : orderType disp} (i j : interval T),
+forall {disp : Order.disp_t} {T : orderType disp} (i j : interval T),
 disjoint_itv i j <-> ~~ neitv (itv_meet (T:=T) i j)
 
 disjoint_neitv is not universe polymorphic
@@ -2598,7 +2609,7 @@ Qed.</div></details>
 <span class="vernacular">Section</span><span class="id"> open_endpoints</span>.<br/>
 <span class="vernacular">Context</span><span class="id"> {</span><span id="open_endpoints.d" class="id"><a name="open_endpoints.d" class="">d</a></span><span class="id">}</span><span class="id"> {</span><span id="open_endpoints.T" class="id"><a name="open_endpoints.T" class="">T</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrder.Exports.porderType">porderType</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#d:322">d</a></span><span class="id">}</span>.<br/>
 <br/>
-<span class="vernacular">Definition</span><span class="id"> </span><span id="is_open_itv" class="id"><a name="is_open_itv" class="" title="is_open_itv : forall {d : disp_t} {T : porderType d}, set T -> Prop
+<span class="vernacular">Definition</span><span class="id"> </span><span id="is_open_itv" class="id"><a name="is_open_itv" class="" title="is_open_itv : forall {d : Order.disp_t} {T : porderType d}, set T -> Prop
 
 is_open_itv is not universe polymorphic
 Arguments is_open_itv {d T} A%classical_set_scope
@@ -2609,7 +2620,7 @@ library mathcomp.classical.set_interval, line 804, characters 11-22
 ">is_open_itv</a></span> (<span id="A:324" class="id"><a name="A:324" class="">A</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#set">set</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#open_endpoints.T">T</a></span>)<span class="id"> :=</span><span class="gallina-kwd"> exists</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54"> </a></span><span id="ab:325" class="id"><a name="ab:325" class="">ab</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54">,</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#a883bdd010993579f99d60b3775bcf54"> </a></span><span class="id"><a href="mathcomp.classical.set_interval.html#A:324">A</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"> =</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"> </a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#d9e9ffb4ad57ed1d8357ed0c1824cf0c">`]</a></span><span class="id"><a href="mathcomp.classical.set_interval.html#ab:325">ab</a></span>.<span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrfun.html#::pair_scope:x_'.1'">1</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#d9e9ffb4ad57ed1d8357ed0c1824cf0c">,</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#d9e9ffb4ad57ed1d8357ed0c1824cf0c"> </a></span><span class="id"><a href="mathcomp.classical.set_interval.html#ab:325">ab</a></span>.<span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrfun.html#::pair_scope:x_'.2'">2</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#d9e9ffb4ad57ed1d8357ed0c1824cf0c">[</a></span><span class="id">%classic</span>.<br/>
 <br/>
 <span class="vernacular">Definition</span><span class="id"> </span><span id="open_itv_cover" class="id"><a name="open_itv_cover" class="" title="open_itv_cover :
-forall {d : disp_t} {T : porderType d}, set T -> set (nat -> set T)
+forall {d : Order.disp_t} {T : porderType d}, set T -> set (nat -> set T)
 
 open_itv_cover is not universe polymorphic
 Arguments open_itv_cover {d T} A%classical_set_scope _
@@ -2620,7 +2631,7 @@ library mathcomp.classical.set_interval, line 806, characters 11-25
 ">open_itv_cover</a></span> (<span id="A:326" class="id"><a name="A:326" class="">A</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#set">set</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#open_endpoints.T">T</a></span>)<span class="id"> :=</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#b4e6034ee20673e7601398ff7b1b7d1b">[set</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#b4e6034ee20673e7601398ff7b1b7d1b"> </a></span><span id="F:327" class="id"><a name="F:327" class="">F</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#b4e6034ee20673e7601398ff7b1b7d1b"> :</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#b4e6034ee20673e7601398ff7b1b7d1b"> </a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#nat">nat</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"> -&gt;</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"> </a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#set">set</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#open_endpoints.T">T</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#b4e6034ee20673e7601398ff7b1b7d1b"> |</a></span><br/>
 &nbsp;&nbsp;(<span class="gallina-kwd">forall</span><span class="id"> </span><span id="i:328" class="id"><a name="i:328" class="">i</a></span><span class="id">,</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#is_open_itv">is_open_itv</a></span> (<span class="id"><a href="mathcomp.classical.set_interval.html#F:327">F</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#i:328">i</a></span>))<span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#ba2b0e492d2b4675a0acf3ea92aabadd"> /\</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#ba2b0e492d2b4675a0acf3ea92aabadd"> </a></span><span class="id"><a href="mathcomp.classical.set_interval.html#A:326">A</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#e19db46c1d4073266228fb7781521a56"> `&lt;=`</a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#e19db46c1d4073266228fb7781521a56"> </a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#4652af423267d4923a164c1104e1273f">\bigcup_</a></span><span id="k:329" class="id"><a name="k:329" class="">k</a></span> (<span class="id"><a href="mathcomp.classical.set_interval.html#F:327">F</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#k:329">k</a></span>)<span class="id"><a href="mathcomp.classical.classical_sets.html#b4e6034ee20673e7601398ff7b1b7d1b">]</a></span>.<br/>
 <br/>
-<span class="vernacular">Definition</span><span class="id"> </span><span id="itv_is_ray" class="id"><a name="itv_is_ray" class="" title="itv_is_ray : forall {d : disp_t} {T : porderType d}, interval T -> Prop
+<span class="vernacular">Definition</span><span class="id"> </span><span id="itv_is_ray" class="id"><a name="itv_is_ray" class="" title="itv_is_ray : forall {d : Order.disp_t} {T : porderType d}, interval T -> Prop
 
 itv_is_ray is not universe polymorphic
 Arguments itv_is_ray {d T} i
@@ -2636,7 +2647,8 @@ library mathcomp.classical.set_interval, line 809, characters 11-21
 &nbsp;&nbsp;<span class="id">|</span><span class="id"> _</span><span class="id"> =&gt;</span><span class="id"> </span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#False">False</a></span><br/>
 &nbsp;&nbsp;<span class="gallina-kwd">end</span>.<br/>
 <br/>
-<span class="vernacular">Definition</span><span class="id"> </span><span id="itv_is_bd_open" class="id"><a name="itv_is_bd_open" class="" title="itv_is_bd_open : forall {d : disp_t} {T : porderType d}, interval T -> Prop
+<span class="vernacular">Definition</span><span class="id"> </span><span id="itv_is_bd_open" class="id"><a name="itv_is_bd_open" class="" title="itv_is_bd_open :
+forall {d : Order.disp_t} {T : porderType d}, interval T -> Prop
 
 itv_is_bd_open is not universe polymorphic
 Arguments itv_is_bd_open {d T} i
@@ -2650,7 +2662,8 @@ library mathcomp.classical.set_interval, line 817, characters 11-25
 &nbsp;&nbsp;<span class="id">|</span><span class="id"> _</span><span class="id"> =&gt;</span><span class="id"> </span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#False">False</a></span><br/>
 &nbsp;&nbsp;<span class="gallina-kwd">end</span>.<br/>
 <br/>
-<span class="vernacular">Definition</span><span class="id"> </span><span id="itv_open_ends" class="id"><a name="itv_open_ends" class="" title="itv_open_ends : forall {d : disp_t} {T : porderType d}, interval T -> Prop
+<span class="vernacular">Definition</span><span class="id"> </span><span id="itv_open_ends" class="id"><a name="itv_open_ends" class="" title="itv_open_ends :
+forall {d : Order.disp_t} {T : porderType d}, interval T -> Prop
 
 itv_open_ends is not universe polymorphic
 Arguments itv_open_ends {d T} i
@@ -2662,7 +2675,8 @@ library mathcomp.classical.set_interval, line 823, characters 11-24
 &nbsp;&nbsp;<span class="id"><a href="mathcomp.classical.set_interval.html#itv_is_ray">itv_is_ray</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#i:334">i</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#f031fe1957c4a4a8e217aa46af2b4e25"> \/</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#f031fe1957c4a4a8e217aa46af2b4e25"> </a></span><span class="id"><a href="mathcomp.classical.set_interval.html#itv_is_bd_open">itv_is_bd_open</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.set_interval.html#i:334">i</a></span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="itv_open_ends_rside" class="id"><a name="itv_open_ends_rside" class="" title="itv_open_ends_rside :
-forall {d : disp_t} {T : porderType d} [l : itv_bound T] [b : bool] [t : T],
+forall {d : Order.disp_t} {T : porderType d} [l : itv_bound T] 
+  [b : bool] [t : T],
 itv_open_ends (Interval l (BSide b t)) -> b = true
 
 itv_open_ends_rside is not universe polymorphic
@@ -2679,7 +2693,7 @@ library mathcomp.classical.set_interval, line 826, characters 6-25
 <span class="gallina-kwd"> by</span><span class="id"> case:</span><span class="id"> b;</span><span class="id"> move:</span><span class="id"> l</span><span class="id"> =&gt;</span><span class="id"> [[]?|[]]</span><span class="id"> //</span><span class="id"> []</span><span class="id"> //</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="itv_open_ends_rinfty" class="id"><a name="itv_open_ends_rinfty" class="" title="itv_open_ends_rinfty :
-forall {d : disp_t} {T : porderType d} [l : itv_bound T] [b : bool],
+forall {d : Order.disp_t} {T : porderType d} [l : itv_bound T] [b : bool],
 itv_open_ends (Interval l (BInfty T b)) -> b = false
 
 itv_open_ends_rinfty is not universe polymorphic
@@ -2696,7 +2710,8 @@ library mathcomp.classical.set_interval, line 830, characters 6-26
 <span class="gallina-kwd"> by</span><span class="id"> case:</span><span class="id"> b</span><span class="id"> =&gt;</span><span class="id"> //;</span><span class="id"> move:</span><span class="id"> l</span><span class="id"> =&gt;</span><span class="id"> [[]?|[]]</span><span class="id"> //</span><span class="id"> []</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="itv_open_ends_lside" class="id"><a name="itv_open_ends_lside" class="" title="itv_open_ends_lside :
-forall {d : disp_t} {T : porderType d} [l : itv_bound T] [b : bool] [t : T],
+forall {d : Order.disp_t} {T : porderType d} [l : itv_bound T] 
+  [b : bool] [t : T],
 itv_open_ends (Interval (BSide b t) l) -> b = false
 
 itv_open_ends_lside is not universe polymorphic
@@ -2713,7 +2728,7 @@ library mathcomp.classical.set_interval, line 834, characters 6-25
 <span class="gallina-kwd"> by</span><span class="id"> case:</span><span class="id"> b;</span><span class="id"> move:</span><span class="id"> l</span><span class="id"> =&gt;</span><span class="id"> [[]?|[]]</span><span class="id"> //</span><span class="id"> []</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="itv_open_ends_linfty" class="id"><a name="itv_open_ends_linfty" class="" title="itv_open_ends_linfty :
-forall {d : disp_t} {T : porderType d} [l : itv_bound T] [b : bool],
+forall {d : Order.disp_t} {T : porderType d} [l : itv_bound T] [b : bool],
 itv_open_ends (Interval (BInfty T b) l) -> b = true
 
 itv_open_ends_linfty is not universe polymorphic
@@ -2730,7 +2745,7 @@ library mathcomp.classical.set_interval, line 838, characters 6-26
 <span class="gallina-kwd"> by</span><span class="id"> case:</span><span class="id"> b</span><span class="id"> =&gt;</span><span class="id"> //;</span><span class="id"> move:</span><span class="id"> l</span><span class="id"> =&gt;</span><span class="id"> [[]?|[]]</span><span class="id"> //</span><span class="id"> []</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="is_open_itv_itv_is_bd_openP" class="id"><a name="is_open_itv_itv_is_bd_openP" class="" title="is_open_itv_itv_is_bd_openP :
-forall {d : disp_t} {T : porderType d} [i : interval T],
+forall {d : Order.disp_t} {T : porderType d} [i : interval T],
 itv_is_bd_open i -> is_open_itv [set` i]
 
 is_open_itv_itv_is_bd_openP is not universe polymorphic
@@ -2751,7 +2766,7 @@ Qed.</div></details>
 <span class="vernacular">End</span><span class="id"> open_endpoints</span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="itv_open_endsI" class="id"><a name="itv_open_endsI" class="" title="itv_open_endsI :
-forall {d : disp_t} {T : orderType d} [i j : interval T],
+forall {d : Order.disp_t} {T : orderType d} [i j : interval T],
 itv_open_ends i -> itv_open_ends j -> itv_open_ends (i `&` j)%O
 
 itv_open_endsI is not universe polymorphic
@@ -2771,7 +2786,7 @@ library mathcomp.classical.set_interval, line 850, characters 6-20
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="itv_setU" class="id"><a name="itv_setU" class="" title="itv_setU :
-forall {d : disp_t} {T : orderType d} [i j : interval T],
+forall {d : Order.disp_t} {T : orderType d} [i j : interval T],
 ([set` i] `&` [set` j] !=set0)%classic ->
 [set` (i `|` j)%O]%classic = ([set` i] `|` [set` j])%classic
 
@@ -2805,7 +2820,7 @@ library mathcomp.classical.set_interval, line 858, characters 6-14
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="itv_setI" class="id"><a name="itv_setI" class="" title="itv_setI :
-forall {d : disp_t} {T : orderType d} (i j : interval T),
+forall {d : Order.disp_t} {T : orderType d} (i j : interval T),
 [set` (i `&` j)%O]%classic = ([set` i] `&` [set` j])%classic
 
 itv_setI is not universe polymorphic

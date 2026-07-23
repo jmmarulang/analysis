@@ -355,15 +355,14 @@ library mathcomp.classical.classical_orders, line 35, characters 11-22
 &nbsp;&nbsp;<span class="gallina-kwd">forall</span><span class="id"> </span><span id="m:11" class="id"><a name="m:11" class="">m</a></span><span class="id">,</span> (<span class="id"><a href="mathcomp.classical.classical_orders.html#m:11">m</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.preorder#Order.PreOSyntax.::order_scope:x_'&lt;'_x"> &lt;</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.preorder#Order.PreOSyntax.::order_scope:x_'&lt;'_x"> </a></span><span class="id"><a href="mathcomp.classical.classical_orders.html#n:7">n</a></span>)<span class="id">%O</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"> -&gt;</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#::type_scope:x_'-&gt;'_x"> </a></span><span class="id"><a href="mathcomp.classical.classical_orders.html#t1:9">t1</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_orders.html#m:11">m</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"> =</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Logic.html#6cd0f7b28b6092304087c7049437bb1a"> </a></span><span class="id"><a href="mathcomp.classical.classical_orders.html#t2:10">t2</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_orders.html#m:11">m</a></span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="same_prefix0" class="id"><a name="same_prefix0" class="" title="same_prefix0 :
-forall {K : nat -> eqType} (t1 t2 : forall n : nat, K n),
-same_prefix 0%N t1 t2
+forall {K : nat -> eqType} (t1 t2 : forall n : nat, K n), same_prefix 0 t1 t2
 
 same_prefix0 is not universe polymorphic
 Expanded type for implicit arguments
 same_prefix0 :
 forall {K : nat -> eqType} (t1 t2 : forall n : nat, K n)
   [m : NatOrder.Datatypes_nat__canonical__Order_Preorder],
-(m < 0%N)%O -> t1 m = t2 m
+(m < 0)%O -> t1 m = t2 m
 
 Arguments same_prefix0 {K}%function_scope (t1 t2)%function_scope [m] _
 same_prefix0 is opaque

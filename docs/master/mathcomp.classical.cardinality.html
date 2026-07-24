@@ -2783,7 +2783,9 @@ Qed.</div></details>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fset_set_II" class="id"><a name="fset_set_II" class="" title="fset_set_II :
 forall n : nat,
 fset_set (T:=Datatypes_nat__canonical__choice_Choice) `I_n =
-[fset \val i | i in 'I_n]%fset
+Imfset.imfset imfset_key (T:=fintype_ordinal__canonical__choice_SubChoice n)
+  (K:=Datatypes_nat__canonical__choice_Choice) [eta \val] 
+  (mem 'I_n)
 
 fset_set_II is not universe polymorphic
 Arguments fset_set_II n%nat_scope
@@ -2819,7 +2821,8 @@ Qed.</div></details>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fset_set_image" class="id"><a name="fset_set_image" class="" title="fset_set_image :
 forall {T U : choiceType} (f : T -> U) [A : set T],
 finite_set A ->
-fset_set (T:=U) [set f x | x in A] = (f @` fset_set (T:=T) A)%fset
+fset_set (T:=U) [set f x | x in A] =
+Imfset.imfset imfset_key (T:=T) (K:=U) f (mem (fset_set (T:=T) A))
 
 fset_set_image is not universe polymorphic
 Arguments fset_set_image {T U} f%function_scope [A]%classical_set_scope _
@@ -3836,7 +3839,8 @@ library mathcomp.classical.cardinality, line 1292, characters 6-16
 forall [T1 : Type] [T2 T3 : choiceType] (D : set T1) 
   (f : {fimfun T1 >-> T2}) (g : T2 -> T3),
 fset_set (T:=T3) [set (g \o f) x | x in D] =
-[fset g x | x in fset_set (T:=T2) [set f x | x in D]]%fset
+Imfset.imfset imfset_key (T:=T2) (K:=T3) [eta g]
+  (mem (fset_set (T:=T2) [set f x | x in D]))
 
 fset_set_comp is not universe polymorphic
 Arguments fset_set_comp [T1]%type_scope [T2 T3] D%classical_set_scope 

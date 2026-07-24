@@ -524,18 +524,38 @@ library mathcomp.classical.classical_sets, line 263, characters 6-13
  (forall K0 : choiceType,
   unit ->
   (forall (x : K0) (xs : seq K0) (a : K0),
-   (a \in [fset x0 in x :: xs]%fset) =
-   (a == x) || (a \in [fset x0 in xs]%fset)) *
-  (forall a : K0, (a \in [fset x in [::]]%fset) = false) *
+   (a
+      \in Imfset.imfset imfset_key (T:=K0) (K:=K0) 
+            (fun x0 : K0 => x0 : K0) (mem (x :: xs))) =
+   (a == x)
+   || (a
+         \in Imfset.imfset imfset_key (T:=K0) (K:=K0)
+               (fun x0 : K0 => x0 : K0) (mem xs))) *
+  (forall a : K0,
+   (a
+      \in Imfset.imfset imfset_key (T:=K0) (K:=K0) 
+            (fun x : K0 => x : K0) (mem [::])) =
+   false) *
   (forall (xs ys : seq K0) (a : K0),
-   (a \in [fset x in xs ++ ys]%fset) =
-   (a \in [fset x in xs]%fset) || (a \in [fset x in ys]%fset)) *
+   (a
+      \in Imfset.imfset imfset_key (T:=K0) (K:=K0) 
+            (fun x : K0 => x : K0) (mem (xs ++ ys))) =
+   (a
+      \in Imfset.imfset imfset_key (T:=K0) (K:=K0) 
+            (fun x : K0 => x : K0) (mem xs))
+   || (a
+         \in Imfset.imfset imfset_key (T:=K0) (K:=K0) 
+               (fun x : K0 => x : K0) (mem ys))) *
   (forall (p : finmempred K0) (k : K0),
-   (k \in imfset imfset_key id p) = in_mem k p)) *
+   (k \in Imfset.imfset imfset_key (T:=K0) (K:=K0) id p) = in_mem k p)) *
  (forall (key : unit) (K0 : choiceType) (A : {fset K0})
     (p : finmempred (finmap_fset_sub_type__canonical__choice_SubChoice A))
     (k : A),
-  (\val k \in imfset key \val p) = in_mem k p) *
+  (\val k
+     \in Imfset.imfset key
+           (T:=finmap_fset_sub_type__canonical__choice_SubChoice A) (K:=K0)
+           \val p) =
+  in_mem k p) *
  (forall x : K, (x \in fset0) = false) *
  (forall a' a : K, (a \in [fset a']%fset) = (a == a')) *
  (forall (A B : {fset K}) (a : K),
@@ -551,15 +571,15 @@ library mathcomp.classical.classical_sets, line 263, characters 6-13
  (forall (A : {fset K}) (b a : K),
   (a \in (A `\ b)%fset) = (a != b) && (a \in A))) *
 (forall (K V : choiceType) (f : {fmap K -> V}) (v : V),
- (v \in codomf (K:=K) (V:=V) f) = [exists x, f x == v]) *
+ (v \in codomf (V:=V) f) = [exists x, f x == v]) *
 (forall (K : choiceType) (V : Type) (f g : {fmap K -> V}) (k : K),
  (k \in domf (f + g)%fset) = (k \in f) || (k \in g)) *
 (forall (K : choiceType) (V : Type) (f : {fmap K -> V}) (k : K),
  (k \in f.[~ k]%fmap) = false) *
 (forall (K : choiceType) (V : Type) (f : {fmap K -> V}) (P : pred K) (k : K),
- (k \in domf (filterf (K:=K) (V:=V) f P)) = (k \in f) && P k) *
+ (k \in domf (filterf f P)) = (k \in f) && P k) *
 (forall (K : choiceType) (V : Type) (f : {fmap K -> option V}) (k : K),
- (k \in reducef (K:=K) (V:=V) f) = ojoin f.[? k]%fmap) *
+ (k \in reducef f) = ojoin f.[? k]%fmap) *
 (forall (K : choiceType) (V : Type) (f : {fmap K -> V}) 
    (A : {fset K}) (k : K),
  (k \in f.[& A]%fmap) = (k \in A) && (k \in f)) *
@@ -571,12 +591,12 @@ library mathcomp.classical.classical_sets, line 263, characters 6-13
 (forall (K : choiceType) (V : Type) (f : {fmap K -> V}) (k0 : K) (v0 : V),
  f.[k0 <- v0]%fmap =i predU1 k0 (mem (domf f))) *
 (forall (K : choiceType) (V : eqType) (default : K -> V) (x : K),
- (x \in finsupp [fsfun x : _ => [fmap]%fmap x]) = false)
+ (x \in FinSupp.fs [fsfun x : _ => [fmap]%fmap x]) = false)
 
 inE is not universe polymorphic
 inE is transparent
 Expands to: Constant mathcomp.finmap.finmap.inE
-Declared in library mathcomp.finmap.finmap, line 4198, characters 11-14
+Declared in library mathcomp.finmap.finmap, line 4177, characters 11-14
 ">inE</a></span><span class="id"> :=</span> (<span class="id"><a href="NOTFOUND the module url for mathcomp.finmap.finmap#inE">inE</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079">,</a></span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#e6756e10c36f149b18b4a8741ed83079"> </a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#in_setE">in_setE</a></span>).<br/>
 <br/>
 <span class="vernacular">Bind</span><span class="vernacular"> Scope</span><span class="id"> classical_set_scope</span><span class="gallina-kwd"> with</span><span class="id"> set</span>.<br/>
@@ -4770,7 +4790,8 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_fsetIr" class="id"><a name="set_fsetIr" class="" title="set_fsetIr :
 forall {T : choiceType} (P : {pred T}) (A : {fset T}),
-[set` [fset x | x in A & P x]%fset]%classic = ([set` A] `&` [set` P])%classic
+[set` Imfset.imfset imfset_key (T:=T) (K:=T) id (mem [pred x in A | P x])]%classic =
+([set` A] `&` [set` P])%classic
 
 set_fsetIr is not universe polymorphic
 Arguments set_fsetIr {T} P A
@@ -4859,7 +4880,8 @@ library mathcomp.classical.classical_sets, line 1384, characters 6-16
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="set_imfset" class="id"><a name="set_imfset" class="" title="set_imfset :
 forall {T : choiceType} (key : unit) [K : choiceType] 
   (f : T -> K) (p : finmempred T),
-[set` imfset key f p]%classic = [set f x | x in [set` p]]%classic
+[set` Imfset.imfset key (T:=T) (K:=K) f p]%classic =
+[set f x | x in [set` p]]%classic
 
 set_imfset is not universe polymorphic
 Arguments set_imfset {T} key [K] f%function_scope p
@@ -9823,64 +9845,58 @@ Expands to: Constant
 Declared in
 library mathcomp.classical.classical_sets, line 2473, characters 0-77
 "> choiceType</a></span></span></span>)<span class="id"> :=</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#Build">isPointed</a></span>.<span class="id"><a href="mathcomp.classical.classical_sets.html#Build">Build</a></span> (<span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#option">option</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#T:1638">T</a></span>)<span class="id"> </span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.Init.Datatypes.html#None">None</a></span>.<br/>
-<span id="finmap_finset_of__canonical__classical_sets_Pointed" class="id"><span id="HB_unnamed_factory_62" class="id"><span id="hb_instance_61.T" class="id"><a name="finmap_finset_of__canonical__classical_sets_Pointed" class="" title="finmap_finset_of__canonical__classical_sets_Pointed :
-choiceType -> pointedType
+<span id="finmap_finSet__canonical__classical_sets_Pointed" class="id"><span id="HB_unnamed_factory_62" class="id"><span id="hb_instance_61.T" class="id"><a name="finmap_finSet__canonical__classical_sets_Pointed" class="" title="finmap_finSet__canonical__classical_sets_Pointed : choiceType -> pointedType
 
-finmap_finset_of__canonical__classical_sets_Pointed is not universe polymorphic
-Arguments finmap_finset_of__canonical__classical_sets_Pointed T
-finmap_finset_of__canonical__classical_sets_Pointed is transparent
+finmap_finSet__canonical__classical_sets_Pointed is not universe polymorphic
+Arguments finmap_finSet__canonical__classical_sets_Pointed T
+finmap_finSet__canonical__classical_sets_Pointed is transparent
 Expands to: Constant
-            mathcomp.classical.classical_sets.finmap_finset_of__canonical__classical_sets_Pointed
+            mathcomp.classical.classical_sets.finmap_finSet__canonical__classical_sets_Pointed
 Declared in
 library mathcomp.classical.classical_sets, line 2474, characters 0-76
-">HB</a></span></span></span>.<span id="finmap_finset_of__canonical__classical_sets_Pointed" class="id"><span id="HB_unnamed_factory_62" class="id"><span id="hb_instance_61.T" class="id"><a name="finmap_finset_of__canonical__classical_sets_Pointed" class="" title="finmap_finset_of__canonical__classical_sets_Pointed :
-choiceType -> pointedType
+">HB</a></span></span></span>.<span id="finmap_finSet__canonical__classical_sets_Pointed" class="id"><span id="HB_unnamed_factory_62" class="id"><span id="hb_instance_61.T" class="id"><a name="finmap_finSet__canonical__classical_sets_Pointed" class="" title="finmap_finSet__canonical__classical_sets_Pointed : choiceType -> pointedType
 
-finmap_finset_of__canonical__classical_sets_Pointed is not universe polymorphic
-Arguments finmap_finset_of__canonical__classical_sets_Pointed T
-finmap_finset_of__canonical__classical_sets_Pointed is transparent
+finmap_finSet__canonical__classical_sets_Pointed is not universe polymorphic
+Arguments finmap_finSet__canonical__classical_sets_Pointed T
+finmap_finSet__canonical__classical_sets_Pointed is transparent
 Expands to: Constant
-            mathcomp.classical.classical_sets.finmap_finset_of__canonical__classical_sets_Pointed
+            mathcomp.classical.classical_sets.finmap_finSet__canonical__classical_sets_Pointed
 Declared in
 library mathcomp.classical.classical_sets, line 2474, characters 0-76
-">instance</a></span></span></span><span class="vernacular"> Definition</span><span id="finmap_finset_of__canonical__classical_sets_Pointed" class="id"><span id="HB_unnamed_factory_62" class="id"><span id="hb_instance_61.T" class="id"><a name="finmap_finset_of__canonical__classical_sets_Pointed" class="" title="finmap_finset_of__canonical__classical_sets_Pointed :
-choiceType -> pointedType
+">instance</a></span></span></span><span class="vernacular"> Definition</span><span id="finmap_finSet__canonical__classical_sets_Pointed" class="id"><span id="HB_unnamed_factory_62" class="id"><span id="hb_instance_61.T" class="id"><a name="finmap_finSet__canonical__classical_sets_Pointed" class="" title="finmap_finSet__canonical__classical_sets_Pointed : choiceType -> pointedType
 
-finmap_finset_of__canonical__classical_sets_Pointed is not universe polymorphic
-Arguments finmap_finset_of__canonical__classical_sets_Pointed T
-finmap_finset_of__canonical__classical_sets_Pointed is transparent
+finmap_finSet__canonical__classical_sets_Pointed is not universe polymorphic
+Arguments finmap_finSet__canonical__classical_sets_Pointed T
+finmap_finSet__canonical__classical_sets_Pointed is transparent
 Expands to: Constant
-            mathcomp.classical.classical_sets.finmap_finset_of__canonical__classical_sets_Pointed
+            mathcomp.classical.classical_sets.finmap_finSet__canonical__classical_sets_Pointed
 Declared in
 library mathcomp.classical.classical_sets, line 2474, characters 0-76
-"> _</a></span></span></span> (<span id="finmap_finset_of__canonical__classical_sets_Pointed" class="id"><span id="HB_unnamed_factory_62" class="id"><span id="hb_instance_61.T" class="id"><a name="finmap_finset_of__canonical__classical_sets_Pointed" class="" title="finmap_finset_of__canonical__classical_sets_Pointed :
-choiceType -> pointedType
+"> _</a></span></span></span> (<span id="finmap_finSet__canonical__classical_sets_Pointed" class="id"><span id="HB_unnamed_factory_62" class="id"><span id="hb_instance_61.T" class="id"><a name="finmap_finSet__canonical__classical_sets_Pointed" class="" title="finmap_finSet__canonical__classical_sets_Pointed : choiceType -> pointedType
 
-finmap_finset_of__canonical__classical_sets_Pointed is not universe polymorphic
-Arguments finmap_finset_of__canonical__classical_sets_Pointed T
-finmap_finset_of__canonical__classical_sets_Pointed is transparent
+finmap_finSet__canonical__classical_sets_Pointed is not universe polymorphic
+Arguments finmap_finSet__canonical__classical_sets_Pointed T
+finmap_finSet__canonical__classical_sets_Pointed is transparent
 Expands to: Constant
-            mathcomp.classical.classical_sets.finmap_finset_of__canonical__classical_sets_Pointed
+            mathcomp.classical.classical_sets.finmap_finSet__canonical__classical_sets_Pointed
 Declared in
 library mathcomp.classical.classical_sets, line 2474, characters 0-76
-">T</a></span></span></span><span id="finmap_finset_of__canonical__classical_sets_Pointed" class="id"><span id="HB_unnamed_factory_62" class="id"><span id="hb_instance_61.T" class="id"><a name="finmap_finset_of__canonical__classical_sets_Pointed" class="" title="finmap_finset_of__canonical__classical_sets_Pointed :
-choiceType -> pointedType
+">T</a></span></span></span><span id="finmap_finSet__canonical__classical_sets_Pointed" class="id"><span id="HB_unnamed_factory_62" class="id"><span id="hb_instance_61.T" class="id"><a name="finmap_finSet__canonical__classical_sets_Pointed" class="" title="finmap_finSet__canonical__classical_sets_Pointed : choiceType -> pointedType
 
-finmap_finset_of__canonical__classical_sets_Pointed is not universe polymorphic
-Arguments finmap_finset_of__canonical__classical_sets_Pointed T
-finmap_finset_of__canonical__classical_sets_Pointed is transparent
+finmap_finSet__canonical__classical_sets_Pointed is not universe polymorphic
+Arguments finmap_finSet__canonical__classical_sets_Pointed T
+finmap_finSet__canonical__classical_sets_Pointed is transparent
 Expands to: Constant
-            mathcomp.classical.classical_sets.finmap_finset_of__canonical__classical_sets_Pointed
+            mathcomp.classical.classical_sets.finmap_finSet__canonical__classical_sets_Pointed
 Declared in
 library mathcomp.classical.classical_sets, line 2474, characters 0-76
-"> :</a></span></span></span><span id="finmap_finset_of__canonical__classical_sets_Pointed" class="id"><span id="HB_unnamed_factory_62" class="id"><span id="hb_instance_61.T" class="id"><a name="finmap_finset_of__canonical__classical_sets_Pointed" class="" title="finmap_finset_of__canonical__classical_sets_Pointed :
-choiceType -> pointedType
+"> :</a></span></span></span><span id="finmap_finSet__canonical__classical_sets_Pointed" class="id"><span id="HB_unnamed_factory_62" class="id"><span id="hb_instance_61.T" class="id"><a name="finmap_finSet__canonical__classical_sets_Pointed" class="" title="finmap_finSet__canonical__classical_sets_Pointed : choiceType -> pointedType
 
-finmap_finset_of__canonical__classical_sets_Pointed is not universe polymorphic
-Arguments finmap_finset_of__canonical__classical_sets_Pointed T
-finmap_finset_of__canonical__classical_sets_Pointed is transparent
+finmap_finSet__canonical__classical_sets_Pointed is not universe polymorphic
+Arguments finmap_finSet__canonical__classical_sets_Pointed T
+finmap_finSet__canonical__classical_sets_Pointed is transparent
 Expands to: Constant
-            mathcomp.classical.classical_sets.finmap_finset_of__canonical__classical_sets_Pointed
+            mathcomp.classical.classical_sets.finmap_finSet__canonical__classical_sets_Pointed
 Declared in
 library mathcomp.classical.classical_sets, line 2474, characters 0-76
 "> choiceType</a></span></span></span>)<span class="id"> :=</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.classical_sets.html#Build">isPointed</a></span>.<span class="id"><a href="mathcomp.classical.classical_sets.html#Build">Build</a></span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.finmap.finmap#56b55a79be47ef2ec896f3a7734c305c">{fset</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.finmap.finmap#56b55a79be47ef2ec896f3a7734c305c"> </a></span><span class="id"><a href="mathcomp.classical.classical_sets.html#T:1639">T</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.finmap.finmap#56b55a79be47ef2ec896f3a7734c305c">}</a></span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.finmap.finmap#fset0">fset0</a></span>.<br/>

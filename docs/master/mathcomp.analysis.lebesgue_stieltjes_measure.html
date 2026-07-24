@@ -1274,8 +1274,7 @@ library mathcomp.analysis.lebesgue_stieltjes_measure, line 384, characters 0-135
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="cumulative_content_sub_fsum" class="id"><a name="cumulative_content_sub_fsum" class="" title="cumulative_content_sub_fsum :
 forall {R : realType} (f : cumulative R R) [D : {fset nat}] 
   [a0 b0 : R] [a b : nat -> R],
-(forall i : Datatypes_nat__canonical__choice_Choice,
- i \in D -> (a i <= b i)%R) ->
+(forall i : nat, i \in D -> (a i <= b i)%R) ->
 (`]a0, b0] `<=` \big[setU/set0]_(i <- D) `]a i, b i])%classic ->
 (f b0 - f a0 <= \sum_(i <- D) (f (b i) - f (a i)))%R
 

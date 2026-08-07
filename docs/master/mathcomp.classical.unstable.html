@@ -1171,7 +1171,7 @@ Declared in library mathcomp.classical.unstable, line 394, characters 6-12
 <span class="vernacular">Implicit</span><span class="gallina-kwd"> Type</span><span class="id"> x</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.unstable.html#trunc_floor_ceil.R">R</a></span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="abs_ceil_ge" class="id"><a name="abs_ceil_ge" class="" title="abs_ceil_ge :
-forall {R : archiRealDomainType} (x : R), (`|x| <= `|Num.Def.ceil x|.+1%:R)%R
+forall {R : archiRealDomainType} (x : R), (`|x| <= `|ceil x|.+1%:R)%R
 
 abs_ceil_ge is not universe polymorphic
 Arguments abs_ceil_ge {R} x%ring_scope
@@ -1232,14 +1232,14 @@ Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="mem_inc_segment" class="id"><a name="mem_inc_segment" class="" title="mem_inc_segment :
 forall [d : Order.disp_t] [T : porderType d] [a b : T] [f : T -> T],
-{in `[a, b]%R &, {mono f : x y / (x <= y)%O}} ->
+{in `[a, b]%R &, increasing_fun f} ->
 {homo f : x / x \in `[a, b]%R >-> x \in `[f a, f b]%R}
 
 mem_inc_segment is not universe polymorphic
 Expanded type for implicit arguments
 mem_inc_segment :
 forall [d : Order.disp_t] [T : porderType d] [a b : T] [f : T -> T],
-{in `[a, b]%R &, {mono f : x y / (x <= y)%O}} ->
+{in `[a, b]%R &, increasing_fun f} ->
 forall [x : T],
 (fun x0 : T => is_true (x0 \in `[a, b]%R)) x ->
 (f x \in `[f a, f b]%R) = true
@@ -1311,7 +1311,7 @@ Declared in library mathcomp.classical.unstable, line 444, characters 11-19
 <span class="vernacular">Let</span><span class="id"> </span><span id="FsetPartitions.rhs" class="id"><a name="FsetPartitions.rhs" class="">rhs</a></span><span class="id"> </span><span id="P:292" class="id"><a name="P:292" class="">P</a></span><span class="id"> </span><span id="E:293" class="id"><a name="E:293" class="">E</a></span><span class="id"> :=</span> (<span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca">\big[</a></span><span class="id"><a href="mathcomp.classical.unstable.html#FsetPartitions.op">op</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca">/</a></span><span class="id"><a href="mathcomp.classical.unstable.html#FsetPartitions.idx">idx</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca">]_</a></span>(<span id="A:296" class="id"><span id="A:295" class="id"><span id="A:294" class="id"><a name="A:296" class="">A</a></span></span></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca"> &lt;-</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca"> </a></span><span class="id"><a href="mathcomp.classical.unstable.html#P:292">P</a></span>)<span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca"> </a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca">\big[</a></span><span class="id"><a href="mathcomp.classical.unstable.html#FsetPartitions.op">op</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca">/</a></span><span class="id"><a href="mathcomp.classical.unstable.html#FsetPartitions.idx">idx</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca">]_</a></span>(<span id="x:299" class="id"><span id="x:298" class="id"><span id="x:297" class="id"><a name="x:299" class="">x</a></span></span></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca"> &lt;-</a></span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca"> </a></span><span class="id"><a href="mathcomp.classical.unstable.html#A:294">A</a></span>)<span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#93a42d9430a115f2544a09cba4cf05ca"> </a></span><span class="id"><a href="mathcomp.classical.unstable.html#E:293">E</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.unstable.html#x:297">x</a></span>)<span class="id">%fset</span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="partition_disjoint_bigfcup" class="id"><a name="partition_disjoint_bigfcup" class="" title="partition_disjoint_bigfcup :
-forall [T I : choiceType] [R : Type] [idx : R] (op : com_law idx)
+forall [T I : choiceType] [R : Type] [idx : R] (op : Monoid.com_law idx)
   (f : T -> R) [F : I -> {fset T}] [K : {fset I}],
 (forall i j : I, i \in K -> j \in K -> i != j -> [disjoint F i & F j]%fset) ->
 \big[op/idx]_(i <- (\bigcup_(x <- K) F x)%fset) f i =

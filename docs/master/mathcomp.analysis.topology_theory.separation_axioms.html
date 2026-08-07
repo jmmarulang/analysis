@@ -659,12 +659,12 @@ library mathcomp.analysis.topology_theory.separation_axioms, line 211, character
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="order_hausdorff" class="id"><a name="order_hausdorff" class="" title="order_hausdorff :
-forall {d : Order.disp_t} {T : orderTopologicalType d}, hausdorff_space T
+forall {d : disp_t} {T : orderTopologicalType d}, hausdorff_space T
 
 order_hausdorff is not universe polymorphic
 Expanded type for implicit arguments
 order_hausdorff :
-forall {d : Order.disp_t} {T : orderTopologicalType d} [p q : T],
+forall {d : disp_t} {T : orderTopologicalType d} [p q : T],
 cluster (nbhs p) q -> p = q
 
 Arguments order_hausdorff {d T} [p q] _
@@ -1778,7 +1778,7 @@ library mathcomp.analysis.topology_theory.separation_axioms, line 582, character
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="zero_dimensional_ray" class="id"><a name="zero_dimensional_ray" class="" title="zero_dimensional_ray :
-forall {d : Order.disp_t} {T : orderTopologicalType d} [x y : T],
+forall {d : disp_t} {T : orderTopologicalType d} [x y : T],
 (x < y)%O ->
 zero_dimensional T ->
 exists U : set T,

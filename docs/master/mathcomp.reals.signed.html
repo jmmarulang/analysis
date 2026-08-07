@@ -2720,7 +2720,7 @@ Declared in library mathcomp.reals.signed, line 1073, characters 6-12
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="num_le" class="id"><a name="num_le" class="" title="num_le :
 forall {d : disp_t} {T : porderType d} {x0 : T} {nz : KnownSign.nullity}
   {cond : KnownSign.reality},
-increasing_fun num
+{mono num : x y / (x <= y)%O >-> (x <= y)%O}
 
 num_le is not universe polymorphic
 Arguments num_le {d T x0} {nz}%snum_nullity_scope {cond}%snum_sign_scope x y

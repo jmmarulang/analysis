@@ -466,7 +466,7 @@ Declared in library mathcomp.analysis.sequences, line 189, characters 6-20
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.boolp.html#propeqE">propeqE</a></span><span class="id">;</span><span class="id"> split</span><span class="id"> =&gt;</span><span class="id"> du</span><span class="id"> x</span><span class="id"> y;</span><span class="id"> rewrite</span><span class="id"> -du</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.num_theory.numdomain.html#Num.Theory.lerN2">lerN2</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="nondecreasing_seqP" class="id"><a name="nondecreasing_seqP" class="" title="nondecreasing_seqP :
-forall [d : Order.disp_t] [T : porderType d] (u_ : T ^nat),
+forall [d : disp_t] [T : porderType d] (u_ : T ^nat),
 (forall n : nat, (u_ n <= u_ n.+1)%O) <->
 {homo u_ : n m / n <= m >-> (n <= m)%O}
 
@@ -483,7 +483,7 @@ Declared in library mathcomp.analysis.sequences, line 193, characters 6-24
 <span class="gallina-kwd"> by</span><span class="id"> split=&gt;</span><span class="id"> [|h</span><span class="id"> n];</span><span class="id"> [exact:</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.ssrnat#homo_leq">homo_leq</a></span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.order.order#Order.POrderTheory.le_trans">le_trans</a></span><span class="id"> |</span><span class="id"> exact:</span><span class="id"> h]</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="nonincreasing_seqP" class="id"><a name="nonincreasing_seqP" class="" title="nonincreasing_seqP :
-forall [d : Order.disp_t] [T : porderType d] (u_ : T ^nat),
+forall [d : disp_t] [T : porderType d] (u_ : T ^nat),
 (forall n : nat, (u_ n.+1 <= u_ n)%O) <->
 {homo u_ : n m / n <= m >-> (m <= n)%O}
 
@@ -502,7 +502,7 @@ Declared in library mathcomp.analysis.sequences, line 197, characters 6-24
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="increasing_seqP" class="id"><a name="increasing_seqP" class="" title="increasing_seqP :
-forall [d : Order.disp_t] [T : porderType d] (u_ : T ^nat),
+forall [d : disp_t] [T : porderType d] (u_ : T ^nat),
 (forall n : nat, (u_ n < u_ n.+1)%O) <-> increasing_seq u_
 
 increasing_seqP is not universe polymorphic
@@ -520,13 +520,13 @@ Declared in library mathcomp.analysis.sequences, line 204, characters 6-21
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="increasing_seq_injective" class="id"><a name="increasing_seq_injective" class="" title="increasing_seq_injective :
-forall [d : Order.disp_t] {T : orderType d} [f : T ^nat],
+forall [d : disp_t] {T : orderType d} [f : T ^nat],
 increasing_seq f -> injective f
 
 increasing_seq_injective is not universe polymorphic
 Expanded type for implicit arguments
 increasing_seq_injective :
-forall [d : Order.disp_t] {T : orderType d} [f : T ^nat],
+forall [d : disp_t] {T : orderType d} [f : T ^nat],
 increasing_seq f -> forall [x1 x2 : nat], f x1 = f x2 -> x1 = x2
 
 Arguments increasing_seq_injective [d] {T} [f] _ [x1 x2] _
@@ -550,7 +550,7 @@ Declared in library mathcomp.analysis.sequences, line 211, characters 6-30
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="decreasing_seqP" class="id"><a name="decreasing_seqP" class="" title="decreasing_seqP :
-forall [d : Order.disp_t] [T : porderType d] (u_ : T ^nat),
+forall [d : disp_t] [T : porderType d] (u_ : T ^nat),
 (forall n : nat, (u_ n.+1 < u_ n)%O) <-> decreasing_seq u_
 
 decreasing_seqP is not universe polymorphic
@@ -574,7 +574,7 @@ Declared in library mathcomp.analysis.sequences, line 225, characters 6-21
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="lef_at" class="id"><a name="lef_at" class="" title="lef_at :
-forall [aT : Type] [d : Order.disp_t] [T : porderType d] 
+forall [aT : Type] [d : disp_t] [T : porderType d] 
   [f : (aT -> T) ^nat] (x : aT),
 {homo f : n m / n <= m >-> (n <= m)%O} ->
 {homo f^~ x : n m / n <= m >-> (n <= m)%O}
@@ -582,7 +582,7 @@ forall [aT : Type] [d : Order.disp_t] [T : porderType d]
 lef_at is not universe polymorphic
 Expanded type for implicit arguments
 lef_at :
-forall [aT : Type] [d : Order.disp_t] [T : porderType d] 
+forall [aT : Type] [d : disp_t] [T : porderType d] 
   [f : (aT -> T) ^nat] (x : aT),
 {homo f : n m / n <= m >-> (n <= m)%O} ->
 forall [x0 y : nat],
@@ -3251,8 +3251,7 @@ Declared in library mathcomp.analysis.sequences, line 1227, characters 11-15
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="nat_nondecreasing_is_cvg" class="id"><a name="nat_nondecreasing_is_cvg" class="" title="nat_nondecreasing_is_cvg :
 forall [u_ : nat ^nat],
 {homo u_ : n m / n <= m >-> (n <= m)%O} ->
-has_ubound (T:=Order.NatOrder.Datatypes_nat__canonical__Order_POrder)
-  (range u_) ->
+has_ubound (T:=NatOrder.Datatypes_nat__canonical__Order_POrder) (range u_) ->
 cvgn u_
 
 nat_nondecreasing_is_cvg is not universe polymorphic
@@ -3260,8 +3259,7 @@ Expanded type for implicit arguments
 nat_nondecreasing_is_cvg :
 forall [u_ : nat ^nat],
 {homo u_ : n m / n <= m >-> (n <= m)%O} ->
-has_ubound (T:=Order.NatOrder.Datatypes_nat__canonical__Order_POrder)
-  (range u_) ->
+has_ubound (T:=NatOrder.Datatypes_nat__canonical__Order_POrder) (range u_) ->
 forall [t : set nat],
 nbhs (limn u_) t ->
 exists2 i : nat,
@@ -5414,7 +5412,7 @@ Declared in library mathcomp.analysis.sequences, line 2107, characters 11-16
 <span class="vernacular">Implicit</span><span class="id"> Types</span> (<span class="id">u</span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.analysis.sequences.html#sdrop.R">R</a></span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.ssralg.html#32d8c90f413029fb5c0e82f0559cd7ef">^o</a></span><span class="id"><a href="mathcomp.analysis.sequences.html#0bbe80633d78a4f277dbfba268ab7c04">^nat</a></span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="has_lbound_sdrop" class="id"><a name="has_lbound_sdrop" class="" title="has_lbound_sdrop :
-forall [d : Order.disp_t] [R : porderType d] [u : (R^o) ^nat],
+forall [d : disp_t] [R : porderType d] [u : (R^o) ^nat],
 has_lbound (T:=R) (range u) -> forall m : nat, has_lbound (T:=R) (sdrop u m)
 
 has_lbound_sdrop is not universe polymorphic
@@ -5431,7 +5429,7 @@ Declared in library mathcomp.analysis.sequences, line 2113, characters 6-22
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="has_ubound_sdrop" class="id"><a name="has_ubound_sdrop" class="" title="has_ubound_sdrop :
-forall [d : Order.disp_t] [R : porderType d] [u : (R^o) ^nat],
+forall [d : disp_t] [R : porderType d] [u : (R^o) ^nat],
 has_ubound (T:=R) (range u) -> forall m : nat, has_ubound (T:=R) (sdrop u m)
 
 has_ubound_sdrop is not universe polymorphic

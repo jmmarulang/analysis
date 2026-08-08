@@ -3606,7 +3606,7 @@ forall [R : numFieldType] [r : R] [t : set \bar R],
 nbhs (nbhs r%:E) t ->
 exists2 i : R,
   [set e | (0 < e)%R]%classic i &
-  (ball_ [eta normr] r i
+  (ball_ [eta Num.Def.normr] r i
    `<=` (fun
            t0 : numFieldTopology.NumField_sort__canonical__topology_structure_Topological
                   R =>

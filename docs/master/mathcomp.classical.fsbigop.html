@@ -402,8 +402,8 @@ Declared in library mathcomp.classical.fsbigop, line 92, characters 6-15
 <span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> -&gt;</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="eq_fsbigr" class="id"><a name="eq_fsbigr" class="" title="eq_fsbigr :
-forall {R : Type} {idx : R} {op : Monoid.com_law idx} 
-  {T : choiceType} {f : T -> R} (g : T -> R) (P : set T),
+forall {R : Type} {idx : R} {op : com_law idx} {T : choiceType} 
+  {f : T -> R} (g : T -> R) (P : set T),
 {in P, f =1 g} -> \big[op/idx]_(x \in P) f x = \big[op/idx]_(x \in P) g x
 
 eq_fsbigr is not universe polymorphic
@@ -424,8 +424,8 @@ Qed.</div></details>
 <span class="vernacular">Arguments</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#eq_fsbigr">eq_fsbigr</a></span><span class="id"> {R</span><span class="id"> idx</span><span class="id"> op</span><span class="id"> T</span><span class="id"> f}</span><span class="id"> g</span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbigTE" class="id"><a name="fsbigTE" class="" title="fsbigTE :
-forall {R : Type} {idx : R} {op : Monoid.com_law idx} 
-  {T : choiceType} (A : {fset T}) (f : T -> R),
+forall {R : Type} {idx : R} {op : com_law idx} {T : choiceType}
+  (A : {fset T}) (f : T -> R),
 (forall i : T, i \notin A -> f i = idx) ->
 \big[op/idx]_(i \in [set: T]) f i = \big[op/idx]_(i <- A) f i
 
@@ -456,8 +456,8 @@ Qed.</div></details>
 <span class="vernacular">Arguments</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#fsbigTE">fsbigTE</a></span><span class="id"> {R</span><span class="id"> idx</span><span class="id"> op</span><span class="id"> T}</span><span class="id"> A</span><span class="id"> f</span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_mkcond" class="id"><a name="fsbig_mkcond" class="" title="fsbig_mkcond :
-forall [R : Type] [idx : R] (op : Monoid.com_law idx) 
-  [T : choiceType] (A : set T) (f : T -> R),
+forall [R : Type] [idx : R] (op : com_law idx) [T : choiceType] 
+  (A : set T) (f : T -> R),
 \big[op/idx]_(i \in A) f i =
 \big[op/idx]_(i \in [set: T]) patch (fun=> idx) A f i
 
@@ -491,8 +491,8 @@ Declared in library mathcomp.classical.fsbigop, line 125, characters 6-18
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_mkcondr" class="id"><a name="fsbig_mkcondr" class="" title="fsbig_mkcondr :
-forall [R : Type] [idx : R] (op : Monoid.com_law idx) 
-  [T : choiceType] (I J : set T) (a : T -> R),
+forall [R : Type] [idx : R] (op : com_law idx) [T : choiceType] 
+  (I J : set T) (a : T -> R),
 \big[op/idx]_(i \in I `&` J) a i =
 \big[op/idx]_(i \in I) (if i \in J then a i else idx)
 
@@ -514,8 +514,8 @@ Declared in library mathcomp.classical.fsbigop, line 146, characters 6-19
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_mkcondl" class="id"><a name="fsbig_mkcondl" class="" title="fsbig_mkcondl :
-forall [R : Type] [idx : R] (op : Monoid.com_law idx) 
-  [T : choiceType] (I J : set T) (a : T -> R),
+forall [R : Type] [idx : R] (op : com_law idx) [T : choiceType] 
+  (I J : set T) (a : T -> R),
 \big[op/idx]_(i \in I `&` J) a i =
 \big[op/idx]_(i \in J) (if i \in I then a i else idx)
 
@@ -537,8 +537,8 @@ Declared in library mathcomp.classical.fsbigop, line 155, characters 6-19
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="bigfs" class="id"><a name="bigfs" class="" title="bigfs :
-forall [R : Type] [idx : R] (op : Monoid.com_law idx) 
-  [T : choiceType] [r : seq T] [P : {pred T}] [f : T -> R],
+forall [R : Type] [idx : R] (op : com_law idx) [T : choiceType] 
+  [r : seq T] [P : {pred T}] [f : T -> R],
 uniq r ->
 (forall i : T, P i -> i \notin r -> f i = idx) ->
 \big[op/idx]_(i <- r | P i) f i = \big[op/idx]_(i \in [set` P]) f i
@@ -564,8 +564,8 @@ Declared in library mathcomp.classical.fsbigop, line 164, characters 6-11
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbigE" class="id"><a name="fsbigE" class="" title="fsbigE :
-forall {R : Type} {idx : R} {op : Monoid.com_law idx} 
-  {T : choiceType} {A : set T} (r : seq T) (f : T -> R),
+forall {R : Type} {idx : R} {op : com_law idx} {T : choiceType} 
+  {A : set T} (r : seq T) (f : T -> R),
 uniq r ->
 ([set` r] `<=` A)%classic ->
 (forall i : T, A i -> i \notin r -> f i = idx) ->
@@ -592,8 +592,8 @@ Qed.</div></details>
 <span class="vernacular">Arguments</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#fsbigE">fsbigE</a></span><span class="id"> {R</span><span class="id"> idx</span><span class="id"> op</span><span class="id"> T</span><span class="id"> A}</span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_seq" class="id"><a name="fsbig_seq" class="" title="fsbig_seq :
-forall [R : Type] [idx : R] (op : Monoid.com_law idx) 
-  [I : choiceType] [r : seq I] (F : I -> R),
+forall [R : Type] [idx : R] (op : com_law idx) [I : choiceType] 
+  [r : seq I] (F : I -> R),
 uniq r -> \big[op/idx]_(a <- r) F a = \big[op/idx]_(a \in [set` r]) F a
 
 fsbig_seq is not universe polymorphic
@@ -614,8 +614,8 @@ Declared in library mathcomp.classical.fsbigop, line 188, characters 6-15
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig1" class="id"><a name="fsbig1" class="" title="fsbig1 :
-forall [R : Type] [idx : R] (op : Monoid.law idx) 
-  [I : choiceType] [P : set I] [F : I -> R],
+forall [R : Type] [idx : R] (op : law idx) [I : choiceType] 
+  [P : set I] [F : I -> R],
 (forall i : I, P i -> F i = idx) -> \big[op/idx]_(i \in P) F i = idx
 
 fsbig1 is not universe polymorphic
@@ -635,8 +635,8 @@ Declared in library mathcomp.classical.fsbigop, line 197, characters 6-12
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_dflt" class="id"><a name="fsbig_dflt" class="" title="fsbig_dflt :
-forall [R : Type] [idx : R] (op : Monoid.law idx) 
-  [I : choiceType] [P : set I] [F : I -> R],
+forall [R : Type] [idx : R] (op : law idx) [I : choiceType] 
+  [P : set I] [F : I -> R],
 infinite_set (P `&` F @^-1` [set~ idx]) -> \big[op/idx]_(i \in P) F i = idx
 
 fsbig_dflt is not universe polymorphic
@@ -654,7 +654,7 @@ Declared in library mathcomp.classical.fsbigop, line 205, characters 6-16
 <span class="gallina-kwd"> by</span><span class="id"> case:</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#finite_supportP">finite_supportP</a></span><span class="id">;</span><span class="id"> rewrite</span><span class="id"> ?</span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#big_nil">big_nil</a></span><span class="id">//</span><span class="id"> =&gt;</span><span class="id"> X</span><span class="id"> _</span><span class="id"> _</span><span class="id"> &lt;-</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_widen" class="id"><a name="fsbig_widen" class="" title="fsbig_widen :
-forall {T : choiceType} {R : Type} {idx : R} {op : Monoid.com_law idx}
+forall {T : choiceType} {R : Type} {idx : R} {op : com_law idx} 
   (P D : set T) (f : T -> R),
 (P `<=` D)%classic ->
 (D `\` P `<=` f @^-1` [set idx])%classic ->
@@ -682,7 +682,7 @@ Qed.</div></details>
 <span class="vernacular">Arguments</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#fsbig_widen">fsbig_widen</a></span><span class="id"> {T</span><span class="id"> R</span><span class="id"> idx</span><span class="id"> op}</span><span class="id"> P</span><span class="id"> D</span><span class="id"> f</span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_supp" class="id"><a name="fsbig_supp" class="" title="fsbig_supp :
-forall [T : choiceType] [R : Type] [idx : R] (op : Monoid.com_law idx)
+forall [T : choiceType] [R : Type] [idx : R] (op : com_law idx) 
   (P : set T) (f : T -> R),
 \big[op/idx]_(i \in P) f i =
 \big[op/idx]_(i \in P `&` f @^-1` [set~ idx]) f i
@@ -702,7 +702,7 @@ Declared in library mathcomp.classical.fsbigop, line 223, characters 6-16
 <span class="gallina-kwd"> by</span><span class="id"> apply/</span><span class="id"><a href="https://rocq-prover.org/corelib/Corelib.ssr.ssrfun.html#esym">esym</a></span><span class="id">/</span><span class="id"><a href="mathcomp.classical.fsbigop.html#fsbig_widen">fsbig_widen</a></span><span class="id"> =&gt;</span><span class="id"> //</span><span class="id"> x</span><span class="id"> [Px</span><span class="id"> /</span><span class="id"><a href="mathcomp.classical.boolp.html#not_andP">not_andP</a></span><span class="id">[]//=];</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.boolp.html#notK">notK</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_fwiden" class="id"><a name="fsbig_fwiden" class="" title="fsbig_fwiden :
-forall {T : choiceType} {R : eqType} {idx : R} {op : Monoid.com_law idx}
+forall {T : choiceType} {R : eqType} {idx : R} {op : com_law idx} 
   (r : seq T) (P : set T) (f : T -> R),
 (P `<=` [set` r])%classic ->
 uniq r ->
@@ -729,8 +729,7 @@ Declared in library mathcomp.classical.fsbigop, line 228, characters 6-18
 <span class="vernacular">Arguments</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#fsbig_fwiden">fsbig_fwiden</a></span><span class="id"> {T</span><span class="id"> R</span><span class="id"> idx</span><span class="id"> op}</span><span class="id"> r</span><span class="id"> P</span><span class="id"> f</span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_set0" class="id"><a name="fsbig_set0" class="" title="fsbig_set0 :
-forall [R : Type] [idx : R] (op : Monoid.com_law idx) 
-  [T : choiceType] (F : T -> R),
+forall [R : Type] [idx : R] (op : com_law idx) [T : choiceType] (F : T -> R),
 \big[op/idx]_(x \in set0) F x = idx
 
 fsbig_set0 is not universe polymorphic
@@ -746,8 +745,8 @@ Declared in library mathcomp.classical.fsbigop, line 238, characters 6-16
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span> (<span class="id"><a href="mathcomp.classical.fsbigop.html#fsbigE">fsbigE</a></span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.seq#0a934e621391740b862762275992e626">[::]</a></span>)<span class="id">//</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#big_nil">big_nil</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_set1" class="id"><a name="fsbig_set1" class="" title="fsbig_set1 :
-forall [R : Type] [idx : R] (op : Monoid.com_law idx) 
-  [T : choiceType] (x : T) (F : T -> R),
+forall [R : Type] [idx : R] (op : com_law idx) [T : choiceType] 
+  (x : T) (F : T -> R),
 \big[op/idx]_(y \in [set x]) F y = F x
 
 fsbig_set1 is not universe polymorphic
@@ -766,8 +765,8 @@ Declared in library mathcomp.classical.fsbigop, line 242, characters 6-16
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="__deprecated__full_fsbigID" class="id"><a name="__deprecated__full_fsbigID" class="" title="__deprecated__full_fsbigID :
-forall {R : Type} {idx : R} {op : Monoid.com_law idx} 
-  {I : choiceType} (B A : set I) (F : I -> R),
+forall {R : Type} {idx : R} {op : com_law idx} {I : choiceType} 
+  (B A : set I) (F : I -> R),
 finite_set (A `&` F @^-1` [set~ idx]) ->
 \big[op/idx]_(i \in A) F i =
 op (\big[op/idx]_(i \in A `&` B) F i) (\big[op/idx]_(i \in A `&` ~` B) F i)
@@ -804,8 +803,8 @@ Qed.</div></details>
 <span class="vernacular">Arguments</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#__deprecated__full_fsbigID">__deprecated__full_fsbigID</a></span><span class="id"> {R</span><span class="id"> idx</span><span class="id"> op</span><span class="id"> I}</span><span class="id"> B</span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbigID" class="id"><a name="fsbigID" class="" title="fsbigID :
-forall {R : Type} {idx : R} {op : Monoid.com_law idx} 
-  {I : choiceType} (B A : set I) (F : I -> R),
+forall {R : Type} {idx : R} {op : com_law idx} {I : choiceType} 
+  (B A : set I) (F : I -> R),
 finite_set A ->
 \big[op/idx]_(i \in A) F i =
 op (\big[op/idx]_(i \in A `&` B) F i) (\big[op/idx]_(i \in A `&` ~` B) F i)
@@ -831,8 +830,8 @@ Declared in library mathcomp.classical.fsbigop, line 272, characters 6-13
 <span class="vernacular">Notation</span><span class="id"> </span><span id="full_fsbigID" class="id"><a name="full_fsbigID" class="">full_fsbigID</a></span><span class="id"> :=</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#__deprecated__full_fsbigID">__deprecated__full_fsbigID</a></span> (<span class="id">only</span><span class="id"> parsing</span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbigU" class="id"><a name="fsbigU" class="" title="fsbigU :
-forall {R : Type} {idx : R} {op : Monoid.com_law idx} 
-  {I : choiceType} [A B : set I] [F : I -> R],
+forall {R : Type} {idx : R} {op : com_law idx} {I : choiceType} 
+  [A B : set I] [F : I -> R],
 finite_set A ->
 finite_set B ->
 (A `&` B `<=` F @^-1` [set idx])%classic ->
@@ -860,8 +859,8 @@ Qed.</div></details>
 <span class="vernacular">Arguments</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#fsbigU">fsbigU</a></span><span class="id"> {R</span><span class="id"> idx</span><span class="id"> op</span><span class="id"> I}</span><span class="id"> [A</span><span class="id"> B</span><span class="id"> F]</span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbigU0" class="id"><a name="fsbigU0" class="" title="fsbigU0 :
-forall [R : Type] [idx : R] (op : Monoid.com_law idx) 
-  [I : choiceType] [A B : set I] (F : I -> R),
+forall [R : Type] [idx : R] (op : com_law idx) [I : choiceType] 
+  [A B : set I] (F : I -> R),
 finite_set A ->
 finite_set B ->
 (A `&` B `<=` set0)%classic ->
@@ -885,8 +884,8 @@ Declared in library mathcomp.classical.fsbigop, line 295, characters 6-13
 <span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> Af</span><span class="id"> Bf</span><span class="id"> AB0;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#fsbigU">fsbigU</a></span><span class="id">//</span><span class="id"> =&gt;</span><span class="id"> x</span><span class="id"> /AB0</span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbigD1" class="id"><a name="fsbigD1" class="" title="fsbigD1 :
-forall {R : Type} {idx : R} {op : Monoid.com_law idx} 
-  {I : choiceType} (i : I) (A : set I) (F : I -> R),
+forall {R : Type} {idx : R} {op : com_law idx} {I : choiceType} 
+  (i : I) (A : set I) (F : I -> R),
 finite_set A ->
 A i ->
 \big[op/idx]_(j \in A) F j = op (F i) (\big[op/idx]_(j \in A `\ i) F j)
@@ -908,9 +907,9 @@ Declared in library mathcomp.classical.fsbigop, line 302, characters 6-13
 <span class="vernacular">Arguments</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#fsbigD1">fsbigD1</a></span><span class="id"> {R</span><span class="id"> idx</span><span class="id"> op</span><span class="id"> I}</span><span class="id"> i</span><span class="id"> A</span><span class="id"> F</span>.<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="full_fsbig_distrr" class="id"><a name="full_fsbig_distrr" class="" title="full_fsbig_distrr :
-forall [R : Type] [zero : R] [times : Monoid.mul_law zero]
-  (plus : Monoid.add_law zero times) [I : choiceType] 
-  (a : R) [P : set I] [F : I -> R],
+forall [R : Type] [zero : R] [times : mul_law zero]
+  (plus : add_law zero times) [I : choiceType] (a : R) 
+  [P : set I] [F : I -> R],
 finite_set (P `&` F @^-1` [set~ zero]) ->
 times a (\big[plus/zero]_(i \in P) F i) =
 \big[plus/zero]_(i \in P) times a (F i)
@@ -950,9 +949,9 @@ Declared in library mathcomp.classical.fsbigop, line 309, characters 6-23
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_distrr" class="id"><a name="fsbig_distrr" class="" title="fsbig_distrr :
-forall [R : Type] [zero : R] [times : Monoid.mul_law zero]
-  (plus : Monoid.add_law zero times) [I : choiceType] 
-  (a : R) [P : set I] (F : I -> R),
+forall [R : Type] [zero : R] [times : mul_law zero]
+  (plus : add_law zero times) [I : choiceType] (a : R) 
+  [P : set I] (F : I -> R),
 finite_set P ->
 times a (\big[plus/zero]_(i \in P) F i) =
 \big[plus/zero]_(i \in P) times a (F i)
@@ -1015,8 +1014,7 @@ Declared in library mathcomp.classical.fsbigop, line 352, characters 6-16
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.ssralg.html#GRing.Theory.mulrC">mulrC</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#mulr_fsumr">mulr_fsumr</a></span><span class="id">;</span><span class="id"> under</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#eq_fsbigr">eq_fsbigr</a></span><span class="id"> do</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="https://math-comp.github.io/htmldoc_2_4_0/mathcomp.algebra.ssralg.html#GRing.Theory.mulrC">mulrC</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_ord" class="id"><a name="fsbig_ord" class="" title="fsbig_ord :
-forall [R : Type] [idx : R] (op : Monoid.com_law idx) 
-  (n : nat) (F : nat -> R),
+forall [R : Type] [idx : R] (op : com_law idx) (n : nat) (F : nat -> R),
 \big[op/idx]_(a < n) F a = \big[op/idx]_(a \in `I_n) F a
 
 fsbig_ord is not universe polymorphic
@@ -1034,8 +1032,8 @@ Declared in library mathcomp.classical.fsbigop, line 356, characters 6-15
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_finite" class="id"><a name="fsbig_finite" class="" title="fsbig_finite :
-forall [R : Type] [idx : R] (op : Monoid.com_law idx) 
-  [T : choiceType] [D : set T] (F : T -> R),
+forall [R : Type] [idx : R] (op : com_law idx) [T : choiceType] 
+  [D : set T] (F : T -> R),
 finite_set D ->
 \big[op/idx]_(x \in D) F x = \big[op/idx]_(x <- fset_set (T:=T) D) F x
 
@@ -1059,9 +1057,8 @@ Qed.</div></details>
 <span class="vernacular">Variables</span> (<span id="fsbig2.R" class="id"><a name="fsbig2.R" class="">R</a></span><span class="id"> :</span><span class="gallina-kwd"> Type</span>) (<span id="fsbig2.idx" class="id"><a name="fsbig2.idx" class="">idx</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#R:469">R</a></span>) (<span id="fsbig2.op" class="id"><a name="fsbig2.op" class="">op</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#Monoid.com_law">Monoid</a></span>.<span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#Monoid.com_law">com_law</a></span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#idx:471">idx</a></span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="reindex_fsbig" class="id"><a name="reindex_fsbig" class="" title="reindex_fsbig :
-forall {R : Type} {idx : R} {op : Monoid.com_law idx} 
-  {I J : choiceType} (h : I -> J) (P : set I) (Q : set J) 
-  (F : J -> R),
+forall {R : Type} {idx : R} {op : com_law idx} {I J : choiceType}
+  (h : I -> J) (P : set I) (Q : set J) (F : J -> R),
 set_bij P Q h -> \big[op/idx]_(j \in Q) F j = \big[op/idx]_(i \in P) F (h i)
 
 reindex_fsbig is not universe polymorphic
@@ -1105,8 +1102,8 @@ Declared in library mathcomp.classical.fsbigop, line 376, characters 6-19
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_image" class="id"><a name="fsbig_image" class="" title="fsbig_image :
-forall {R : Type} {idx : R} {op : Monoid.com_law idx} 
-  {I J : choiceType} (P : set I) (h : I -> J) (F : J -> R),
+forall {R : Type} {idx : R} {op : com_law idx} {I J : choiceType} 
+  (P : set I) (h : I -> J) (F : J -> R),
 set_inj P h ->
 \big[op/idx]_(j \in [set h x | x in P]) F j = \big[op/idx]_(i \in P) F (h i)
 
@@ -1124,9 +1121,8 @@ Declared in library mathcomp.classical.fsbigop, line 407, characters 6-17
 <span class="gallina-kwd"> by</span><span class="id"> move=&gt;</span><span class="id"> /</span><span class="id"><a href="mathcomp.classical.functions.html#inj_bij">inj_bij</a></span><span class="id">;</span><span class="id"> apply:</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#reindex_fsbig">reindex_fsbig</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="__deprecated__reindex_inside" class="id"><a name="__deprecated__reindex_inside" class="" title="__deprecated__reindex_inside :
-forall {R : Type} {idx : R} {op : Monoid.com_law idx} 
-  {I J : choiceType} (P : set J) (Q : set I) (h : I -> J) 
-  (F : J -> R),
+forall {R : Type} {idx : R} {op : com_law idx} {I J : choiceType} 
+  (P : set J) (Q : set I) (h : I -> J) (F : J -> R),
 bijective h ->
 (P `<=` [set h x | x in Q])%classic ->
 (Q `<=` h @^-1` P)%classic ->
@@ -1150,8 +1146,8 @@ Declared in library mathcomp.classical.fsbigop, line 412, characters 6-34
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="reindex_fsbigT" class="id"><a name="reindex_fsbigT" class="" title="reindex_fsbigT :
-forall {R : Type} {idx : R} {op : Monoid.com_law idx} 
-  {I J : choiceType} (h : I -> J) (F : J -> R),
+forall {R : Type} {idx : R} {op : com_law idx} {I J : choiceType}
+  (h : I -> J) (F : J -> R),
 bijective h ->
 \big[op/idx]_(j \in [set: J]) F j = \big[op/idx]_(i \in [set: I]) F (h i)
 
@@ -1179,9 +1175,8 @@ Declared in library mathcomp.classical.fsbigop, line 420, characters 6-20
 <span class="vernacular">Notation</span><span class="id"> </span><span id="reindex_inside_setT" class="id"><a name="reindex_inside_setT" class="">reindex_inside_setT</a></span><span class="id"> :=</span><span class="id"> </span><span class="id"><a href="mathcomp.classical.fsbigop.html#reindex_fsbigT">reindex_fsbigT</a></span> (<span class="id">only</span><span class="id"> parsing</span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbigN1" class="id"><a name="fsbigN1" class="" title="fsbigN1 :
-forall [R : eqType] [idx : R] [op : Monoid.com_law idx] 
-  [T1 T2 : choiceType] [Q : set T2] [f : T1 -> T2 -> R] 
-  [x : T1],
+forall [R : eqType] [idx : R] [op : com_law idx] [T1 T2 : choiceType]
+  [Q : set T2] [f : T1 -> T2 -> R] [x : T1],
 \big[op/idx]_(y \in Q) f x y != idx -> exists2 y : T2, Q y & f x y != idx
 
 fsbigN1 is not universe polymorphic
@@ -1201,7 +1196,7 @@ Declared in library mathcomp.classical.fsbigop, line 435, characters 6-13
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="fsbig_split" class="id"><a name="fsbig_split" class="" title="fsbig_split :
-forall [T : choiceType] [R : eqType] [idx : R] (op : Monoid.com_law idx)
+forall [T : choiceType] [R : eqType] [idx : R] (op : com_law idx) 
   [P : set T] (f g : T -> R),
 finite_set P ->
 \big[op/idx]_(x \in P) op (f x) (g x) =
@@ -1364,8 +1359,8 @@ Declared in library mathcomp.classical.fsbigop, line 495, characters 6-21
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="pair_fsbig" class="id"><a name="pair_fsbig" class="" title="pair_fsbig :
-forall [R : Type] [idx : R] (op : Monoid.com_law idx) 
-  [I J : choiceType] [P : set I] [Q : set J] (F : I -> J -> R),
+forall [R : Type] [idx : R] (op : com_law idx) [I J : choiceType] 
+  [P : set I] [Q : set J] (F : I -> J -> R),
 finite_set P ->
 finite_set Q ->
 \big[op/idx]_(i \in P) \big[op/idx]_(j \in Q) F i j =
@@ -1395,8 +1390,8 @@ Declared in library mathcomp.classical.fsbigop, line 502, characters 6-16
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="exchange_fsbig" class="id"><a name="exchange_fsbig" class="" title="exchange_fsbig :
-forall [R : Type] [idx : R] (op : Monoid.com_law idx) 
-  [I J : choiceType] [P : set I] [Q : set J] (F : I -> J -> R),
+forall [R : Type] [idx : R] (op : com_law idx) [I J : choiceType] 
+  [P : set I] [Q : set J] (F : I -> J -> R),
 finite_set P ->
 finite_set Q ->
 \big[op/idx]_(i \in P) \big[op/idx]_(j \in Q) F i j =

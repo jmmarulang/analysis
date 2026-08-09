@@ -2533,7 +2533,7 @@ forall [xnz ynz : KnownSign.nullity] [xr yr : KnownSign.reality]
   (x : {compare 0 & xnz & xr}) (y : {compare 0 & ynz & yr}),
 let rnz := min_nonzero_subdef xnz ynz xr yr in
 let rrl := min_reality_subdef xnz ynz xr yr in
-Signed.spec 0 rnz rrl (Nat.min x%:num%R y%:num%R)
+Signed.spec 0 rnz rrl (Init.Nat.min x%:num%R y%:num%R)
 
 minn_snum_subproof is not universe polymorphic
 Arguments minn_snum_subproof [xnz ynz]%snum_nullity_scope

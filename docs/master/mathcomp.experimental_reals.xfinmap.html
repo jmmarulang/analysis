@@ -279,8 +279,8 @@ Qed.</div></details>
 <span class="vernacular">Variable</span> (<span id="BigFSet.I" class="id"><a name="BigFSet.I" class="">I</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.choice#Choice.Exports.choiceType">choiceType</a></span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="big_fset0_cond" class="id"><a name="big_fset0_cond" class="" title="big_fset0_cond :
-forall [R : Type] [idx : R] (op : Monoid.law idx) 
-  [I : choiceType] (P : pred fset0) (F : fset0 -> R),
+forall [R : Type] [idx : R] (op : law idx) [I : choiceType] 
+  (P : pred fset0) (F : fset0 -> R),
 \big[op/idx]_(i | P i) F i = idx
 
 big_fset0_cond is not universe polymorphic
@@ -297,8 +297,8 @@ library mathcomp.experimental_reals.xfinmap, line 45, characters 6-20
 <span class="gallina-kwd"> by</span><span class="id"> apply:</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#big_pred0">big_pred0</a></span><span class="id"> =&gt;</span><span class="id"> -[j</span><span class="id"> hj];</span><span class="id"> have</span><span class="id"> :=</span><span class="id"> hj;</span><span class="id"> rewrite</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.finmap.finmap#in_fset0">in_fset0</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="big_fset0" class="id"><a name="big_fset0" class="" title="big_fset0 :
-forall [R : Type] [idx : R] (op : Monoid.law idx) 
-  [I : choiceType] (P : pred fset0) (F : fset0 -> R),
+forall [R : Type] [idx : R] (op : law idx) [I : choiceType] 
+  (P : pred fset0) (F : fset0 -> R),
 \big[op/idx]_(i | P i) F i = idx
 
 big_fset0 is not universe polymorphic
@@ -314,8 +314,8 @@ Declared in library mathcomp.finmap.finmap, line 2284, characters 6-15
 <span class="gallina-kwd"> by</span><span class="id"> rewrite</span><span class="id"> /</span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#index_enum">index_enum</a></span><span class="id"> -</span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.fintype#enumT">enumT</a></span><span class="id"> /=</span><span class="id"> </span><span class="id"><a href="mathcomp.experimental_reals.xfinmap.html#enum_fset0">enum_fset0</a></span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#big_nil">big_nil</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="big_fset1" class="id"><a name="big_fset1" class="" title="big_fset1 :
-forall [R : Type] [idx : R] (op : Monoid.law idx) 
-  [I : choiceType] [a : I] (F : [fset a]%fset -> R),
+forall [R : Type] [idx : R] (op : law idx) [I : choiceType] 
+  [a : I] (F : [fset a]%fset -> R),
 \big[op/idx]_i F i = F.[fset11 (K:=I) a]%fmap
 
 big_fset1 is not universe polymorphic
@@ -342,9 +342,8 @@ Declared in library mathcomp.finmap.finmap, line 2291, characters 6-15
 <span class="vernacular">Local</span><span class="vernacular"> Notation</span> <span id="1fdc98a867418c1d698ae3633b850aa0" class="id"><a name="1fdc98a867418c1d698ae3633b850aa0" class="">&quot;x * y&quot;</a></span><span class="id"> :=</span> (<span class="id"><a href="mathcomp.experimental_reals.xfinmap.html#BigFSetCom.op">op</a></span><span class="id"> x</span><span class="id"> y</span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="big_fset_seq_cond" class="id"><a name="big_fset_seq_cond" class="" title="big_fset_seq_cond :
-forall [R : Type] [idx : R] [op : Monoid.com_law idx] 
-  [T : choiceType] [J : {fset T}] (P : T -> bool) 
-  (F : T -> R),
+forall [R : Type] [idx : R] [op : com_law idx] [T : choiceType]
+  [J : {fset T}] (P : T -> bool) (F : T -> R),
 \big[op/idx]_(x | P (\val x)) F (\val x) = \big[op/idx]_(x <- J | P x) F x
 
 big_fset_seq_cond is not universe polymorphic
@@ -364,8 +363,8 @@ library mathcomp.experimental_reals.xfinmap, line 69, characters 6-23
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="big_fset_seq" class="id"><a name="big_fset_seq" class="" title="big_fset_seq :
-forall [R : Type] [idx : R] [op : Monoid.com_law idx] 
-  [T : choiceType] [J : {fset T}] (F : T -> R),
+forall [R : Type] [idx : R] [op : com_law idx] [T : choiceType]
+  [J : {fset T}] (F : T -> R),
 \big[op/idx]_x F (\val x) = \big[op/idx]_(x <- J) F x
 
 big_fset_seq is not universe polymorphic
@@ -383,8 +382,8 @@ library mathcomp.experimental_reals.xfinmap, line 77, characters 6-18
 <span class="gallina-kwd"> by</span><span class="id"> apply/</span><span class="id"><a href="mathcomp.experimental_reals.xfinmap.html#big_fset_seq_cond">big_fset_seq_cond</a></span>. Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="big_seq_fset_cond" class="id"><a name="big_seq_fset_cond" class="" title="big_seq_fset_cond :
-forall [R : Type] [idx : R] [op : Monoid.com_law idx] 
-  [T : choiceType] [s : seq T] (P : T -> bool) (F : T -> R),
+forall [R : Type] [idx : R] [op : com_law idx] [T : choiceType] 
+  [s : seq T] (P : T -> bool) (F : T -> R),
 uniq s ->
 \big[op/idx]_(x | P (\val x)) F (\val x) = \big[op/idx]_(x <- s | P x) F x
 
@@ -406,8 +405,8 @@ library mathcomp.experimental_reals.xfinmap, line 82, characters 6-23
 Qed.</div></details>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="big_seq_fset" class="id"><a name="big_seq_fset" class="" title="big_seq_fset :
-forall [R : Type] [idx : R] [op : Monoid.com_law idx] 
-  [T : choiceType] [s : seq T] (F : T -> R),
+forall [R : Type] [idx : R] [op : com_law idx] [T : choiceType] 
+  [s : seq T] (F : T -> R),
 uniq s -> \big[op/idx]_x F (\val x) = \big[op/idx]_(x <- s) F x
 
 big_seq_fset is not universe polymorphic
@@ -435,7 +434,7 @@ library mathcomp.experimental_reals.xfinmap, line 90, characters 6-18
 <span class="vernacular">Context</span><span class="id"> {</span><span id="BigFSetU.R" class="id"><a name="BigFSetU.R" class="">R</a></span><span class="id"> :</span><span class="id"> Type}</span><span class="id"> {</span><span id="BigFSetU.T" class="id"><a name="BigFSetU.T" class="">T</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.choice#Choice.Exports.choiceType">choiceType</a></span><span class="id">}</span> (<span id="BigFSetU.idx" class="id"><a name="BigFSetU.idx" class="">idx</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="mathcomp.experimental_reals.xfinmap.html#R:78">R</a></span>) (<span id="BigFSetU.op" class="id"><a name="BigFSetU.op" class="">op</a></span><span class="id"> :</span><span class="id"> </span><span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#Monoid.com_law">Monoid</a></span>.<span class="id"><a href="NOTFOUND the module url for mathcomp.boot.bigop#Monoid.com_law">com_law</a></span><span class="id"> </span><span class="id"><a href="mathcomp.experimental_reals.xfinmap.html#idx:80">idx</a></span>).<br/>
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="big_fsetU" class="id"><a name="big_fsetU" class="" title="big_fsetU :
-forall {R : Type} {T : choiceType} [idx : R] (op : Monoid.com_law idx)
+forall {R : Type} {T : choiceType} [idx : R] (op : com_law idx)
   [A B : {fset T}] (F : T -> R),
 [disjoint A & B]%fset ->
 \big[op/idx]_j F (\val j) =

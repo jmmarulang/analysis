@@ -2100,7 +2100,7 @@ Declared in library mathcomp.analysis.ereal, line 753, characters 6-19
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ext_num_spec_ereal_sup" class="id"><a name="ext_num_spec_ereal_sup" class="" title="ext_num_spec_ereal_sup :
 forall {R : realFieldType} [i : Itv.t] (S : Itv.def ext_num_sem i -> Prop),
-let r := Itv.real1 keep_nonpos i in
+let r := Itv.real1 IntItv.keep_nonpos i in
 Itv.spec ext_num_sem r (ereal_sup (R:=R) [set x%:num%R | x in S])
 
 ext_num_spec_ereal_sup is not universe polymorphic
@@ -2129,7 +2129,7 @@ Qed.</div></details>
 <span class="vernacular">Canonical</span><span class="id"> </span><span id="ereal_sup_inum" class="id"><a name="ereal_sup_inum" class="" title="ereal_sup_inum :
 forall {R : realFieldType} [i : Itv.t],
 (Itv.def ext_num_sem i -> Prop) ->
-Itv.def ext_num_sem (Itv.real1 keep_nonpos i)
+Itv.def ext_num_sem (Itv.real1 IntItv.keep_nonpos i)
 
 ereal_sup_inum is not universe polymorphic
 Arguments ereal_sup_inum {R} [i] S%function_scope
@@ -2141,7 +2141,7 @@ Declared in library mathcomp.analysis.ereal, line 776, characters 10-24
 <br/>
 <span class="vernacular">Lemma</span><span class="id"> </span><span id="ext_num_spec_ereal_inf" class="id"><a name="ext_num_spec_ereal_inf" class="" title="ext_num_spec_ereal_inf :
 forall {R : realFieldType} [i : Itv.t] (S : Itv.def ext_num_sem i -> Prop),
-let r := Itv.real1 keep_nonneg i in
+let r := Itv.real1 IntItv.keep_nonneg i in
 Itv.spec ext_num_sem r (ereal_inf (R:=R) [set x%:num%R | x in S])
 
 ext_num_spec_ereal_inf is not universe polymorphic
@@ -2168,7 +2168,7 @@ Qed.</div></details>
 <span class="vernacular">Canonical</span><span class="id"> </span><span id="ereal_inf_inum" class="id"><a name="ereal_inf_inum" class="" title="ereal_inf_inum :
 forall {R : realFieldType} [i : Itv.t],
 (Itv.def ext_num_sem i -> Prop) ->
-Itv.def ext_num_sem (Itv.real1 keep_nonneg i)
+Itv.def ext_num_sem (Itv.real1 IntItv.keep_nonneg i)
 
 ereal_inf_inum is not universe polymorphic
 Arguments ereal_inf_inum {R} [i] S%function_scope
